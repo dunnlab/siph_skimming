@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Resomia_NA10_090x_21.histo
+output directory = Resomia_NA10_090x_k21
+p = 2
+k = 21
+name prefix = Resomia_NA10_090x_k21
+
+property                      min               max               
+Homozygous (aa)               98.8046%          100%              
+Heterozygous (ab)             0%                1.19535%          
+Genome Haploid Length         1,645,930,341 bp  2,349,842,593 bp  
+Genome Repeat Length          980,987,472 bp    1,400,524,729 bp  
+Genome Unique Length          664,942,869 bp    949,317,864 bp    
+Model Fit                     47.8154%          94.3373%          
+Read Error Rate               0.492749%         0.492749%         

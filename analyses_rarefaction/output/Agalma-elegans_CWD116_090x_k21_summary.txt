@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Agalma-elegans_CWD116_090x_21.histo
+output directory = Agalma-elegans_CWD116_090x_k21
+p = 2
+k = 21
+name prefix = Agalma-elegans_CWD116_090x_k21
+
+property                      min               max               
+Homozygous (aa)               97.1401%          97.2307%          
+Heterozygous (ab)             2.76932%          2.85993%          
+Genome Haploid Length         2,398,103,380 bp  2,427,022,571 bp  
+Genome Repeat Length          1,416,294,522 bp  1,433,373,891 bp  
+Genome Unique Length          981,808,857 bp    993,648,680 bp    
+Model Fit                     52.0251%          97.1666%          
+Read Error Rate               0.433862%         0.433862%         
