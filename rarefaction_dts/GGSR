@@ -1,0 +1,54 @@
+"""
+granular geneome size rarefaction
+
+This snakefile's main goal is to create a fast, scalable rarefaction analysis
+for k-mer based genome size estimation.
+
+
+Works by breaking the fastq files into 100 pieces, 
+author: dts
+github: @conchoecia
+date: dec 2022
+license: none atm
+"""
+
+import gzip
+from Bio import SeqIO
+
+configfile: "config.yaml"
+
+config["tool"] = "GGSR_analysis"
+
+rule all:
+    input:
+        expand(config["tool"] + "/fastqs/{sample}/{sample}.{num}.fastq.gz",
+            sample=config["samples"], num=range(1,101))
+
+rule randomize_and_split_all_fastqs_per_sample:
+    input:
+        fastqs = lamba wildcards: config["samples"][wildcards.sample]
+    output:
+        fastqs = expand(config["tool"] + "/fastqs/{{sample}}/{{sample}}.{num}.fastq.gz",
+            num=range(1,101))
+    threads: 1
+    run:
+        #open 100 fastq.gz files to write later
+        #write 1/100th of the lines to it
+        output_fastq_gzs = [gzip.open(fqgz, 'wb') for fqgz in output.fastqs]
+
+        # now iterate through the input fastq.gz files and print out lines in succession to the 100 output files.
+        # Use seqio to do the parsing
+        i = 0
+        for fastq in input.fastqs:
+            with gzip.open(fastq, 'rb') as handle:
+                for record in SeqIO.parse(handle, "fastq"):
+                    SeqIO.write(record, output_fastq_gzs[i], "fastq")
+                    i+=1
+                    if 1 == 100:
+                        i = 0
+        
+        # now close all the output fastq.gz files
+        for fqgz in output_fastq_gzs:
+            fqgz.close()
+
+
