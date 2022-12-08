@@ -18,11 +18,15 @@ from Bio import SeqIO
 configfile: "config.yaml"
 
 config["tool"] = "GGSR_analysis"
+config["ks"] = [19,21,23]
 
 rule all:
     input:
         expand(config["tool"] + "/fastqs/{sample}/{sample}.{num}.fastq.gz",
-            sample=config["samples"], num=list(range(1,101)))
+            sample=config["samples"], num=list(range(1,101))),
+        expand(config["tool"] + "/genomescope/{sample}/{sample}.{k}.{num}.linear_plot.png",
+            sample=config["samples"], num=list(range(1,101)), k = config["ks"])
+
 
 rule randomize_and_split_all_fastqs_per_sample:
     input:
@@ -50,3 +54,75 @@ rule randomize_and_split_all_fastqs_per_sample:
         # now close all the output fastq.gz files
         for fqgz in output_fastq_gzs:
             fqgz.close()
+
+rule run_jellyfish_on_each_fastq_file:
+    """
+    Runs jellyfish on each of the 100 fastq files for every sample.
+      The output file for this will be a database instead of a histo file.
+    """
+    input:
+        fastq = config["tool"] + "/fastqs/{sample}/{sample}.{num}.fastq.gz"
+    output:
+        jellyfishdb = config["tool"] + "/jellyfish/{sample}/{sample}.{k}.{num}.jf"
+    params:
+        k = lambda wildcards: wildcards.k
+    threads: 1
+    shell:
+        """
+        zcat {input.fastq} | \
+          jellyfish count -C -m {params.k} -s 1000000000 -t {threads} /dev/fd/0 -o {output.jellyfishdb}
+        """
+
+rule generate_new_jellyfish_file_ascending_sum:
+    """
+    make new jellyfish files by summing the kmers from the previous jellyfish file
+    """
+    input:
+        jellyfishdb = lambda wildcards: expand(config["tool"] + "/jellyfish/{{sample}}/{{sample}}.{{k}}.{num}.jf",
+                             num = range(1,wildcards.num+1))
+    output:
+        final_jf = temp(config["tool"] + "/jellyfish/{sample}/tempmerged/{sample}.{k}.{num}.jf")
+    threads: 1
+    shell:
+        """
+        jellyfish merge -o {output.final_jf} {input.jellyfishdb}
+        """
+
+rule generate_histo_from_jellyfish_file:
+    """
+    generates a histo file from a merged jellyfish file
+    """
+    input:
+        jellyfishdb = config["tool"] + "/jellyfish/{sample}/tempmerged/{sample}.{k}.{num}.jf"
+    output:
+        histo = config["tool"] + "/histos/{sample}/{sample}.{k}.{num}.histo"
+    threads: 1
+    shell:
+        """
+        jellyfish histo -t {threads} {input.jellyfishdb} > {output.histo}
+        """
+
+rule run_genomescope_on_each_histo:
+    input:
+        histo = config["tool"] + "/histos/{sample}/{sample}.{k}.{num}.histo"
+    output:
+        plot    = config["tool"] + "/genomescope/{sample}/{sample}.{k}.{num}.linear_plot.png",
+        summary = config["tool"] + "/genomescope/{sample}/{sample}.{k}.{num}.summary.txt"
+    params:
+        outdir = lambda wildcards: "{tool}/genomescope/{sample}/".format(
+            tool=config["tool"],
+            sample=wildcards.sample,
+            ),
+        outprefix = "{sample}.{k}.{num}".format(
+            sample=wildcards.sample,
+            k=wildcards.k,
+            num=wildcards.num
+            ),
+        sample = lambda wildcards: wildcards.sample,
+        k = lambda wildcards: wildcards.k,
+    threads: 1
+    shell:
+        """
+        genomescope.R -i {input.histo} -o {params.outdir} \
+          -k {params.k} -n {output.outprefix}
+        """
