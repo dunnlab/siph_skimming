@@ -22,33 +22,31 @@ config["tool"] = "GGSR_analysis"
 rule all:
     input:
         expand(config["tool"] + "/fastqs/{sample}/{sample}.{num}.fastq.gz",
-            sample=config["samples"], num=range(1,101))
+            sample=config["samples"], num=list(range(1,101)))
 
 rule randomize_and_split_all_fastqs_per_sample:
     input:
-        fastqs = lamba wildcards: config["samples"][wildcards.sample]
+        fastqs = lambda wildcards: config["samples"][wildcards.sample]["reads"]
     output:
         fastqs = expand(config["tool"] + "/fastqs/{{sample}}/{{sample}}.{num}.fastq.gz",
-            num=range(1,101))
+                        num=list(range(1,101)))
     threads: 1
     run:
         #open 100 fastq.gz files to write later
         #write 1/100th of the lines to it
-        output_fastq_gzs = [gzip.open(fqgz, 'wb') for fqgz in output.fastqs]
+        output_fastq_gzs = [gzip.open(fqgz, 'wt') for fqgz in output.fastqs]
 
         # now iterate through the input fastq.gz files and print out lines in succession to the 100 output files.
         # Use seqio to do the parsing
         i = 0
         for fastq in input.fastqs:
-            with gzip.open(fastq, 'rb') as handle:
+            with gzip.open(fastq, 'rt') as handle:
                 for record in SeqIO.parse(handle, "fastq"):
                     SeqIO.write(record, output_fastq_gzs[i], "fastq")
                     i+=1
-                    if 1 == 100:
+                    if i >= len(output_fastq_gzs):
                         i = 0
-        
+
         # now close all the output fastq.gz files
         for fqgz in output_fastq_gzs:
             fqgz.close()
-
-
