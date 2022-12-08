@@ -43,6 +43,117 @@ rule all:
         #    sample=config["samples"], num=list(range(1,101)), k = config["ks"])
 
 
+rule randomize_and_split_one_fastq_per_sample:
+    """
+    This rule splits the files into 100 pieces each.
+     This was 120 times faster than splitting them with python.
+    """
+    input:
+        fastq = lambda wildcards: config["reads"][wildcards.sample][int(wildcards.index)]
+    output:
+        fastqs = expand(config["tool"] + "/fastqs/{{sample}}/temp/{{sample}}.{{index}}.{num}.fastq.gz",
+                        num=list(range(0,config["num_splits"])))
+    params:
+        outstring = lambda wildcards: " -o ".join([ config["tool"] + "/fastqs/{sample}/temp/{sample}.{index}.{num}.fastq.gz".format(
+                        sample = wildcards.sample, index = wildcards.index, num=i) for i in range(0,config["num_splits"])])
+    threads: 1
+    shell:
+        """
+        # make a system call to fastqsplitter to split the file into 100 pieces
+        fastqsplitter -i {input.fastq} -o {params.outstring}
+        """
+
+rule concatenate_all_the_num_components_into_single_fastq_file:
+    """
+    This rule concatenates each of the fragments for a single 'num' into one file.
+       The end goal is len('num') quantity of fastq files to run jellyfish on later
+    """
+    input:
+        fastqs = lambda wildcards: expand(config["tool"] + "/fastqs/{{sample}}/temp/{{sample}}.{index}.{{num}}.fastq.gz",
+                        num=range(0,max(config["reads"][wildcards.sample].keys())+1))
+    output:
+        fastq = config["tool"] + "/fastqs/{sample}/{sample}.{num}.fastq.gz"
+    shell:
+        """
+        cat {input.fastqs} > {output.fastq}
+        """
+
+rule run_jellyfish_on_each_fastq_file:
+    """
+    Runs jellyfish on each of the 100 fastq files for every sample.
+      The output file for this will be a database instead of a histo file.
+    """
+    input:
+        fastq = config["tool"] + "/fastqs/{sample}/{sample}.{num}.fastq.gz"
+    output:
+        jellyfishdb = config["tool"] + "/jellyfish/{sample}/{sample}.{k}.{num}.jf"
+    params:
+        k = lambda wildcards: wildcards.k
+    threads: 1
+    shell:
+        """
+        zcat {input.fastq} | \
+          jellyfish count -C -m {params.k} -s 1000000000 -t {threads} /dev/fd/0 -o {output.jellyfishdb}
+        """
+
+rule generate_new_jellyfish_file_ascending_sum:
+    """
+    make new jellyfish files by summing the kmers from the previous jellyfish file
+    """
+    input:
+        jellyfishdb = lambda wildcards: expand(config["tool"] + "/jellyfish/{{sample}}/{{sample}}.{{k}}.{num}.jf",
+                             num = range(1,wildcards.num+1))
+    output:
+        final_jf = temp(config["tool"] + "/jellyfish/{sample}/tempmerged/{sample}.{k}.{num}.jf")
+    threads: 1
+    shell:
+        """
+        jellyfish merge -o {output.final_jf} {input.jellyfishdb}
+        """
+
+rule generate_histo_from_jellyfish_file:
+    """
+    generates a histo file from a merged jellyfish file
+    """
+    input:
+        jellyfishdb = config["tool"] + "/jellyfish/{sample}/tempmerged/{sample}.{k}.{num}.jf"
+    output:
+        histo = config["tool"] + "/histos/{sample}/{sample}.{k}.{num}.histo"
+    threads: 1
+    shell:
+        """
+        jellyfish histo -t {threads} {input.jellyfishdb} > {output.histo}
+        """
+
+rule run_genomescope_on_each_histo:
+    input:
+        histo = config["tool"] + "/histos/{sample}/{sample}.{k}.{num}.histo"
+    output:
+        plot    = config["tool"] + "/genomescope/{sample}/{sample}.{k}.{num}.linear_plot.png",
+        summary = config["tool"] + "/genomescope/{sample}/{sample}.{k}.{num}.summary.txt"
+    params:
+        outdir = lambda wildcards: "{tool}/genomescope/{sample}/".format(
+            tool=config["tool"],
+            sample=wildcards.sample,
+            ),
+        outprefix = "{sample}.{k}.{num}".format(
+            sample=wildcards.sample,
+            k=wildcards.k,
+            num=wildcards.num
+            ),
+        sample = lambda wildcards: wildcards.sample,
+        k = lambda wildcards: wildcards.k,
+    threads: 1
+    shell:
+        """
+        genomescope.R -i {input.histo} -o {params.outdir} \
+          -k {params.k} -n {output.outprefix}
+        """
+
+
+
+
+#DEPRECATED CODE
 # This rule was very slow.
 #rule randomize_and_split_all_fastqs_per_sample:
 #    input:
@@ -70,95 +181,3 @@ rule all:
 #        # now close all the output fastq.gz files
 #        for fqgz in output_fastq_gzs:
 #            fqgz.close()
-
-rule randomize_and_split_one_fastq_per_sample:
-    """
-    This rule splits the files into 100 pieces each.
-     This was 120 times faster than splitting them with python.
-    """
-    input:
-        fastq = lambda wildcards: config["reads"][wildcards.sample][int(wildcards.index)]
-    output:
-        fastqs = expand(config["tool"] + "/fastqs/{{sample}}/temp/{{sample}}.{{index}}.{num}.fastq.gz",
-                        num=list(range(0,config["num_splits"])))
-    params:
-        outstring = lambda wildcards: " -o ".join([ config["tool"] + "/fastqs/{sample}/temp/{sample}.{index}.{num}.fastq.gz".format(
-                        sample = wildcards.sample, index = wildcards.index, num=i) for i in range(0,config["num_splits"])])
-    threads: 1
-    shell:
-        """
-        # make a system call to fastqsplitter to split the file into 100 pieces
-        fastqsplitter -i {input.fastq} -o {params.outstring}
-        """
-
-#rule run_jellyfish_on_each_fastq_file:
-#    """
-#    Runs jellyfish on each of the 100 fastq files for every sample.
-#      The output file for this will be a database instead of a histo file.
-#    """
-#    input:
-#        fastq = config["tool"] + "/fastqs/{sample}/{sample}.{num}.fastq.gz"
-#    output:
-#        jellyfishdb = config["tool"] + "/jellyfish/{sample}/{sample}.{k}.{num}.jf"
-#    params:
-#        k = lambda wildcards: wildcards.k
-#    threads: 1
-#    shell:
-#        """
-#        zcat {input.fastq} | \
-#          jellyfish count -C -m {params.k} -s 1000000000 -t {threads} /dev/fd/0 -o {output.jellyfishdb}
-#        """
-#
-#rule generate_new_jellyfish_file_ascending_sum:
-#    """
-#    make new jellyfish files by summing the kmers from the previous jellyfish file
-#    """
-#    input:
-#        jellyfishdb = lambda wildcards: expand(config["tool"] + "/jellyfish/{{sample}}/{{sample}}.{{k}}.{num}.jf",
-#                             num = range(1,wildcards.num+1))
-#    output:
-#        final_jf = temp(config["tool"] + "/jellyfish/{sample}/tempmerged/{sample}.{k}.{num}.jf")
-#    threads: 1
-#    shell:
-#        """
-#        jellyfish merge -o {output.final_jf} {input.jellyfishdb}
-#        """
-#
-#rule generate_histo_from_jellyfish_file:
-#    """
-#    generates a histo file from a merged jellyfish file
-#    """
-#    input:
-#        jellyfishdb = config["tool"] + "/jellyfish/{sample}/tempmerged/{sample}.{k}.{num}.jf"
-#    output:
-#        histo = config["tool"] + "/histos/{sample}/{sample}.{k}.{num}.histo"
-#    threads: 1
-#    shell:
-#        """
-#        jellyfish histo -t {threads} {input.jellyfishdb} > {output.histo}
-#        """
-#
-#rule run_genomescope_on_each_histo:
-#    input:
-#        histo = config["tool"] + "/histos/{sample}/{sample}.{k}.{num}.histo"
-#    output:
-#        plot    = config["tool"] + "/genomescope/{sample}/{sample}.{k}.{num}.linear_plot.png",
-#        summary = config["tool"] + "/genomescope/{sample}/{sample}.{k}.{num}.summary.txt"
-#    params:
-#        outdir = lambda wildcards: "{tool}/genomescope/{sample}/".format(
-#            tool=config["tool"],
-#            sample=wildcards.sample,
-#            ),
-#        outprefix = "{sample}.{k}.{num}".format(
-#            sample=wildcards.sample,
-#            k=wildcards.k,
-#            num=wildcards.num
-#            ),
-#        sample = lambda wildcards: wildcards.sample,
-#        k = lambda wildcards: wildcards.k,
-#    threads: 1
-#    shell:
-#        """
-#        genomescope.R -i {input.histo} -o {params.outdir} \
-#          -k {params.k} -n {output.outprefix}
-#        """
