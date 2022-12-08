@@ -1,9 +1,9 @@
 .DS_Store
+.Rhistory
 *.snakemake.log
 *.fastq.gz
 *.fq.gz
 .snakemake/
-rarefaction_dts/config.yaml*
 *.jf
 *.histo
 temp.sh
