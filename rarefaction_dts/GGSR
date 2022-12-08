@@ -25,13 +25,13 @@ config["num_splits"] = 100
 
 # turn the data structure into something easier to work with later. we can access individual indices
 config["reads"] = {}
-for sample in config["samples"]:
-    config["reads"][sample] = {i:config["samples"][sample]["reads"][i] for i in range(len(config["samples"][sample]["reads"]))}
+for sample in config["sample"]:
+    config["reads"][sample] = {i:config["sample"][sample]["reads"][i] for i in range(len(config["sample"][sample]["reads"]))}
 
 # now define which reads we want, since different samples will have different numbers of reads
 reads_output = []
-for sample in config["samples"]:
-    for i in range(len(config["samples"][sample]["reads"])):
+for sample in config["sample"]:
+    for i in range(len(config["sample"][sample]["reads"])):
         for fn in range(0,config["num_splits"]):
             reads_output.append(config["tool"] + "/fastqs/{sample}/{sample}.{i}.{num}.fastq.gz".format(
                 sample=sample, i=i, num=fn ))
@@ -40,21 +40,21 @@ rule all:
     input:
         reads_output,
         #expand(config["tool"] + "/jellyfish/{sample}/{sample}.{k}.{num}.jf",
-        #    sample=config["samples"], num=list(range(0,config["num_splits"])), k = config["ks"]),
+        #    sample=config["sample"], num=list(range(0,config["num_splits"])), k = config["ks"]),
         #expand(config["tool"] + "/histos/{sample}/{sample}.{k}.{num}.histo",
-        #    sample=config["samples"], num=list(range(0,config["num_splits"])), k = config["ks"]),
+        #    sample=config["sample"], num=list(range(0,config["num_splits"])), k = config["ks"]),
         expand(config["tool"] + "/genomescope/{sample}/{sample}.{k}.{num}_linear_plot.png",
-            sample=config["samples"],
+            sample=config["sample"],
             num=list(range(0,config["num_splits"])),
             k = config["ks"]),
         expand(config["tool"] + "/gifs/{sample}.{k}.gif",
-            sample=config["samples"],
+            sample=config["sample"],
             k = config["ks"]),
         expand(config["tool"] + "/summary_tables/{sample}.{k}.summary_table.tsv",
-            sample=config["samples"],
+            sample=config["sample"],
             k = config["ks"]),
         expand(config["tool"] + "/genomesize_plots/{sample}.{k}.genomesize.pdf",
-            sample=config["samples"],
+            sample=config["sample"],
             k = config["ks"])
 
 rule randomize_and_split_one_fastq_per_sample:
@@ -84,7 +84,7 @@ rule run_jellyfish_on_each_fastq_file:
     """
     input:
         fastqs = lambda wildcards: expand(config["tool"] + "/fastqs/{{sample}}/{{sample}}.{index}.{{num}}.fastq.gz",
-                        index=range(0,len(config["samples"][wildcards.sample]["reads"])))
+                        index=range(0,len(config["sample"][wildcards.sample]["reads"])))
     output:
         jellyfishdb = config["tool"] + "/jellyfish/{sample}/{sample}.{k}.{num}.jf"
     params:
@@ -293,7 +293,7 @@ rule make_genome_estimate_plot:
 ## This rule was very slow.
 ##rule randomize_and_split_all_fastqs_per_sample:
 ##    input:
-##        fastqs = lambda wildcards: config["samples"][wildcards.sample]["reads"]
+##        fastqs = lambda wildcards: config["sample"][wildcards.sample]["reads"]
 ##    output:
 ##        fastqs = expand(config["tool"] + "/fastqs/{{sample}}/{{sample}}.{num}.fastq.gz",
 ##                        num=list(range(1,101)))
