@@ -65,8 +65,8 @@ rule randomize_and_split_one_fastq_per_sample:
     input:
         fastq = lambda wildcards: config["reads"][wildcards.sample][int(wildcards.index)]
     output:
-        fastqs = expand(config["tool"] + "/fastqs/{{sample}}/{{sample}}.{{index}}.{num}.fastq.gz",
-                        num=list(range(0,config["num_splits"])))
+        fastqs = temp(expand(config["tool"] + "/fastqs/{{sample}}/{{sample}}.{{index}}.{num}.fastq.gz",
+                        num=list(range(0,config["num_splits"]))))
     params:
         outstring = lambda wildcards: " -o ".join([ config["tool"] + "/fastqs/{sample}/{sample}.{index}.{num}.fastq.gz".format(
                         sample = wildcards.sample, index = wildcards.index, num=i) for i in range(0,config["num_splits"])])
@@ -86,10 +86,11 @@ rule run_jellyfish_on_each_fastq_file:
         fastqs = lambda wildcards: expand(config["tool"] + "/fastqs/{{sample}}/{{sample}}.{index}.{{num}}.fastq.gz",
                         index=range(0,len(config["sample"][wildcards.sample]["reads"])))
     output:
-        jellyfishdb = config["tool"] + "/jellyfish/{sample}/{sample}.{k}.{num}.jf"
+        jellyfishdb = temp(config["tool"] + "/jellyfish/{sample}/{sample}.{k}.{num}.jf")
     params:
         k = lambda wildcards: wildcards.k
     threads: 1
+    priority: 10
     shell:
         """
         zcat {input.fastqs} | \
@@ -110,6 +111,7 @@ rule generate_new_jellyfish_file_ascending_sum:
         final_jf = temp(config["tool"] + "/jellyfish/{sample}/tempmerged/{sample}.{k}.{num}.jf"),
         histo = config["tool"] + "/histos/{sample}/{sample}.{k}.{num}.histo"
     threads: 1
+    priority: 20
     params:
         thisnum = lambda wildcards: wildcards.num
     shell:
@@ -143,6 +145,7 @@ rule run_genomescope_on_each_histo:
         sample = lambda wildcards: wildcards.sample,
         k = lambda wildcards: wildcards.k,
     threads: 1
+    priority: 30
     shell:
         """
         genomescope2 -i {input.histo} -o {params.outdir} \
