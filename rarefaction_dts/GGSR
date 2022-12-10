@@ -16,7 +16,7 @@ import gzip
 from Bio import SeqIO
 import pandas as pd
 
-configfile: "config.yaml"
+# configfile: "config.yaml"
 
 config["tool"] = "GGSR_analysis"
 config["ks"] = [21]
@@ -145,7 +145,7 @@ rule run_genomescope_on_each_histo:
     threads: 1
     shell:
         """
-        genomescope.R -i {input.histo} -o {params.outdir} \
+        genomescope2 -i {input.histo} -o {params.outdir} \
           -k {params.k} -n {params.outprefix}
         """
 
