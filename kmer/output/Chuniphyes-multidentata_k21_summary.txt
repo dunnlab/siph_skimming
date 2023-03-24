@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Chuniphyes-multidentata_21.histo
+output directory = Chuniphyes-multidentata_k21
+p = 2
+k = 21
+name prefix = Chuniphyes-multidentata_k21
+
+property                      min               max               
+Homozygous (aa)               95.1928%          96.6849%          
+Heterozygous (ab)             3.31508%          4.80721%          
+Genome Haploid Length         345,957,525 bp    367,144,670 bp    
+Genome Repeat Length          305,335,115 bp    324,034,461 bp    
+Genome Unique Length          40,622,410 bp     43,110,209 bp     
+Model Fit                     23.9762%          84.9518%          
+Read Error Rate               1.88609%          1.88609%          

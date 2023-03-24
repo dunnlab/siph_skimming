@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Resomia-ornicephala-T845-D3_21.histo
+output directory = Resomia-ornicephala-T845-D3_k21
+p = 2
+k = 21
+name prefix = Resomia-ornicephala-T845-D3_k21
+
+property                      min               max               
+Homozygous (aa)               85.1048%          97.2289%          
+Heterozygous (ab)             2.77105%          14.8952%          
+Genome Haploid Length         466,899,513 bp    482,151,337 bp    
+Genome Repeat Length          325,482,353 bp    336,114,618 bp    
+Genome Unique Length          141,417,161 bp    146,036,719 bp    
+Model Fit                     32.683%           84.2054%          
+Read Error Rate               1.40665%          1.40665%          

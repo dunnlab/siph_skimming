@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Apolemia-rubriversa_21.histo
+output directory = Apolemia-rubriversa_k21
+p = 2
+k = 21
+name prefix = Apolemia-rubriversa_k21
+
+property                      min               max               
+Homozygous (aa)               95.3099%          96.5911%          
+Heterozygous (ab)             3.40895%          4.69014%          
+Genome Haploid Length         339,364,268 bp    359,384,860 bp    
+Genome Repeat Length          296,642,430 bp    314,142,674 bp    
+Genome Unique Length          42,721,837 bp     45,242,187 bp     
+Model Fit                     24.9699%          86.6122%          
+Read Error Rate               2.38164%          2.38164%          

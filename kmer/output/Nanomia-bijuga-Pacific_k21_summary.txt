@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Nanomia-bijuga-Pacific_21.histo
+output directory = Nanomia-bijuga-Pacific_k21
+p = 2
+k = 21
+name prefix = Nanomia-bijuga-Pacific_k21
+
+property                      min               max               
+Homozygous (aa)               99.2332%          99.4147%          
+Heterozygous (ab)             0.585287%         0.766797%         
+Genome Haploid Length         1,450,354,182 bp  1,460,253,865 bp  
+Genome Repeat Length          919,081,335 bp    925,354,709 bp    
+Genome Unique Length          531,272,847 bp    534,899,156 bp    
+Model Fit                     42.5538%          96.8639%          
+Read Error Rate               0.477653%         0.477653%         

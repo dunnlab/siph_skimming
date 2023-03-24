@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Agalma-clausi_21.histo
+output directory = Agalma-clausi_k21
+p = 2
+k = 21
+name prefix = Agalma-clausi_k21
+
+property                      min               max               
+Homozygous (aa)               95.3836%          96.2106%          
+Heterozygous (ab)             3.78942%          4.61636%          
+Genome Haploid Length         114,859,773 bp    120,314,419 bp    
+Genome Repeat Length          93,509,626 bp     97,950,362 bp     
+Genome Unique Length          21,350,147 bp     22,364,057 bp     
+Model Fit                     33.9413%          88.4478%          
+Read Error Rate               4.57307%          4.57307%          

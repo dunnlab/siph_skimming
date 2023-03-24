@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Agalma-elegans-Atlantic_21.histo
+output directory = Agalma-elegans-Atlantic_k21
+p = 2
+k = 21
+name prefix = Agalma-elegans-Atlantic_k21
+
+property                      min               max               
+Homozygous (aa)               95.3303%          96.198%           
+Heterozygous (ab)             3.80204%          4.66969%          
+Genome Haploid Length         121,641,413 bp    127,555,593 bp    
+Genome Repeat Length          100,388,732 bp    105,269,611 bp    
+Genome Unique Length          21,252,681 bp     22,285,981 bp     
+Model Fit                     31.7175%          87.3331%          
+Read Error Rate               3.89489%          3.89489%          

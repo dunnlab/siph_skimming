@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Agalma-okeni_21.histo
+output directory = Agalma-okeni_k21
+p = 2
+k = 21
+name prefix = Agalma-okeni_k21
+
+property                      min               max               
+Homozygous (aa)               92.4243%          94.7635%          
+Heterozygous (ab)             5.23648%          7.5757%           
+Genome Haploid Length         938,791,723 bp    968,914,920 bp    
+Genome Repeat Length          743,861,788 bp    767,730,229 bp    
+Genome Unique Length          194,929,935 bp    201,184,691 bp    
+Model Fit                     28.9926%          79.2946%          
+Read Error Rate               2.14101%          2.14101%          

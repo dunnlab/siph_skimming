@@ -1,0 +1,6 @@
+starting
+round 0 trimming to 6 trying 2p peak model... converged. score:  76328897325411680256
+round 1 trimming to 11 trying 2p peak model... converged. score:  3815444791449934336
+round 2 trimming to 16 trying 2p peak model... converged. score:  3595300792862345216
+round 3 trimming to 21 trying 2p peak model... converged. score:  2916409503148882944
+done

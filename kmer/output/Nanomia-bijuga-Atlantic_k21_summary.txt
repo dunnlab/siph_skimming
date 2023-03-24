@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Nanomia-bijuga-Atlantic_21.histo
+output directory = Nanomia-bijuga-Atlantic_k21
+p = 2
+k = 21
+name prefix = Nanomia-bijuga-Atlantic_k21
+
+property                      min               max               
+Homozygous (aa)               95.9277%          95.9869%          
+Heterozygous (ab)             4.01309%          4.07235%          
+Genome Haploid Length         714,112,344 bp    716,359,683 bp    
+Genome Repeat Length          319,483,494 bp    320,488,922 bp    
+Genome Unique Length          394,628,849 bp    395,870,762 bp    
+Model Fit                     66.3075%          95.8975%          
+Read Error Rate               0.271925%         0.271925%         
