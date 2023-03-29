@@ -1,0 +1,76 @@
+---
+title: "figure5"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+library(RColorBrewer)
+
+
+#Show median on freq-histogram of genome size 
+data3 <- read.csv("genome_size.csv") 
+
+data3
+
+data3 <- drop_na(data3)
+datab <- select(data3, Assembly.Sequence.Length.or.genome.size.estimate..bp.) 
+
+datab_NewData <- data3 %>% filter(Group == 'New data')
+datab_published <- data3 %>% filter(Group == 'Published')
+
+
+#change order of variables to single, duplicated, fragmented, missing
+#add overlaying plot of genome size and N50 
+dp <- select(data3, Rank, Organism.Name, Assembly.Sequence.Length.or.genome.size.estimate..bp., Data.type) 
+dp <- drop_na(dp)
+dp <-dp[order(dp$"Assembly.Sequence.Length.or.genome.size.estimate..bp."),]
+dt <- select(dp, Rank, Organism.Name, Assembly.Sequence.Length.or.genome.size.estimate..bp., Data.type)
+
+
+
+#color by rank, geom_point icon by assembly type
+basicplot <- ggplot(dt) +
+          geom_point(aes(x = reorder(Organism.Name, Assembly.Sequence.Length.or.genome.size.estimate..bp.), y = Assembly.Sequence.Length.or.genome.size.estimate..bp.)) +
+          theme_minimal() +
+          theme(axis.text.x = element_text(angle = 90, hjust=1)) +
+          ylab("Genome size, or size estimate (bp)")  +
+          scale_y_continuous(position = "right")
+basicplot
+
+#pal <- wes_palette("Zissou1", 21, type = "continuous")
+plot3b <- ggplot(dt) +
+          geom_point(aes(x = reorder(Organism.Name, Assembly.Sequence.Length.or.genome.size.estimate..bp.), y = Assembly.Sequence.Length.or.genome.size.estimate..bp., shape = factor(Data.type), colour = factor(Rank))) +
+          theme_minimal() +
+          scale_color_brewer(palette = "Paired") +
+          theme(axis.text.x = element_text(angle = 90, hjust=1, size = 3)) +
+          ylab("Genome size, or size estimate (bp)")  +
+          scale_y_continuous(position = "right")
+#by organismanme
+plot3b 
+
+ggsave("plot3b.pdf", width = 25, height = 15, units = "cm", dpi = 300)
+#################################
+rank_plot <- ggplot(dt) +
+          geom_point(aes(x = reorder(Rank, Assembly.Sequence.Length.or.genome.size.estimate..bp.), y = Assembly.Sequence.Length.or.genome.size.estimate..bp., shape = factor(Data.type), colour = factor(Rank), size = 5)) +
+          theme_minimal() +
+          scale_color_brewer(palette = "Paired") +
+          theme(axis.text.x = element_text(angle = 90, hjust=1)) +
+          ylab("Genome size or size estimate (bp)")  +
+          scale_y_continuous(position = "right")
+
+#by rank
+rank_plot 
+
+ggsave("rank_plot.pdf", width = 17, height = 17, units = "cm", dpi = 300)
+#################################
+```
+
