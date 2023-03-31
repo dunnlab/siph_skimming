@@ -27,14 +27,20 @@ def main(in_name: str) -> int:
             name = columns[8].split('=')[1]
 
             if seqid != last_seqid:
-                out_file.write(f'>{seqid}\n')
+                if seqid != '':
+                    out_file.write(f'\n')
+                out_file.write(f'>Feature {seqid}\n')
                 last_seqid = seqid
             
             if strand == '+':
                 out_file.write(f'{start}\t{end}\t{type}\n')
             else:
                 out_file.write(f'{end}\t{start}\t{type}\n')
-            out_file.write(f'\t\t\tproduct\t{name}\n')
+            
+            if type == 'gene':
+                out_file.write(f'\t\t\tgene\t{name}\n')
+            else:
+                out_file.write(f'\t\t\tproduct\t{name}\n')
 
     return 0
 
