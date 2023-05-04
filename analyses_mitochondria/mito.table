@@ -2,34 +2,58 @@
 >Feature Agalma_clausi
 1768	2490	gene
 			gene	cox2
+1768	2490	CDS
+			product	cox2
 2460	3182	gene
 			gene	atp6
+2460	3182	CDS
+			product	atp6
 3182	4000	gene
 			gene	cox3
+3182	4000	CDS
+			product	cox3
 4006	4077	tRNA
 			product	trnM(cat)
 4231	5469	gene
 			gene	nad2
+4231	5469	CDS
+			product	nad2
 5469	7328	gene
 			gene	nad5
+5469	7328	CDS
+			product	nad5
 7294	8151	rRNA
 			product	rrnS
 8145	8214	tRNA
 			product	trnW(tca)
 8191	8763	gene
 			gene	nad6
+8191	8763	CDS
+			product	nad6
 8754	9110	gene
 			gene	nad3
+8754	9110	CDS
+			product	nad3
 9080	9388	gene
 			gene	nad4l
+9080	9388	CDS
+			product	nad4l
 9391	10383	gene
 			gene	nad1
+9391	10383	CDS
+			product	nad1
 10374	11810	gene
 			gene	nad4
+10374	11810	CDS
+			product	nad4
 11812	12990	gene
 			gene	cob
+11812	12990	CDS
+			product	cob
 12947	14506	gene
 			gene	cox1
+12947	14506	CDS
+			product	cox1
 1595	21	rRNA
 			product	rrnL
 
@@ -38,66 +62,114 @@
 			product	rrnL
 1770	2492	gene
 			gene	cox2
+1770	2492	CDS
+			product	cox2
 2462	3184	gene
 			gene	atp6
+2462	3184	CDS
+			product	atp6
 3184	3993	gene
 			gene	cox3
+3184	3993	CDS
+			product	cox3
 3999	4070	tRNA
 			product	trnM(cat)
 4762	6000	gene
 			gene	nad2
+4762	6000	CDS
+			product	nad2
 6000	7841	gene
 			gene	nad5
+6000	7841	CDS
+			product	nad5
 7817	8674	rRNA
 			product	rrnS
 8668	8737	tRNA
 			product	trnW(tca)
 8714	9292	gene
 			gene	nad6
+8714	9292	CDS
+			product	nad6
 9283	9639	gene
 			gene	nad3
+9283	9639	CDS
+			product	nad3
 9639	9917	gene
 			gene	nad4l
+9639	9917	CDS
+			product	nad4l
 9917	10909	gene
 			gene	nad1
+9917	10909	CDS
+			product	nad1
 10900	12336	gene
 			gene	nad4
+10900	12336	CDS
+			product	nad4
 12338	13516	gene
 			gene	cob
+12338	13516	CDS
+			product	cob
 13473	15032	gene
 			gene	cox1
+13473	15032	CDS
+			product	cox1
 
 >Feature Agalma_okeni
 1593	75	rRNA
 			product	rrnL
 1763	2485	gene
 			gene	cox2
+1763	2485	CDS
+			product	cox2
 2455	3177	gene
 			gene	atp6
+2455	3177	CDS
+			product	atp6
 3177	3995	gene
 			gene	cox3
+3177	3995	CDS
+			product	cox3
 4001	4072	tRNA
 			product	trnM(cat)
 4212	5462	gene
 			gene	nad2
+4212	5462	CDS
+			product	nad2
 5534	7363	gene
 			gene	nad5
+5534	7363	CDS
+			product	nad5
 8135	8204	tRNA
 			product	trnW(tca)
 8181	8753	gene
 			gene	nad6
+8181	8753	CDS
+			product	nad6
 8744	9100	gene
 			gene	nad3
+8744	9100	CDS
+			product	nad3
 9070	9378	gene
 			gene	nad4l
+9070	9378	CDS
+			product	nad4l
 9403	10383	gene
 			gene	nad1
+9403	10383	CDS
+			product	nad1
 10374	11810	gene
 			gene	nad4
+10374	11810	CDS
+			product	nad4
 11812	12990	gene
 			gene	cob
+11812	12990	CDS
+			product	cob
 12947	14506	gene
 			gene	cox1
+12947	14506	CDS
+			product	cox1
 7283	8141	rRNA
 			product	rrnS
 
@@ -110,30 +182,54 @@
 			product	rrnL
 1796	2479	gene
 			gene	atp6
+1796	2479	CDS
+			product	atp6
 2475	3473	gene
 			gene	nad2
+2475	3473	CDS
+			product	nad2
 3473	5134	gene
 			gene	nad5
+3473	5134	CDS
+			product	nad5
 5095	5631	gene
 			gene	nad6
+5095	5631	CDS
+			product	nad6
 5706	6758	gene
 			gene	cob
+5706	6758	CDS
+			product	cob
 6761	7096	gene
 			gene	nad3
+6761	7096	CDS
+			product	nad3
 7276	8178	gene
 			gene	nad1
+7276	8178	CDS
+			product	nad1
 8163	9428	gene
 			gene	nad4
+8163	9428	CDS
+			product	nad4
 9435	9701	gene
 			gene	nad4l
+9435	9701	CDS
+			product	nad4l
 9698	10480	gene
 			gene	cox3
+9698	10480	CDS
+			product	cox3
 10583	11318	rRNA
 			product	rrnS
 11422	12888	gene
 			gene	cox1
+11422	12888	CDS
+			product	cox1
 12897	13511	gene
 			gene	cox2
+12897	13511	CDS
+			product	cox2
 
 >Feature Diphyes_dispar
 336	1238	rRNA
@@ -142,96 +238,170 @@
 			product	rrnL
 3069	3851	gene
 			gene	cox3
+3069	3851	CDS
+			product	cox3
 3858	5018	gene
 			gene	cob
+3858	5018	CDS
+			product	cob
 5022	6603	gene
 			gene	cox1
+5022	6603	CDS
+			product	cox1
 7623	8336	gene
 			gene	atp6
+7623	8336	CDS
+			product	atp6
 8340	9560	gene
 			gene	nad2
+8340	9560	CDS
+			product	nad2
 9584	9874	gene
 			gene	nad4l
+9584	9874	CDS
+			product	nad4l
 9879	11156	gene
 			gene	nad4
+9879	11156	CDS
+			product	nad4
 11156	11506	gene
 			gene	nad3
+11156	11506	CDS
+			product	nad3
 11519	12517	gene
 			gene	nad1
+11519	12517	CDS
+			product	nad1
 12517	13050	gene
 			gene	nad6
+12517	13050	CDS
+			product	nad6
 13051	14850	gene
 			gene	nad5
+13051	14850	CDS
+			product	nad5
 6771	7466	gene
 			gene	cox2
+6771	7466	CDS
+			product	cox2
 
 >Feature Stephanomia_amphytridis
 2047	473	rRNA
 			product	rrnL
 2258	2992	gene
 			gene	cox2
+2258	2992	CDS
+			product	cox2
 3012	3081	tRNA
 			product	trnW(tca)
 3084	3284	gene
 			gene	atp8
+3084	3284	CDS
+			product	atp8
 3284	3988	gene
 			gene	atp6
+3284	3988	CDS
+			product	atp6
 3989	4774	gene
 			gene	cox3
+3989	4774	CDS
+			product	cox3
 4790	4860	tRNA
 			product	trnM(cat)
 4861	6219	gene
 			gene	nad2
+4861	6219	CDS
+			product	nad2
 6219	8048	gene
 			gene	nad5
+6219	8048	CDS
+			product	nad5
 8055	8974	rRNA
 			product	rrnS
 8985	9545	gene
 			gene	nad6
+8985	9545	CDS
+			product	nad6
 9536	9892	gene
 			gene	nad3
+9536	9892	CDS
+			product	nad3
 9892	10191	gene
 			gene	nad4l
+9892	10191	CDS
+			product	nad4l
 10191	11180	gene
 			gene	nad1
+10191	11180	CDS
+			product	nad1
 11171	12628	gene
 			gene	nad4
+11171	12628	CDS
+			product	nad4
 12648	13787	gene
 			gene	cob
+12648	13787	CDS
+			product	cob
 13805	15367	gene
 			gene	cox1
+13805	15367	CDS
+			product	cox1
 
 >Feature Halistemma_rubrum_Atlantic
 1641	1	rRNA
 			product	rrnL
 1769	2509	gene
 			gene	cox2
+1769	2509	CDS
+			product	cox2
 2479	3201	gene
 			gene	atp6
+2479	3201	CDS
+			product	atp6
 3218	3994	gene
 			gene	cox3
+3218	3994	CDS
+			product	cox3
 4496	4567	tRNA
 			product	trnM(cat)
 4724	5974	gene
 			gene	nad2
+4724	5974	CDS
+			product	nad2
 6046	7872	gene
 			gene	nad5
+6046	7872	CDS
+			product	nad5
 8652	8721	tRNA
 			product	trnW(tca)
 8698	9270	gene
 			gene	nad6
+8698	9270	CDS
+			product	nad6
 9310	9666	gene
 			gene	nad3
+9310	9666	CDS
+			product	nad3
 9636	9944	gene
 			gene	nad4l
+9636	9944	CDS
+			product	nad4l
 9949	10941	gene
 			gene	nad1
+9949	10941	CDS
+			product	nad1
 10932	12368	gene
 			gene	nad4
+10932	12368	CDS
+			product	nad4
 12370	13542	gene
 			gene	cob
+12370	13542	CDS
+			product	cob
 13517	15067	gene
 			gene	cox1
+13517	15067	CDS
+			product	cox1
 7791	8658	rRNA
 			product	rrnS
 
@@ -240,64 +410,112 @@
 			product	rrnL
 1774	2493	gene
 			gene	cox2
+1774	2493	CDS
+			product	cox2
 2495	3187	gene
 			gene	atp6
+2495	3187	CDS
+			product	atp6
 3187	3993	gene
 			gene	cox3
+3187	3993	CDS
+			product	cox3
 3998	4068	tRNA
 			product	trnM(cat)
 4226	5488	gene
 			gene	nad2
+4226	5488	CDS
+			product	nad2
 5488	7305	gene
 			gene	nad5
+5488	7305	CDS
+			product	nad5
 7309	8178	rRNA
 			product	rrnS
 8172	8241	tRNA
 			product	trnW(tca)
 8218	8793	gene
 			gene	nad6
+8218	8793	CDS
+			product	nad6
 8784	9140	gene
 			gene	nad3
+8784	9140	CDS
+			product	nad3
 9131	9418	gene
 			gene	nad4l
+9131	9418	CDS
+			product	nad4l
 9419	10408	gene
 			gene	nad1
+9419	10408	CDS
+			product	nad1
 10369	11835	gene
 			gene	nad4
+10369	11835	CDS
+			product	nad4
 11837	12979	gene
 			gene	cob
+11837	12979	CDS
+			product	cob
 13110	14582	gene
 			gene	cox1
+13110	14582	CDS
+			product	cox1
 
 >Feature Halistemma_rubrum_Mediterranean
 1770	2510	gene
 			gene	cox2
+1770	2510	CDS
+			product	cox2
 2480	3202	gene
 			gene	atp6
+2480	3202	CDS
+			product	atp6
 3213	3995	gene
 			gene	cox3
+3213	3995	CDS
+			product	cox3
 4561	4632	tRNA
 			product	trnM(cat)
 5656	6906	gene
 			gene	nad2
+5656	6906	CDS
+			product	nad2
 6978	8804	gene
 			gene	nad5
+6978	8804	CDS
+			product	nad5
 9585	9654	tRNA
 			product	trnW(tca)
 9631	10203	gene
 			gene	nad6
+9631	10203	CDS
+			product	nad6
 10279	10635	gene
 			gene	nad3
+10279	10635	CDS
+			product	nad3
 10626	10913	gene
 			gene	nad4l
+10626	10913	CDS
+			product	nad4l
 10930	11910	gene
 			gene	nad1
+10930	11910	CDS
+			product	nad1
 11901	13337	gene
 			gene	nad4
+11901	13337	CDS
+			product	nad4
 13339	14511	gene
 			gene	cob
+13339	14511	CDS
+			product	cob
 14486	16036	gene
 			gene	cox1
+14486	16036	CDS
+			product	cox1
 1642	1	rRNA
 			product	rrnL
 8723	9591	rRNA
@@ -306,32 +524,56 @@
 >Feature Praya_dubia
 733	455	gene
 			gene	nad4l
+733	455	CDS
+			product	nad4l
 1311	739	gene
 			gene	nad6
+1311	739	CDS
+			product	nad6
 1331	1400	tRNA
 			product	trnM(cat)
 1403	2641	gene
 			gene	nad2
+1403	2641	CDS
+			product	nad2
 2641	3606	gene
 			gene	nad1
+2641	3606	CDS
+			product	nad1
 3597	3665	tRNA
 			product	trnW(tca)
 3669	5117	gene
 			gene	nad4
+3669	5117	CDS
+			product	nad4
 5122	5835	gene
 			gene	cox2
+5122	5835	CDS
+			product	cox2
 6017	6709	gene
 			gene	atp6
+6017	6709	CDS
+			product	atp6
 6759	7496	gene
 			gene	cox3
+6759	7496	CDS
+			product	cox3
 7556	7912	gene
 			gene	nad3
+7556	7912	CDS
+			product	nad3
 7914	9737	gene
 			gene	nad5
+7914	9737	CDS
+			product	nad5
 9737	10876	gene
 			gene	cob
+9737	10876	CDS
+			product	cob
 10883	12472	gene
 			gene	cox1
+10883	12472	CDS
+			product	cox1
 12440	13281	rRNA
 			product	rrnS
 13368	14991	rRNA
@@ -342,36 +584,62 @@
 			product	rrnL
 2409	3143	gene
 			gene	cox2
+2409	3143	CDS
+			product	cox2
 3163	3232	tRNA
 			product	trnW(tca)
 3235	3435	gene
 			gene	atp8
+3235	3435	CDS
+			product	atp8
 3435	4139	gene
 			gene	atp6
+3435	4139	CDS
+			product	atp6
 4140	4925	gene
 			gene	cox3
+4140	4925	CDS
+			product	cox3
 4941	5011	tRNA
 			product	trnM(cat)
 5078	6367	gene
 			gene	nad2
+5078	6367	CDS
+			product	nad2
 6367	8196	gene
 			gene	nad5
+6367	8196	CDS
+			product	nad5
 8202	9117	rRNA
 			product	rrnS
 9123	9683	gene
 			gene	nad6
+9123	9683	CDS
+			product	nad6
 9674	10030	gene
 			gene	nad3
+9674	10030	CDS
+			product	nad3
 10030	10329	gene
 			gene	nad4l
+10030	10329	CDS
+			product	nad4l
 10329	11318	gene
 			gene	nad1
+10329	11318	CDS
+			product	nad1
 11309	12766	gene
 			gene	nad4
+11309	12766	CDS
+			product	nad4
 12790	13929	gene
 			gene	cob
+12790	13929	CDS
+			product	cob
 13944	15506	gene
 			gene	cox1
+13944	15506	CDS
+			product	cox1
 
 >Feature Rosacea_flaccida
 1135	184	rRNA
@@ -384,62 +652,112 @@
 			product	trnW(tca)
 3630	4322	gene
 			gene	atp6
+3630	4322	CDS
+			product	atp6
 4342	5124	gene
 			gene	cox3
+4342	5124	CDS
+			product	cox3
 5146	6726	gene
 			gene	cox1
+5146	6726	CDS
+			product	cox1
 6729	7871	gene
 			gene	cob
+6729	7871	CDS
+			product	cob
 7908	8504	gene
 			gene	nad6
+7908	8504	CDS
+			product	nad6
 8528	9253	gene
 			gene	cox2
+8528	9253	CDS
+			product	cox2
 9299	9580	gene
 			gene	nad4l
+9299	9580	CDS
+			product	nad4l
 9594	10541	gene
 			gene	nad1
+9594	10541	CDS
+			product	nad1
 10551	11990	gene
 			gene	nad4
+10551	11990	CDS
+			product	nad4
 11994	13241	gene
 			gene	nad2
+11994	13241	CDS
+			product	nad2
 13241	15085	gene
 			gene	nad5
+13241	15085	CDS
+			product	nad5
 15129	15467	gene
 			gene	nad3
+15129	15467	CDS
+			product	nad3
 
 >Feature Apolemia_sp3
 2441	840	rRNA
 			product	rrnL
 2866	3600	gene
 			gene	cox2
+2866	3600	CDS
+			product	cox2
 3620	3689	tRNA
 			product	trnW(tca)
 3692	3892	gene
 			gene	atp8
+3692	3892	CDS
+			product	atp8
 3892	4596	gene
 			gene	atp6
+3892	4596	CDS
+			product	atp6
 4597	5382	gene
 			gene	cox3
+4597	5382	CDS
+			product	cox3
 5398	5468	tRNA
 			product	trnM(cat)
 5469	6821	gene
 			gene	nad2
+5469	6821	CDS
+			product	nad2
 6823	8652	gene
 			gene	nad5
+6823	8652	CDS
+			product	nad5
 9583	10143	gene
 			gene	nad6
+9583	10143	CDS
+			product	nad6
 10134	10490	gene
 			gene	nad3
+10134	10490	CDS
+			product	nad3
 10490	10789	gene
 			gene	nad4l
+10490	10789	CDS
+			product	nad4l
 10789	11778	gene
 			gene	nad1
+10789	11778	CDS
+			product	nad1
 11769	13226	gene
 			gene	nad4
+11769	13226	CDS
+			product	nad4
 13247	14389	gene
 			gene	cob
+13247	14389	CDS
+			product	cob
 14404	15966	gene
 			gene	cox1
+14404	15966	CDS
+			product	cox1
 8659	9570	rRNA
 			product	rrnS
 
@@ -448,202 +766,352 @@
 			product	rrnL
 2324	3058	gene
 			gene	cox2
+2324	3058	CDS
+			product	cox2
 3078	3147	tRNA
 			product	trnW(tca)
 3150	3350	gene
 			gene	atp8
+3150	3350	CDS
+			product	atp8
 3350	4054	gene
 			gene	atp6
+3350	4054	CDS
+			product	atp6
 4054	4839	gene
 			gene	cox3
+4054	4839	CDS
+			product	cox3
 4855	4925	tRNA
 			product	trnM(cat)
 4926	6278	gene
 			gene	nad2
+4926	6278	CDS
+			product	nad2
 6279	8108	gene
 			gene	nad5
+6279	8108	CDS
+			product	nad5
 8115	9028	rRNA
 			product	rrnS
 9042	9602	gene
 			gene	nad6
+9042	9602	CDS
+			product	nad6
 9593	9949	gene
 			gene	nad3
+9593	9949	CDS
+			product	nad3
 9952	10248	gene
 			gene	nad4l
+9952	10248	CDS
+			product	nad4l
 10248	11237	gene
 			gene	nad1
+10248	11237	CDS
+			product	nad1
 11228	12685	gene
 			gene	nad4
+11228	12685	CDS
+			product	nad4
 12706	13848	gene
 			gene	cob
+12706	13848	CDS
+			product	cob
 13862	15424	gene
 			gene	cox1
+13862	15424	CDS
+			product	cox1
 
 >Feature Agalma_elegans_Pacific
 1596	54	rRNA
 			product	rrnL
 1762	2484	gene
 			gene	cox2
+1762	2484	CDS
+			product	cox2
 2454	3176	gene
 			gene	atp6
+2454	3176	CDS
+			product	atp6
 3176	3985	gene
 			gene	cox3
+3176	3985	CDS
+			product	cox3
 3991	4062	tRNA
 			product	trnM(cat)
 4748	5986	gene
 			gene	nad2
+4748	5986	CDS
+			product	nad2
 5986	7827	gene
 			gene	nad5
+5986	7827	CDS
+			product	nad5
 7803	8660	rRNA
 			product	rrnS
 8654	8723	tRNA
 			product	trnW(tca)
 8700	9278	gene
 			gene	nad6
+8700	9278	CDS
+			product	nad6
 9269	9625	gene
 			gene	nad3
+9269	9625	CDS
+			product	nad3
 9625	9903	gene
 			gene	nad4l
+9625	9903	CDS
+			product	nad4l
 9903	10895	gene
 			gene	nad1
+9903	10895	CDS
+			product	nad1
 10886	12322	gene
 			gene	nad4
+10886	12322	CDS
+			product	nad4
 12324	13502	gene
 			gene	cob
+12324	13502	CDS
+			product	cob
 13459	15018	gene
 			gene	cox1
+13459	15018	CDS
+			product	cox1
 
 >Feature Abylopsis_tetragona
 1194	469	gene
 			gene	cox2
+1194	469	CDS
+			product	cox2
 2871	1293	gene
 			gene	cox1
+2871	1293	CDS
+			product	cox1
 4057	3257	gene
 			gene	cox3
+4057	3257	CDS
+			product	cox3
 5887	4162	rRNA
 			product	rrnL
 7518	6385	gene
 			gene	cob
+7518	6385	CDS
+			product	cob
 8021	8314	gene
 			gene	nad4l
+8021	8314	CDS
+			product	nad4l
 8317	9603	gene
 			gene	nad4
+8317	9603	CDS
+			product	nad4
 9603	10130	gene
 			gene	nad6
+9603	10130	CDS
+			product	nad6
 10124	10474	gene
 			gene	nad3
+10124	10474	CDS
+			product	nad3
 10465	11472	gene
 			gene	nad1
+10465	11472	CDS
+			product	nad1
 11490	13286	gene
 			gene	nad5
+11490	13286	CDS
+			product	nad5
 13532	14426	rRNA
 			product	rrnS
 14602	15309	gene
 			gene	atp6
+14602	15309	CDS
+			product	atp6
 15461	16663	gene
 			gene	nad2
+15461	16663	CDS
+			product	nad2
 
 >Feature Chelophyes_appendiculata
 863	2191	gene
 			gene	nad2
+863	2191	CDS
+			product	nad2
 2176	3468	gene
 			gene	nad4
+2176	3468	CDS
+			product	nad4
 3474	3824	gene
 			gene	nad3
+3474	3824	CDS
+			product	nad3
 3815	4831	gene
 			gene	nad1
+3815	4831	CDS
+			product	nad1
 4923	5498	gene
 			gene	nad6
+4923	5498	CDS
+			product	nad6
 5949	7715	gene
 			gene	nad5
+5949	7715	CDS
+			product	nad5
 8622	9731	rRNA
 			product	rrnS
 9800	11465	rRNA
 			product	rrnL
 11779	12579	gene
 			gene	cox3
+11779	12579	CDS
+			product	cox3
 12913	14494	gene
 			gene	cox1
+12913	14494	CDS
+			product	cox1
 14479	15243	gene
 			gene	cox2
+14479	15243	CDS
+			product	cox2
 15395	16546	gene
 			gene	cob
+15395	16546	CDS
+			product	cob
 17042	17740	gene
 			gene	atp6
+17042	17740	CDS
+			product	atp6
 5600	5905	gene
 			gene	nad4l
+5600	5905	CDS
+			product	nad4l
 
 >Feature Rhizophysa_eysenhardtii
 2124	504	rRNA
 			product	rrnL
 2353	3087	gene
 			gene	cox2
+2353	3087	CDS
+			product	cox2
 3107	3176	tRNA
 			product	trnW(tca)
 3179	3379	gene
 			gene	atp8
+3179	3379	CDS
+			product	atp8
 3379	4083	gene
 			gene	atp6
+3379	4083	CDS
+			product	atp6
 4084	4869	gene
 			gene	cox3
+4084	4869	CDS
+			product	cox3
 4885	4955	tRNA
 			product	trnM(cat)
 4956	6308	gene
 			gene	nad2
+4956	6308	CDS
+			product	nad2
 6308	8137	gene
 			gene	nad5
+6308	8137	CDS
+			product	nad5
 8143	9057	rRNA
 			product	rrnS
 9066	9626	gene
 			gene	nad6
+9066	9626	CDS
+			product	nad6
 9617	9973	gene
 			gene	nad3
+9617	9973	CDS
+			product	nad3
 9973	10272	gene
 			gene	nad4l
+9973	10272	CDS
+			product	nad4l
 10272	11258	gene
 			gene	nad1
+10272	11258	CDS
+			product	nad1
 11249	12706	gene
 			gene	nad4
+11249	12706	CDS
+			product	nad4
 12730	13869	gene
 			gene	cob
+12730	13869	CDS
+			product	cob
 13883	15445	gene
 			gene	cox1
+13883	15445	CDS
+			product	cox1
 
 >Feature Stephalia_dilata
 1920	1	rRNA
 			product	rrnL
 2248	2982	gene
 			gene	cox2
+2248	2982	CDS
+			product	cox2
 3002	3071	tRNA
 			product	trnW(tca)
 3062	3274	gene
 			gene	atp8
+3062	3274	CDS
+			product	atp8
 3274	3978	gene
 			gene	atp6
+3274	3978	CDS
+			product	atp6
 3978	4763	gene
 			gene	cox3
+3978	4763	CDS
+			product	cox3
 4778	4848	tRNA
 			product	trnM(cat)
 4852	6204	gene
 			gene	nad2
+4852	6204	CDS
+			product	nad2
 6206	8035	gene
 			gene	nad5
+6206	8035	CDS
+			product	nad5
 8042	8961	rRNA
 			product	rrnS
 8974	9534	gene
 			gene	nad6
+8974	9534	CDS
+			product	nad6
 9525	9881	gene
 			gene	nad3
+9525	9881	CDS
+			product	nad3
 9881	10180	gene
 			gene	nad4l
+9881	10180	CDS
+			product	nad4l
 10180	11169	gene
 			gene	nad1
+10180	11169	CDS
+			product	nad1
 11160	12617	gene
 			gene	nad4
+11160	12617	CDS
+			product	nad4
 12639	13778	gene
 			gene	cob
+12639	13778	CDS
+			product	cob
 13792	15354	gene
 			gene	cox1
+13792	15354	CDS
+			product	cox1
 
 >Feature Gymnopraia_lapislazula
 392	463	tRNA
@@ -656,62 +1124,112 @@
 			product	rrnS
 3910	4605	gene
 			gene	atp6
+3910	4605	CDS
+			product	atp6
 4837	5559	gene
 			gene	cox2
+4837	5559	CDS
+			product	cox2
 5556	7109	gene
 			gene	cox1
+5556	7109	CDS
+			product	cox1
 7081	8220	gene
 			gene	cob
+7081	8220	CDS
+			product	cob
 8217	8996	gene
 			gene	cox3
+8217	8996	CDS
+			product	cox3
 9072	10478	gene
 			gene	nad4
+9072	10478	CDS
+			product	nad4
 10481	11530	gene
 			gene	nad2
+10481	11530	CDS
+			product	nad2
 11533	13296	gene
 			gene	nad5
+11533	13296	CDS
+			product	nad5
 13299	13772	gene
 			gene	nad6
+13299	13772	CDS
+			product	nad6
 13769	14065	gene
 			gene	nad4l
+13769	14065	CDS
+			product	nad4l
 14062	14400	gene
 			gene	nad3
+14062	14400	CDS
+			product	nad3
 14664	15629	gene
 			gene	nad1
+14664	15629	CDS
+			product	nad1
 
 >Feature Erenna_sirena
 2428	3162	gene
 			gene	cox2
+2428	3162	CDS
+			product	cox2
 3182	3251	tRNA
 			product	trnW(tca)
 3254	3454	gene
 			gene	atp8
+3254	3454	CDS
+			product	atp8
 3454	4158	gene
 			gene	atp6
+3454	4158	CDS
+			product	atp6
 4158	4943	gene
 			gene	cox3
+4158	4943	CDS
+			product	cox3
 4959	5029	tRNA
 			product	trnM(cat)
 5030	6385	gene
 			gene	nad2
+5030	6385	CDS
+			product	nad2
 6386	8215	gene
 			gene	nad5
+6386	8215	CDS
+			product	nad5
 8222	9140	rRNA
 			product	rrnS
 9152	9712	gene
 			gene	nad6
+9152	9712	CDS
+			product	nad6
 9703	10059	gene
 			gene	nad3
+9703	10059	CDS
+			product	nad3
 10059	10358	gene
 			gene	nad4l
+10059	10358	CDS
+			product	nad4l
 10358	11347	gene
 			gene	nad1
+10358	11347	CDS
+			product	nad1
 11338	12795	gene
 			gene	nad4
+11338	12795	CDS
+			product	nad4
 12813	13958	gene
 			gene	cob
+12813	13958	CDS
+			product	cob
 13975	15537	gene
 			gene	cox1
+13975	15537	CDS
+			product	cox1
 2197	635	rRNA
 			product	rrnL
 
@@ -724,64 +1242,114 @@
 			product	rrnL
 3548	4270	gene
 			gene	atp6
+3548	4270	CDS
+			product	atp6
 4476	5264	gene
 			gene	cox3
+4476	5264	CDS
+			product	cox3
 5271	5561	gene
 			gene	nad4l
+5271	5561	CDS
+			product	nad4l
 5621	6871	gene
 			gene	nad2
+5621	6871	CDS
+			product	nad2
 6878	8728	gene
 			gene	nad5
+6878	8728	CDS
+			product	nad5
 8713	9234	gene
 			gene	nad6
+8713	9234	CDS
+			product	nad6
 9234	9587	gene
 			gene	nad3
+9234	9587	CDS
+			product	nad3
 9589	10566	gene
 			gene	nad1
+9589	10566	CDS
+			product	nad1
 10710	12098	gene
 			gene	nad4
+10710	12098	CDS
+			product	nad4
 12243	13454	gene
 			gene	cob
+12243	13454	CDS
+			product	cob
 13768	15346	gene
 			gene	cox1
+13768	15346	CDS
+			product	cox1
 16636	17373	gene
 			gene	cox2
+16636	17373	CDS
+			product	cox2
 790	1600	rRNA
 			product	rrnS
 
 >Feature Physonect_sp
 1905	343	gene
 			gene	cox1
+1905	343	CDS
+			product	cox1
 3585	2011	rRNA
 			product	rrnL
 3798	4535	gene
 			gene	cox2
+3798	4535	CDS
+			product	cox2
 4552	4621	tRNA
 			product	trnW(tca)
 4624	4824	gene
 			gene	atp8
+4624	4824	CDS
+			product	atp8
 4824	5528	gene
 			gene	atp6
+4824	5528	CDS
+			product	atp6
 5529	6314	gene
 			gene	cox3
+5529	6314	CDS
+			product	cox3
 6330	6400	tRNA
 			product	trnM(cat)
 6402	7757	gene
 			gene	nad2
+6402	7757	CDS
+			product	nad2
 7758	9587	gene
 			gene	nad5
+7758	9587	CDS
+			product	nad5
 10520	11080	gene
 			gene	nad6
+10520	11080	CDS
+			product	nad6
 11071	11427	gene
 			gene	nad3
+11071	11427	CDS
+			product	nad3
 11427	11726	gene
 			gene	nad4l
+11427	11726	CDS
+			product	nad4l
 11726	12715	gene
 			gene	nad1
+11726	12715	CDS
+			product	nad1
 12706	14163	gene
 			gene	nad4
+12706	14163	CDS
+			product	nad4
 14180	15316	gene
 			gene	cob
+14180	15316	CDS
+			product	cob
 9594	10511	rRNA
 			product	rrnS
 
@@ -794,60 +1362,108 @@
 			product	trnM(cat)
 1758	2468	gene
 			gene	cox2
+1758	2468	CDS
+			product	cox2
 2629	3327	gene
 			gene	atp6
+2629	3327	CDS
+			product	atp6
 3328	4110	gene
 			gene	cox3
+3328	4110	CDS
+			product	cox3
 4086	5657	gene
 			gene	cox1
+4086	5657	CDS
+			product	cox1
 5641	5931	gene
 			gene	nad4l
+5641	5931	CDS
+			product	nad4l
 5939	6829	gene
 			gene	nad1
+5939	6829	CDS
+			product	nad1
 6820	8076	gene
 			gene	nad4
+6820	8076	CDS
+			product	nad4
 8425	9477	gene
 			gene	nad2
+8425	9477	CDS
+			product	nad2
 9471	11282	gene
 			gene	nad5
+9471	11282	CDS
+			product	nad5
 12052	13179	gene
 			gene	cob
+12052	13179	CDS
+			product	cob
 13179	13616	gene
 			gene	nad6
+13179	13616	CDS
+			product	nad6
 8078	8422	gene
 			gene	nad3
+8078	8422	CDS
+			product	nad3
 11224	12067	rRNA
 			product	rrnS
 
 >Feature Praya
 740	471	gene
 			gene	nad4l
+740	471	CDS
+			product	nad4l
 1315	755	gene
 			gene	nad6
+1315	755	CDS
+			product	nad6
 1359	1428	tRNA
 			product	trnM(cat)
 1430	2674	gene
 			gene	nad2
+1430	2674	CDS
+			product	nad2
 2674	3639	gene
 			gene	nad1
+2674	3639	CDS
+			product	nad1
 3630	3698	tRNA
 			product	trnW(tca)
 3701	5149	gene
 			gene	nad4
+3701	5149	CDS
+			product	nad4
 5154	5867	gene
 			gene	cox2
+5154	5867	CDS
+			product	cox2
 6049	6741	gene
 			gene	atp6
+6049	6741	CDS
+			product	atp6
 6737	7528	gene
 			gene	cox3
+6737	7528	CDS
+			product	cox3
 7586	7942	gene
 			gene	nad3
+7586	7942	CDS
+			product	nad3
 7944	9767	gene
 			gene	nad5
+7944	9767	CDS
+			product	nad5
 9767	10900	gene
 			gene	cob
+9767	10900	CDS
+			product	cob
 10916	12505	gene
 			gene	cox1
+10916	12505	CDS
+			product	cox1
 12473	13310	rRNA
 			product	rrnS
 13393	15027	rRNA
@@ -856,36 +1472,62 @@
 >Feature Apolemia_rubriversa
 2444	3178	gene
 			gene	cox2
+2444	3178	CDS
+			product	cox2
 3198	3267	tRNA
 			product	trnW(tca)
 3270	3470	gene
 			gene	atp8
+3270	3470	CDS
+			product	atp8
 3470	4174	gene
 			gene	atp6
+3470	4174	CDS
+			product	atp6
 4175	4960	gene
 			gene	cox3
+4175	4960	CDS
+			product	cox3
 4976	5046	tRNA
 			product	trnM(cat)
 5047	6399	gene
 			gene	nad2
+5047	6399	CDS
+			product	nad2
 6401	8230	gene
 			gene	nad5
+6401	8230	CDS
+			product	nad5
 8236	9147	rRNA
 			product	rrnS
 9160	9720	gene
 			gene	nad6
+9160	9720	CDS
+			product	nad6
 9711	10067	gene
 			gene	nad3
+9711	10067	CDS
+			product	nad3
 10067	10366	gene
 			gene	nad4l
+10067	10366	CDS
+			product	nad4l
 10366	11355	gene
 			gene	nad1
+10366	11355	CDS
+			product	nad1
 11346	12803	gene
 			gene	nad4
+11346	12803	CDS
+			product	nad4
 12824	13966	gene
 			gene	cob
+12824	13966	CDS
+			product	cob
 13981	15543	gene
 			gene	cox1
+13981	15543	CDS
+			product	cox1
 2042	454	rRNA
 			product	rrnL
 
@@ -898,60 +1540,108 @@
 			product	trnM(cat)
 3287	4063	gene
 			gene	cox2
+3287	4063	CDS
+			product	cox2
 4074	5216	gene
 			gene	cob
+4074	5216	CDS
+			product	cob
 5212	6780	gene
 			gene	cox1
+5212	6780	CDS
+			product	cox1
 6962	7669	gene
 			gene	atp6
+6962	7669	CDS
+			product	atp6
 7671	8456	gene
 			gene	cox3
+7671	8456	CDS
+			product	cox3
 8463	9023	gene
 			gene	nad6
+8463	9023	CDS
+			product	nad6
 9036	10421	gene
 			gene	nad4
+9036	10421	CDS
+			product	nad4
 10427	10774	gene
 			gene	nad3
+10427	10774	CDS
+			product	nad3
 10774	11067	gene
 			gene	nad4l
+10774	11067	CDS
+			product	nad4l
 11067	12002	gene
 			gene	nad1
+11067	12002	CDS
+			product	nad1
 11995	13098	gene
 			gene	nad2
+11995	13098	CDS
+			product	nad2
 13101	14912	gene
 			gene	nad5
+13101	14912	CDS
+			product	nad5
 2338	3278	rRNA
 			product	rrnS
 
 >Feature Bargmannia_lata
 727	80	gene
 			gene	cox2
+727	80	CDS
+			product	cox2
 2355	3908	gene
 			gene	cox1
+2355	3908	CDS
+			product	cox1
 3893	5071	gene
 			gene	cob
+3893	5071	CDS
+			product	cob
 5802	6320	gene
 			gene	nad6
+5802	6320	CDS
+			product	nad6
 6311	6664	gene
 			gene	nad3
+6311	6664	CDS
+			product	nad3
 6634	6948	gene
 			gene	nad4l
+6634	6948	CDS
+			product	nad4l
 6924	7901	gene
 			gene	nad1
+6924	7901	CDS
+			product	nad1
 7952	9403	gene
 			gene	nad4
+7952	9403	CDS
+			product	nad4
 9321	9390	tRNA
 			product	trnW(tca)
 9555	10229	gene
 			gene	atp6
+9555	10229	CDS
+			product	atp6
 10225	11007	gene
 			gene	cox3
+10225	11007	CDS
+			product	cox3
 10999	11068	tRNA
 			product	trnM(cat)
 11087	12160	gene
 			gene	nad2
+11087	12160	CDS
+			product	nad2
 12160	13926	gene
 			gene	nad5
+12160	13926	CDS
+			product	nad5
 896	2337	rRNA
 			product	rrnL
 5007	5802	rRNA
@@ -960,137 +1650,235 @@
 >Feature Resomia_ornicephala_T898D2
 1688	138	gene
 			gene	cox1
+1688	138	CDS
+			product	cox1
 3325	1760	rRNA
 			product	rrnL
 3619	4389	gene
 			gene	cox2
+3619	4389	CDS
+			product	cox2
 4397	4466	tRNA
 			product	trnW(tca)
 4663	5367	gene
 			gene	atp6
+4663	5367	CDS
+			product	atp6
 5424	6152	gene
 			gene	cox3
+5424	6152	CDS
+			product	cox3
 6162	6230	tRNA
 			product	trnM(cat)
 6371	7573	gene
 			gene	nad2
+6371	7573	CDS
+			product	nad2
 7573	9405	gene
 			gene	nad5
+7573	9405	CDS
+			product	nad5
 9404	10329	rRNA
 			product	rrnS
 10396	10974	gene
 			gene	nad6
+10396	10974	CDS
+			product	nad6
 10971	11321	gene
 			gene	nad3
+10971	11321	CDS
+			product	nad3
 11323	11616	gene
 			gene	nad4l
+11323	11616	CDS
+			product	nad4l
 11619	12596	gene
 			gene	nad1
+11619	12596	CDS
+			product	nad1
 12604	14052	gene
 			gene	nad4
+12604	14052	CDS
+			product	nad4
 14068	15210	gene
 			gene	cob
+14068	15210	CDS
+			product	cob
 
 >Feature Resomia_ornicephala_T845D3
 1687	137	gene
 			gene	cox1
+1687	137	CDS
+			product	cox1
 3324	1759	rRNA
 			product	rrnL
 3618	4388	gene
 			gene	cox2
+3618	4388	CDS
+			product	cox2
 4396	4465	tRNA
 			product	trnW(tca)
 4662	5366	gene
 			gene	atp6
+4662	5366	CDS
+			product	atp6
 5423	6151	gene
 			gene	cox3
+5423	6151	CDS
+			product	cox3
 6161	6229	tRNA
 			product	trnM(cat)
 6370	7572	gene
 			gene	nad2
+6370	7572	CDS
+			product	nad2
 7572	9404	gene
 			gene	nad5
+7572	9404	CDS
+			product	nad5
 9403	10328	rRNA
 			product	rrnS
 10395	10973	gene
 			gene	nad6
+10395	10973	CDS
+			product	nad6
 10970	11320	gene
 			gene	nad3
+10970	11320	CDS
+			product	nad3
 11322	11615	gene
 			gene	nad4l
+11322	11615	CDS
+			product	nad4l
 11618	12595	gene
 			gene	nad1
+11618	12595	CDS
+			product	nad1
 12603	14051	gene
 			gene	nad4
+12603	14051	CDS
+			product	nad4
 14067	15209	gene
 			gene	cob
+14067	15209	CDS
+			product	cob
 
 >Feature Nanomia_sp_Pacific
 1602	72	rRNA
 			product	rrnL
 1767	2486	gene
 			gene	cox2
+1767	2486	CDS
+			product	cox2
 2488	3180	gene
 			gene	atp6
+2488	3180	CDS
+			product	atp6
 3183	3986	gene
 			gene	cox3
+3183	3986	CDS
+			product	cox3
 3991	4061	tRNA
 			product	trnM(cat)
 4244	5482	gene
 			gene	nad2
+4244	5482	CDS
+			product	nad2
 5491	7326	gene
 			gene	nad5
+5491	7326	CDS
+			product	nad5
 7302	8164	rRNA
 			product	rrnS
 8158	8227	tRNA
 			product	trnW(tca)
 8204	8779	gene
 			gene	nad6
+8204	8779	CDS
+			product	nad6
 8770	9126	gene
 			gene	nad3
+8770	9126	CDS
+			product	nad3
 9301	9579	gene
 			gene	nad4l
+9301	9579	CDS
+			product	nad4l
 9581	10570	gene
 			gene	nad1
+9581	10570	CDS
+			product	nad1
 10561	11997	gene
 			gene	nad4
+10561	11997	CDS
+			product	nad4
 11999	13162	gene
 			gene	cob
+11999	13162	CDS
+			product	cob
 13790	15361	gene
 			gene	cox1
+13790	15361	CDS
+			product	cox1
 
 >Feature Physalia_physalis_Pacific
 1922	302	rRNA
 			product	rrnL
 2122	2856	gene
 			gene	cox2
+2122	2856	CDS
+			product	cox2
 2873	2942	tRNA
 			product	trnW(tca)
 2945	3145	gene
 			gene	atp8
+2945	3145	CDS
+			product	atp8
 3145	3849	gene
 			gene	atp6
+3145	3849	CDS
+			product	atp6
 3850	4635	gene
 			gene	cox3
+3850	4635	CDS
+			product	cox3
 4651	4721	tRNA
 			product	trnM(cat)
 4722	6080	gene
 			gene	nad2
+4722	6080	CDS
+			product	nad2
 6080	7909	gene
 			gene	nad5
+6080	7909	CDS
+			product	nad5
 7915	8826	rRNA
 			product	rrnS
 8834	9394	gene
 			gene	nad6
+8834	9394	CDS
+			product	nad6
 9385	9741	gene
 			gene	nad3
+9385	9741	CDS
+			product	nad3
 9744	10040	gene
 			gene	nad4l
+9744	10040	CDS
+			product	nad4l
 10040	11029	gene
 			gene	nad1
+10040	11029	CDS
+			product	nad1
 11020	12477	gene
 			gene	nad4
+11020	12477	CDS
+			product	nad4
 12501	13640	gene
 			gene	cob
+12501	13640	CDS
+			product	cob
 13655	15220	gene
 			gene	cox1
+13655	15220	CDS
+			product	cox1

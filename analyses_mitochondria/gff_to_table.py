@@ -39,6 +39,15 @@ def main(in_name: str) -> int:
             
             if type == 'gene':
                 out_file.write(f'\t\t\tgene\t{name}\n')
+
+                # Need to write CDS lines as well
+                if strand == '+':
+                    out_file.write(f'{start}\t{end}\tCDS\n')
+                else:
+                    out_file.write(f'{end}\t{start}\tCDS\n')
+                out_file.write(f'\t\t\tproduct\t{name}\n')
+                #out_file.write(f'\t\t\tcodon_start\t1\n')
+
             else:
                 out_file.write(f'\t\t\tproduct\t{name}\n')
 
