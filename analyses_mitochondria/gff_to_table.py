@@ -1,5 +1,34 @@
 import sys
 
+amino_acid_dict = {
+    'A': 'Ala',
+    'R': 'Arg',
+    'N': 'Asn',
+    'D': 'Asp',
+    'C': 'Cys',
+    'Q': 'Gln',
+    'E': 'Glu',
+    'G': 'Gly',
+    'H': 'His',
+    'I': 'Ile',
+    'L': 'Leu',
+    'K': 'Lys',
+    'M': 'Met',
+    'F': 'Phe',
+    'P': 'Pro',
+    'S': 'Ser',
+    'T': 'Thr',
+    'W': 'Trp',
+    'Y': 'Tyr',
+    'V': 'Val',
+}
+
+def get_trna_product(name: str) -> str:
+    # Example name: trnW(tca)
+    return f'tRNA-{amino_acid_dict[name[3]]}'
+
+
+
 # Converts a gff file to a table in the format specified at 
 # https://www.ncbi.nlm.nih.gov/genbank/organelle_submit/#Features
 def main(in_name: str) -> int:
@@ -27,8 +56,8 @@ def main(in_name: str) -> int:
             name = columns[8].split('=')[1]
 
             if seqid != last_seqid:
-                if seqid != '':
-                    out_file.write(f'\n')
+                #if seqid != '':
+                #    out_file.write(f'\n')
                 out_file.write(f'>Feature {seqid}\n')
                 last_seqid = seqid
             
@@ -46,8 +75,12 @@ def main(in_name: str) -> int:
                 else:
                     out_file.write(f'{end}\t{start}\tCDS\n')
                 out_file.write(f'\t\t\tproduct\t{name}\n')
+                out_file.write(f'\t\t\ttransl_table\t4\n')
                 #out_file.write(f'\t\t\tcodon_start\t1\n')
 
+            elif type == 'tRNA':
+                out_file.write(f'\t\t\tproduct\t{get_trna_product(name)}\n')
+                out_file.write(f'\t\t\tnote\t{name}\n')
             else:
                 out_file.write(f'\t\t\tproduct\t{name}\n')
 
