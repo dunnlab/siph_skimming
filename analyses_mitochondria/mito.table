@@ -32,9 +32,9 @@
 8145	8214	tRNA
 			product	tRNA-Trp
 			note	trnW(tca)
-8191	8763	gene
+8215	8763	gene
 			gene	nad6
-8191	8763	CDS
+8215	8763	CDS
 			product	nad6
 			transl_table	4
 8754	9110	gene
@@ -105,9 +105,9 @@
 8668	8737	tRNA
 			product	tRNA-Trp
 			note	trnW(tca)
-8714	9292	gene
+8738	9292	gene
 			gene	nad6
-8714	9292	CDS
+8738	9292	CDS
 			product	nad6
 			transl_table	4
 9283	9639	gene
@@ -174,9 +174,9 @@
 8135	8204	tRNA
 			product	tRNA-Trp
 			note	trnW(tca)
-8181	8753	gene
+8205	8753	gene
 			gene	nad6
-8181	8753	CDS
+8205	8753	CDS
 			product	nad6
 			transl_table	4
 8744	9100	gene
@@ -1095,9 +1095,9 @@
 			transl_table	4
 5887	4162	rRNA
 			product	rrnL
-7518	6385	gene
+7527	6385	gene
 			gene	cob
-7518	6385	CDS
+7527	6385	CDS
 			product	cob
 			transl_table	4
 8021	8314	gene
@@ -1978,9 +1978,9 @@
 6924	7901	CDS
 			product	nad1
 			transl_table	4
-7952	9403	gene
+7952	9309	gene
 			gene	nad4
-7952	9403	CDS
+7952	9309	CDS
 			product	nad4
 			transl_table	4
 9321	9390	tRNA
