@@ -4,3 +4,4 @@
 *.fastq.gz
 *.fq.gz
 .snakemake/
+validation.txt
