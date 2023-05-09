@@ -285,6 +285,9 @@
 >Feature Diphyes_dispar
 336	1238	rRNA
 			product	rrnS
+1237	1306	tRNA
+			product	tRNA-Met
+			note	trnM(cat)
 1359	2936	rRNA
 			product	rrnL
 3069	3851	gene
@@ -457,9 +460,9 @@
 8652	8721	tRNA
 			product	tRNA-Trp
 			note	trnW(tca)
-8698	9270	gene
+8722	9270	gene
 			gene	nad6
-8698	9270	CDS
+8722	9270	CDS
 			product	nad6
 			transl_table	4
 9310	9666	gene
@@ -530,9 +533,9 @@
 8172	8241	tRNA
 			product	tRNA-Trp
 			note	trnW(tca)
-8218	8793	gene
+8242	8793	gene
 			gene	nad6
-8218	8793	CDS
+8242	8793	CDS
 			product	nad6
 			transl_table	4
 8784	9140	gene
@@ -597,9 +600,9 @@
 9585	9654	tRNA
 			product	tRNA-Trp
 			note	trnW(tca)
-9631	10203	gene
+9655	10203	gene
 			gene	nad6
-9631	10203	CDS
+9655	10203	CDS
 			product	nad6
 			transl_table	4
 10279	10635	gene
@@ -655,9 +658,9 @@
 1403	2641	CDS
 			product	nad2
 			transl_table	4
-2641	3606	gene
+2641	3589	gene
 			gene	nad1
-2641	3606	CDS
+2641	3589	CDS
 			product	nad1
 			transl_table	4
 3597	3665	tRNA
@@ -1042,9 +1045,9 @@
 8654	8723	tRNA
 			product	tRNA-Trp
 			note	trnW(tca)
-8700	9278	gene
+8724	9278	gene
 			gene	nad6
-8700	9278	CDS
+8724	9278	CDS
 			product	nad6
 			transl_table	4
 9269	9625	gene
@@ -1095,6 +1098,9 @@
 			transl_table	4
 5887	4162	rRNA
 			product	rrnL
+6026	5954	tRNA
+			product	tRNA-Leu
+			note	trnL2(caa)
 7527	6385	gene
 			gene	cob
 7527	6385	CDS
@@ -1143,6 +1149,9 @@
 			product	nad2
 			transl_table	4
 >Feature Chelophyes_appendiculata
+106	169	tRNA
+			product	tRNA-Pro
+			note	trnP(ggg)
 863	2191	gene
 			gene	nad2
 863	2191	CDS
@@ -1284,7 +1293,7 @@
 			product	cox1
 			transl_table	4
 >Feature Stephalia_dilata
-1920	1	rRNA
+1577	2	rRNA
 			product	rrnL
 2248	2982	gene
 			gene	cox2
@@ -1294,9 +1303,9 @@
 3002	3071	tRNA
 			product	tRNA-Trp
 			note	trnW(tca)
-3062	3274	gene
+3074	3274	gene
 			gene	atp8
-3062	3274	CDS
+3074	3274	CDS
 			product	atp8
 			transl_table	4
 3274	3978	gene
@@ -1662,9 +1671,9 @@
 1692	1761	tRNA
 			product	tRNA-Met
 			note	trnM(cat)
-1758	2468	gene
+1764	2468	gene
 			gene	cox2
-1758	2468	CDS
+1764	2468	CDS
 			product	cox2
 			transl_table	4
 2629	3327	gene
@@ -1743,9 +1752,9 @@
 1430	2674	CDS
 			product	nad2
 			transl_table	4
-2674	3639	gene
+2674	3622	gene
 			gene	nad1
-2674	3639	CDS
+2674	3622	CDS
 			product	nad1
 			transl_table	4
 3630	3698	tRNA
@@ -1991,9 +2000,9 @@
 9555	10229	CDS
 			product	atp6
 			transl_table	4
-10225	11007	gene
+10225	10993	gene
 			gene	cox3
-10225	11007	CDS
+10225	10993	CDS
 			product	cox3
 			transl_table	4
 10999	11068	tRNA
@@ -2191,9 +2200,9 @@
 8158	8227	tRNA
 			product	tRNA-Trp
 			note	trnW(tca)
-8204	8779	gene
+8228	8779	gene
 			gene	nad6
-8204	8779	CDS
+8228	8779	CDS
 			product	nad6
 			transl_table	4
 8770	9126	gene
