@@ -285,9 +285,6 @@
 >Feature Diphyes_dispar
 336	1238	rRNA
 			product	rrnS
-1237	1306	tRNA
-			product	tRNA-Met
-			note	trnM(cat)
 1359	2936	rRNA
 			product	rrnL
 3069	3851	gene
@@ -1098,9 +1095,6 @@
 			transl_table	4
 5887	4162	rRNA
 			product	rrnL
-6026	5954	tRNA
-			product	tRNA-Leu
-			note	trnL2(caa)
 7527	6385	gene
 			gene	cob
 7527	6385	CDS
@@ -1149,9 +1143,6 @@
 			product	nad2
 			transl_table	4
 >Feature Chelophyes_appendiculata
-106	169	tRNA
-			product	tRNA-Pro
-			note	trnP(ggg)
 863	2191	gene
 			gene	nad2
 863	2191	CDS
