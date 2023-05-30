@@ -5,3 +5,4 @@
 *.fq.gz
 .snakemake/
 validation.txt
+*.peaks
