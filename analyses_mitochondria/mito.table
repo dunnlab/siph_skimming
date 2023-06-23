@@ -1,4 +1,4 @@
->Feature OQ957189_CWD1_Agalma_clausi
+>Feature OQ957189_Agalma_clausi
 1768	2490	gene
 			gene	cox2
 1768	2490	CDS
@@ -69,7 +69,7 @@
 			transl_table	4
 1595	21	rRNA
 			product	rrnL
->Feature OQ957190_CWD2_Agalma_elegans_Atlantic
+>Feature OQ957190_Agalma_elegans_Atlantic
 1604	61	rRNA
 			product	rrnL
 1770	2492	gene
@@ -140,7 +140,7 @@
 13473	15032	CDS
 			product	cox1
 			transl_table	4
->Feature OQ957191_CWD3_Agalma_okeni
+>Feature OQ957191_Agalma_okeni
 1593	75	rRNA
 			product	rrnL
 1763	2485	gene
@@ -211,7 +211,7 @@
 			transl_table	4
 7364	8141	rRNA
 			product	rrnS
->Feature OQ957192_CWD6_Cordagalma_ordinatum
+>Feature OQ957192_Cordagalma_ordinatum
 86	155	tRNA
 			product	tRNA-Trp
 			note	trnW(tca)
@@ -282,7 +282,7 @@
 12897	13511	CDS
 			product	cox2
 			transl_table	4
->Feature OQ957193_CWD7_Diphyes_dispar
+>Feature OQ957193_Diphyes_dispar
 336	1238	rRNA
 			product	rrnS
 1359	2936	rRNA
@@ -302,9 +302,9 @@
 5034	6565	CDS
 			product	cox1
 			transl_table	4
-7725	8336	gene
+7578	8336	gene
 			gene	atp6
-7725	8336	CDS
+7578	8336	CDS
 			product	atp6
 			transl_table	4
 8340	9560	gene
@@ -347,7 +347,7 @@
 6771	7466	CDS
 			product	cox2
 			transl_table	4
->Feature OQ957194_CWD11_Stephanomia_amphytridis
+>Feature OQ957194_Stephanomia_amphytridis
 2047	473	rRNA
 			product	rrnL
 2258	2992	gene
@@ -423,7 +423,7 @@
 13805	15367	CDS
 			product	cox1
 			transl_table	4
->Feature OQ957195_CWD12_Halistemma_rubrum_Atlantic
+>Feature OQ957195_Halistemma_rubrum_Atlantic
 1641	1	rRNA
 			product	rrnL
 1778	2509	gene
@@ -494,7 +494,7 @@
 			transl_table	4
 7873	8658	rRNA
 			product	rrnS
->Feature OQ957196_CWD16_Nanomia_bijuga_Atlantic
+>Feature OQ957196_Nanomia_bijuga_Atlantic
 1611	72	rRNA
 			product	rrnL
 1774	2493	gene
@@ -565,7 +565,7 @@
 13023	14582	CDS
 			product	cox1
 			transl_table	4
->Feature OQ957197_CWD17_Halistemma_rubrum_Mediterranean
+>Feature OQ957197_Halistemma_rubrum_Mediterranean
 1779	2510	gene
 			gene	cox2
 1779	2510	CDS
@@ -636,7 +636,7 @@
 			product	rrnL
 8805	9591	rRNA
 			product	rrnS
->Feature OQ957198_CWD19_Praya_dubia
+>Feature OQ957198_Praya_dubia
 733	455	gene
 			gene	nad4l
 733	455	CDS
@@ -707,7 +707,7 @@
 			product	rrnS
 13368	14991	rRNA
 			product	rrnL
->Feature OQ957199_CWD20_Rhizophysa_filiformis
+>Feature OQ957199_Rhizophysa_filiformis
 2130	492	rRNA
 			product	rrnL
 2409	3143	gene
@@ -783,7 +783,7 @@
 13944	15506	CDS
 			product	cox1
 			transl_table	4
->Feature OQ957200_CWD21_Rosacea_flaccida
+>Feature OQ957200_Rosacea_flaccida
 1135	184	rRNA
 			product	rrnS
 2929	1334	rRNA
@@ -819,9 +819,9 @@
 7917	8504	CDS
 			product	nad6
 			transl_table	4
-8564	9253	gene
+8528	9253	gene
 			gene	cox2
-8564	9253	CDS
+8528	9253	CDS
 			product	cox2
 			transl_table	4
 9281	9580	gene
@@ -854,7 +854,7 @@
 15129	15467	CDS
 			product	nad3
 			transl_table	4
->Feature OQ957201_CWD101_Apolemia_sp3
+>Feature OQ957201_Apolemia_sp3
 2441	840	rRNA
 			product	rrnL
 2866	3600	gene
@@ -930,7 +930,7 @@
 			transl_table	4
 8659	9570	rRNA
 			product	rrnS
->Feature OQ957202_CWD104_Bargmannia_elongata
+>Feature OQ957202_Bargmannia_elongata
 2101	496	rRNA
 			product	rrnL
 2324	3058	gene
@@ -1006,7 +1006,7 @@
 13862	15424	CDS
 			product	cox1
 			transl_table	4
->Feature OQ957203_CWD116_Agalma_elegans_Pacific
+>Feature OQ957203_Agalma_elegans_Pacific
 1596	54	rRNA
 			product	rrnL
 1762	2484	gene
@@ -1077,7 +1077,7 @@
 13459	15018	CDS
 			product	cox1
 			transl_table	4
->Feature OQ957204_CWD121_Abylopsis_tetragona
+>Feature OQ957204_Abylopsis_tetragona
 1155	469	gene
 			gene	cox2
 1155	469	CDS
@@ -1132,9 +1132,9 @@
 			transl_table	4
 13532	14426	rRNA
 			product	rrnS
-14569	15309	gene
+14545	15309	gene
 			gene	atp6
-14569	15309	CDS
+14545	15309	CDS
 			product	atp6
 			transl_table	4
 15461	16663	gene
@@ -1142,7 +1142,7 @@
 15461	16663	CDS
 			product	nad2
 			transl_table	4
->Feature OQ957205_CWD122_Chelophyes_appendiculata
+>Feature OQ957205_Chelophyes_appendiculata
 863	2191	gene
 			gene	nad2
 863	2191	CDS
@@ -1197,9 +1197,9 @@
 15398	16546	CDS
 			product	cob
 			transl_table	4
-17042	17740	gene
+16892	17740	gene
 			gene	atp6
-17042	17740	CDS
+16892	17740	CDS
 			product	atp6
 			transl_table	4
 5501	5819	gene
@@ -1207,7 +1207,7 @@
 5501	5819	CDS
 			product	nad4l
 			transl_table	4
->Feature OQ957206_CWD131_Rhizophysa_eysenhardtii
+>Feature OQ957206_Rhizophysa_eysenhardtii
 2124	504	rRNA
 			product	rrnL
 2353	3087	gene
@@ -1283,7 +1283,7 @@
 13883	15445	CDS
 			product	cox1
 			transl_table	4
->Feature OQ957207_CWD141_Stephalia_dilata
+>Feature OQ957207_Stephalia_dilata
 1577	2	rRNA
 			product	rrnL
 2248	2982	gene
@@ -1359,7 +1359,7 @@
 13792	15354	CDS
 			product	cox1
 			transl_table	4
->Feature OQ957208_CWD144_Gymnopraia_lapislazula
+>Feature OQ957208_Gymnopraia_lapislazula
 392	463	tRNA
 			product	tRNA-Met
 			note	trnM(cat)
@@ -1430,7 +1430,7 @@
 14703	15629	CDS
 			product	nad1
 			transl_table	4
->Feature OQ957209_CWD146_Erenna_sirena
+>Feature OQ957209_Erenna_sirena
 2428	3162	gene
 			gene	cox2
 2428	3162	CDS
@@ -1506,7 +1506,7 @@
 			transl_table	4
 2197	635	rRNA
 			product	rrnL
->Feature OQ957210_NA1_Chuniphyes_multidentata
+>Feature OQ957210_Chuniphyes_multidentata
 316	387	tRNA
 			product	tRNA-Trp
 			note	trnW(tca)
@@ -1555,9 +1555,9 @@
 9589	10566	CDS
 			product	nad1
 			transl_table	4
-10710	12098	gene
+10770	12098	gene
 			gene	nad4
-10710	12098	CDS
+10770	12098	CDS
 			product	nad4
 			transl_table	4
 12243	13454	gene
@@ -1577,7 +1577,7 @@
 			transl_table	4
 790	1600	rRNA
 			product	rrnS
->Feature OQ957211_NA2_Physonect_sp
+>Feature OQ957211_Physonect_sp
 1905	343	gene
 			gene	cox1
 1905	343	CDS
@@ -1653,7 +1653,7 @@
 			transl_table	4
 9594	10511	rRNA
 			product	rrnS
->Feature OQ957212_NA3_Forskalia_sp
+>Feature OQ957212_Forskalia_sp
 176	1651	rRNA
 			product	rrnL
 1624	1692	tRNA
@@ -1662,9 +1662,9 @@
 1692	1761	tRNA
 			product	tRNA-Met
 			note	trnM(cat)
-1800	2468	gene
+1764	2468	gene
 			gene	cox2
-1800	2468	CDS
+1764	2468	CDS
 			product	cox2
 			transl_table	4
 2641	3327	gene
@@ -1724,7 +1724,7 @@
 			transl_table	4
 11283	12051	rRNA
 			product	rrnS
->Feature OQ957213_NA4_Praya
+>Feature OQ957213_Praya
 749	471	gene
 			gene	nad4l
 749	471	CDS
@@ -1795,7 +1795,7 @@
 			product	rrnS
 13393	15027	rRNA
 			product	rrnL
->Feature OQ957214_NA5_Apolemia_rubriversa
+>Feature OQ957214_Apolemia_rubriversa
 2444	3178	gene
 			gene	cox2
 2444	3178	CDS
@@ -1871,7 +1871,7 @@
 			transl_table	4
 2042	454	rRNA
 			product	rrnL
->Feature OQ957215_NA6_Craseoa_lathetica
+>Feature OQ957215_Craseoa_lathetica
 451	519	tRNA
 			product	tRNA-Trp
 			note	trnW(tca)
@@ -1942,7 +1942,7 @@
 			transl_table	4
 2338	3278	rRNA
 			product	rrnS
->Feature OQ957216_NA8_Bargmannia_lata
+>Feature OQ957216_Bargmannia_lata
 727	80	gene
 			gene	cox2
 727	80	CDS
@@ -2013,7 +2013,7 @@
 			product	rrnL
 5072	5792	rRNA
 			product	rrnS
->Feature OQ957217_NA10_Resomia_ornicephala_T898D2
+>Feature OQ957217_Resomia_ornicephala_T898D2
 1688	138	gene
 			gene	cox1
 1688	138	CDS
@@ -2084,7 +2084,7 @@
 14068	15210	CDS
 			product	cob
 			transl_table	4
->Feature OQ957218_NA11_Resomia_ornicephala_T845D3
+>Feature OQ957218_Resomia_ornicephala_T845D3
 1687	137	gene
 			gene	cox1
 1687	137	CDS
@@ -2155,7 +2155,7 @@
 14067	15209	CDS
 			product	cob
 			transl_table	4
->Feature OQ957219_NA19_Nanomia_sp_Pacific
+>Feature OQ957219_Nanomia_sp_Pacific
 1602	72	rRNA
 			product	rrnL
 1767	2486	gene
@@ -2226,7 +2226,7 @@
 13802	15361	CDS
 			product	cox1
 			transl_table	4
->Feature OQ957220_NA22_Physalia_physalis_Pacific
+>Feature OQ957220_Physalia_physalis_Pacific
 1922	302	rRNA
 			product	rrnL
 2122	2856	gene
