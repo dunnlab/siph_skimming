@@ -17,7 +17,7 @@ rule all:
 
 rule generate_spectrum:
     input:
-        reads = lambda wildcards: [x for x in config["sample"][wildcards.sample]["reads"]]
+        reads = lambda wildcards: [f"{config['base_read_dir']}{x}" for x in config["sample"][wildcards.sample]["reads"]]
     output:
         histo = "output/{sample}_{thisk}.histo",
         read_count = "output/{sample}_{thisk}.count",

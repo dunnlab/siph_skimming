@@ -1,106 +1,108 @@
+base_read_dir: /gpfs/gibbs/pi/dunn/sequences/Novaseq_siphgenomes/
+
 sample:
   Apolemia-sp3:
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD101_172_021/ 
+      - Sample_CWD101_172_021/ 
   Stephalia-dilata: 
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD141_136_057/ 
+      - Sample_CWD141_136_057/ 
   Erenna-sirena:
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD146_112_081/ 
+      - Sample_CWD146_112_081/ 
   Resomia-ornicephala-T898-D2: 
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_NA10_182_011/ 
+      - Sample_NA10_182_011/ 
   Resomia-ornicephala-T845-D3: 
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_NA11_170_023/ 
+      - Sample_NA11_170_023/ 
   Rosacea-flaccida: 
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD21_157_036/ 
+      - Sample_CWD21_157_036/ 
   Abylopsis-tetragona: 
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD121_145_048/  
+      - Sample_CWD121_145_048/  
   Hippopodius-hippopus: 
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD117_160_033/ 
+      - Sample_CWD117_160_033/ 
   Agalma-elegans-Pacific: 
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD116_134_059/ 
+      - Sample_CWD116_134_059/ 
   Chelophyes-appendiculata: 
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD122_133_060/ 
+      - Sample_CWD122_133_060/ 
   Gymnopraia-lapislazula:
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD144_124_069/  
+      - Sample_CWD144_124_069/  
   Apolemia-rubriversa: 
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_NA5_147_046/ 
+      - Sample_NA5_147_046/ 
   Craseoa-lathetica: 
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_NA6_135_058/ 
+      - Sample_NA6_135_058/ 
   Rhizophysa-eysenhardtii: 
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD131_148_045/ 
+      - Sample_CWD131_148_045/ 
   Frillagalma-vityazi:
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_NA9_099_094/ 
+      - Sample_NA9_099_094/ 
   Forskalia: 
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_NA3_171_022/ 
+      - Sample_NA3_171_022/ 
   Praya: 
     reads:      
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_NA4_159_034/ 
+      - Sample_NA4_159_034/ 
   Chuniphyes-multidentata: 
     reads:    
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_NA1_100_093/ 
+      - Sample_NA1_100_093/ 
   Physonect: 
     reads:    
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_NA2_183_010/ 
+      - Sample_NA2_183_010/ 
   Lilyopsis-fluoracantha: 
     reads:    
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_NA7_123_070/ 
+      - Sample_NA7_123_070/ 
   Bargmannia-lata:
     reads:   
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_NA8_111_082/ 
+      - Sample_NA8_111_082/ 
   Agalma-clausi: 
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD1_122_071/ 
+      - Sample_CWD1_122_071/ 
   Agalma-elegans-Atlantic: 
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD2_110_083/ 
+      - Sample_CWD2_110_083/ 
   Agalma-okeni: 
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD3_101_092/ 
-  Cordagalma: 
+      - Sample_CWD3_101_092/ 
+  Cordagalma-ordinatum: 
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD6_184_009/ 
+      - Sample_CWD6_184_009/ 
   Diphyes-dispar:
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD7_158_035/ 
+      - Sample_CWD7_158_035/ 
   Stephanomia-amphytridis: 
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD11_146_047/ 
+      - Sample_CWD11_146_047/ 
   Halistemma-rubrum-Mediterranean: 
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD12_098_095/ 
+      - Sample_CWD12_098_095/ 
   Halistemma-rubrum-Atlantic: 
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD17_181_012/ 
+      - Sample_CWD17_181_012/ 
   Rhizophysa-filiformis: 
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD20_169_024/ 
+      - Sample_CWD20_169_024/ 
   Nanomia-bijuga-Atlantic:
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD16_296_281/
+      - Sample_CWD16_296_281/
   Nanomia-bijuga-Pacific:
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_NA19_152_041/
+      - Sample_NA19_152_041/
   Bargmannia-elongata:
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD104_320_257/
+      - Sample_CWD104_320_257/
   Praya-dubia:
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_CWD19_308_269/
+      - Sample_CWD19_308_269/
   Physalia-physalis-Pacific:
     reads:
-      - /gpfs/ysm/scratch60/dunn/cwd7/Novaseq_siphgenomes/Sample_NA22_176_017
+      - Sample_NA22_176_017
