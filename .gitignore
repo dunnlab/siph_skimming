@@ -10,6 +10,7 @@ validation.txt
 analyses_kmer/output/
 analyses_kmer/output_old/
 analyses_kmer/logs/
+analyses_kmer/logs_old/
 analyses_kmer/reads/
 analyses_kmer/snake.txt
 
