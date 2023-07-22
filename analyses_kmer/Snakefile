@@ -14,13 +14,71 @@ rule all:
         expand("output/{sample}_k{thisk}_summary.txt", sample = config["sample"], thisk = target_kmers),
         "output/genome_size_report.tsv"
 
-
-rule generate_spectrum:
+rule concat_reads:
     input:
         reads = lambda wildcards: [f"{config['base_read_dir']}{x}" for x in config["sample"][wildcards.sample]["reads"]]
     output:
+        R1 = temporary("output/reads/{sample}_all_R1.fastq"),
+        R2 = temporary("output/reads/{sample}_all_R2.fastq")
+    params:
+        sample = lambda wildcards: wildcards.sample
+    shell:
+        """
+        zcat {input.reads}/*R1*.fastq.gz > {output.R1}
+        zcat {input.reads}/*R2*.fastq.gz > {output.R2}
+        """
+
+rule trim_reads:
+    input:
+        R1 = "output/reads/{sample}_all_R1.fastq",
+        R2 = "output/reads/{sample}_all_R2.fastq"
+    output:
+        R1_paired   = "output/reads/{sample}_trimmed_paired_R1.fastq",
+        R1_unpaired = "output/reads/{sample}_trimmed_unpaired_R1.fastq",
+        R2_paired   = "output/reads/{sample}_trimmed_paired_R2.fastq",
+        R2_unpaired = "output/reads/{sample}_trimmed_unpaired_R2.fastq"
+    params:
+        sample = lambda wildcards: wildcards.sample
+    threads: workflow.cores
+    log: "logs/trimmomatic.{sample}.log"
+    shell:
+        """
+        trimmomatic PE \
+          -threads {threads} \
+          {input.R1} \
+          {input.R2} \
+          {output.R1_paired} \
+          {output.R1_unpaired} \
+          {output.R2_paired} \
+          {output.R2_unpaired} \
+          ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:True LEADING:3 TRAILING:3 MINLEN:36
+        """
+
+rule count_reads:
+    input:
+        R1_paired   = "output/reads/{sample}_trimmed_paired_R1.fastq",
+        R1_unpaired = "output/reads/{sample}_trimmed_unpaired_R1.fastq",
+        R2_paired   = "output/reads/{sample}_trimmed_paired_R2.fastq",
+        R2_unpaired = "output/reads/{sample}_trimmed_unpaired_R2.fastq"
+    output:
+        read_count = "output/{sample}.count"
+    params:
+        sample = lambda wildcards: wildcards.sample
+    shell:
+        """
+        cat {input.R1_paired} {input.R1_unpaired} {input.R2_paired} {input.R2_unpaired} | \
+          awk 'END {{print NR/4}}' > \
+          {output.read_count}
+        """
+
+rule generate_spectrum:
+    input:
+        R1_paired   = "output/reads/{sample}_trimmed_paired_R1.fastq",
+        R1_unpaired = "output/reads/{sample}_trimmed_unpaired_R1.fastq",
+        R2_paired   = "output/reads/{sample}_trimmed_paired_R2.fastq",
+        R2_unpaired = "output/reads/{sample}_trimmed_unpaired_R2.fastq"
+    output:
         histo = "output/{sample}_{thisk}.histo",
-        read_count = "output/{sample}_{thisk}.count",
         jf = temporary("output/{sample}_{thisk}.jf")
     params:
         sample = lambda wildcards: wildcards.sample,
@@ -29,11 +87,11 @@ rule generate_spectrum:
     log: "logs/jellyfish.{sample}_{thisk}.log"
     shell:
         """
-        zcat {input.reads}/*.fastq.gz | \
-           tee >(awk 'END {{print NR/4}}' > {output.read_count}) | \
-           jellyfish count -C -m {params.thisk} -s 1000000000 -t {threads} /dev/fd/0 -o {output.jf}
+        jellyfish count -C -m {params.thisk} -s 1000000000 -t {threads} \
+          -o {output.jf} \
+          {input.R1_paired} {input.R1_unpaired} {input.R2_paired} {input.R2_unpaired}
+
         jellyfish histo -t {threads} {output.jf} > {output.histo}
-        #rm output/{params.sample}_{params.thisk}.jf
         """
 
 rule generate_freqxcov_histo:
@@ -108,7 +166,7 @@ rule run_genomescope2:
 rule final_report:
     input:
         expand("output/{sample}_k{thisk}_summary.txt", sample = config["sample"], thisk = target_kmers),
-        expand("output/{sample}_{thisk}.count", sample = config["sample"], thisk = target_kmers)
+        expand("output/{sample}.count", sample = config["sample"])
     output:
         report = "output/genome_size_report.tsv"
     run:

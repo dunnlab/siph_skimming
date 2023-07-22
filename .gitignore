@@ -6,3 +6,7 @@
 .snakemake/
 validation.txt
 *.peaks
+
+analyses_kmer/output/
+analyses_kmer/snake.txt
+
