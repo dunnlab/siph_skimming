@@ -8,8 +8,8 @@ target_kmers = [21]
 
 rule all:
     input:
-        expand("output/{sample}_{thisk}.histo.pdf", sample = config["sample"], thisk = target_kmers),
-        expand("output/{sample}_{thisk}.freqxcov.pdf", sample = config["sample"], thisk = target_kmers),
+        expand("output/{sample}_k{thisk}.histo.pdf", sample = config["sample"], thisk = target_kmers),
+        expand("output/{sample}_k{thisk}.freqxcov.pdf", sample = config["sample"], thisk = target_kmers),
         expand("output/{sample}_k{thisk}_linear_plot.png", sample = config["sample"], thisk = target_kmers),
         expand("output/{sample}_k{thisk}_summary.txt", sample = config["sample"], thisk = target_kmers),
         "output/genome_size_report.tsv"
@@ -18,8 +18,8 @@ rule concat_reads:
     input:
         reads = lambda wildcards: [f"{config['base_read_dir']}{x}" for x in config["sample"][wildcards.sample]["reads"]]
     output:
-        R1 = temporary("output/reads/{sample}_all_R1.fastq"),
-        R2 = temporary("output/reads/{sample}_all_R2.fastq")
+        R1 = temporary("reads/{sample}_all_R1.fastq"),
+        R2 = temporary("reads/{sample}_all_R2.fastq")
     params:
         sample = lambda wildcards: wildcards.sample
     shell:
@@ -30,13 +30,13 @@ rule concat_reads:
 
 rule trim_reads:
     input:
-        R1 = "output/reads/{sample}_all_R1.fastq",
-        R2 = "output/reads/{sample}_all_R2.fastq"
+        R1 = "reads/{sample}_all_R1.fastq",
+        R2 = "reads/{sample}_all_R2.fastq"
     output:
-        R1_paired   = "output/reads/{sample}_trimmed_paired_R1.fastq",
-        R1_unpaired = "output/reads/{sample}_trimmed_unpaired_R1.fastq",
-        R2_paired   = "output/reads/{sample}_trimmed_paired_R2.fastq",
-        R2_unpaired = "output/reads/{sample}_trimmed_unpaired_R2.fastq"
+        R1_paired   = "reads/{sample}_trimmed_paired_R1.fastq",
+        R1_unpaired = "reads/{sample}_trimmed_unpaired_R1.fastq",
+        R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq",
+        R2_unpaired = "reads/{sample}_trimmed_unpaired_R2.fastq"
     params:
         sample = lambda wildcards: wildcards.sample
     threads: workflow.cores
@@ -56,10 +56,10 @@ rule trim_reads:
 
 rule count_reads:
     input:
-        R1_paired   = "output/reads/{sample}_trimmed_paired_R1.fastq",
-        R1_unpaired = "output/reads/{sample}_trimmed_unpaired_R1.fastq",
-        R2_paired   = "output/reads/{sample}_trimmed_paired_R2.fastq",
-        R2_unpaired = "output/reads/{sample}_trimmed_unpaired_R2.fastq"
+        R1_paired   = "reads/{sample}_trimmed_paired_R1.fastq",
+        R1_unpaired = "reads/{sample}_trimmed_unpaired_R1.fastq",
+        R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq",
+        R2_unpaired = "reads/{sample}_trimmed_unpaired_R2.fastq"
     output:
         read_count = "output/{sample}.count"
     params:
@@ -73,18 +73,18 @@ rule count_reads:
 
 rule generate_spectrum:
     input:
-        R1_paired   = "output/reads/{sample}_trimmed_paired_R1.fastq",
-        R1_unpaired = "output/reads/{sample}_trimmed_unpaired_R1.fastq",
-        R2_paired   = "output/reads/{sample}_trimmed_paired_R2.fastq",
-        R2_unpaired = "output/reads/{sample}_trimmed_unpaired_R2.fastq"
+        R1_paired   = "reads/{sample}_trimmed_paired_R1.fastq",
+        R1_unpaired = "reads/{sample}_trimmed_unpaired_R1.fastq",
+        R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq",
+        R2_unpaired = "reads/{sample}_trimmed_unpaired_R2.fastq"
     output:
-        histo = "output/{sample}_{thisk}.histo",
-        jf = temporary("output/{sample}_{thisk}.jf")
+        histo = "output/{sample}_k{thisk}.histo",
+        jf = temporary("output/{sample}_k{thisk}.jf")
     params:
         sample = lambda wildcards: wildcards.sample,
         thisk = lambda wildcards: wildcards.thisk,
     threads: workflow.cores
-    log: "logs/jellyfish.{sample}_{thisk}.log"
+    log: "logs/jellyfish.{sample}_k{thisk}.log"
     shell:
         """
         jellyfish count -C -m {params.thisk} -s 1000000000 -t {threads} \
@@ -96,9 +96,9 @@ rule generate_spectrum:
 
 rule generate_freqxcov_histo:
     input:
-        histo = "output/{sample}_{thisk}.histo"
+        histo = "output/{sample}_k{thisk}.histo"
     output:
-        freqxcov = "output/{sample}_{thisk}.freqxcov"
+        freqxcov = "output/{sample}_k{thisk}.freqxcov"
     params:
         sample = lambda wildcards: wildcards.sample,
         thisk = lambda wildcards: wildcards.thisk,
@@ -110,9 +110,9 @@ rule generate_freqxcov_histo:
 
 rule generate_kmer_spectrum:
     input:
-        histo = "output/{sample}_{thisk}.histo"
+        histo = "output/{sample}_k{thisk}.histo"
     output:
-        pdf   = "output/{sample}_{thisk}.histo.pdf"
+        pdf   = "output/{sample}_k{thisk}.histo.pdf"
     params:
         sample = lambda wildcards: wildcards.sample,
         thisk = lambda wildcards: wildcards.thisk,
@@ -127,9 +127,9 @@ rule generate_kmer_spectrum:
 
 rule generate_freqcov_spectrum:
     input:
-        freqxcov = "output/{sample}_{thisk}.freqxcov"
+        freqxcov = "output/{sample}_k{thisk}.freqxcov"
     output:
-        pdf = "output/{sample}_{thisk}.freqxcov.pdf"
+        pdf = "output/{sample}_k{thisk}.freqxcov.pdf"
     params:
         sample = lambda wildcards: wildcards.sample,
         thisk = lambda wildcards: wildcards.thisk,
@@ -147,7 +147,7 @@ rule run_genomescope2:
     Just runs genomescope on the output of the last file
     """
     input:
-        histo = "output/{sample}_{thisk}.histo"
+        histo = "output/{sample}_k{thisk}.histo"
     output:
         plot = "output/{sample}_k{thisk}_linear_plot.png",
         summary = "output/{sample}_k{thisk}_summary.txt"

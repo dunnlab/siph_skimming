@@ -3,10 +3,13 @@
 *.snakemake.log
 *.fastq.gz
 *.fq.gz
-.snakemake/
+.snakemake
 validation.txt
 *.peaks
 
 analyses_kmer/output/
+analyses_kmer/output_old/
+analyses_kmer/logs/
+analyses_kmer/reads/
 analyses_kmer/snake.txt
 

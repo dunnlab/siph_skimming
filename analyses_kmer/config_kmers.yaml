@@ -94,7 +94,7 @@ sample:
   Nanomia-bijuga-Atlantic:
     reads:
       - Sample_CWD16_296_281/
-  Nanomia-bijuga-Pacific:
+  Nanomia-Pacific:
     reads:
       - Sample_NA19_152_041/
   Bargmannia-elongata:
