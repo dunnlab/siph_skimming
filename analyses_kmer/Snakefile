@@ -5,15 +5,15 @@ configfile: "config_kmers.yaml"
 
 target_kmers = [21]
 
-
 rule all:
     input:
         expand("output/{sample}_k{thisk}.histo.pdf", sample = config["sample"], thisk = target_kmers),
         expand("output/{sample}_k{thisk}.freqxcov.pdf", sample = config["sample"], thisk = target_kmers),
         expand("output/{sample}_k{thisk}_linear_plot.png", sample = config["sample"], thisk = target_kmers),
         expand("output/{sample}_k{thisk}_summary.txt", sample = config["sample"], thisk = target_kmers),
-        expand("fastqc/{sample}_all_R1_fastqc.html", sample = config["sample"]),
-        expand("fastqc/{sample}_all_R2_fastqc.html", sample = config["sample"]),
+        expand("output/fastqc/{sample}_all_R1_fastqc.html", sample = config["sample"]),
+        expand("output/fastqc/{sample}_all_R2_fastqc.html", sample = config["sample"]),
+        expand("output/kraken/{sample}.out.txt", sample = config["sample"]),
         "output/genome_size_report.tsv"
 
 rule concat_reads:
@@ -38,17 +38,17 @@ rule fastqc:
         R1 = "reads/{sample}_all_R1.fastq",
         R2 = "reads/{sample}_all_R2.fastq"
     output:
-        html_R1 = "fastqc/{sample}_all_R1_fastqc.html",
-        zip_R1 = "fastqc/{sample}_all_R1_fastqc.zip",
-        html_R2 = "fastqc/{sample}_all_R2_fastqc.html",
-        zip_R2 = "fastqc/{sample}_all_R2_fastqc.zip"
+        html_R1 = "output/fastqc/{sample}_all_R1_fastqc.html",
+        zip_R1 = "output/fastqc/{sample}_all_R1_fastqc.zip",
+        html_R2 = "output/fastqc/{sample}_all_R2_fastqc.html",
+        zip_R2 = "output/fastqc/{sample}_all_R2_fastqc.zip"
     params:
-        outdir = "fastqc"
+        outdir = "output/fastqc"
+    log: "logs/fastqc/fastqc_{sample}.log"
     shell:
         """
-        fastqc -o {params.outdir} {input.R1} {input.R2}
+        fastqc -o {params.outdir} {input.R1} {input.R2}  2> {log}
         """
-
 
 rule trim_reads:
     input:
@@ -62,9 +62,10 @@ rule trim_reads:
     params:
         sample = lambda wildcards: wildcards.sample
     threads: workflow.cores
-    log: "logs/trimmomatic.{sample}.log"
+    log: "logs/trimmomatic/trimmomatic_{sample}.log"
     shell:
         """
+        echo ">PrefixPE/1\nTACACTCTTTCCCTACACGACGCTCTTCCGATCT\n>PrefixPE/2\nGTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT" > TruSeq3-PE.fa
         trimmomatic PE \
           -threads {threads} \
           {input.R1} \
@@ -73,8 +74,34 @@ rule trim_reads:
           {output.R1_unpaired} \
           {output.R2_paired} \
           {output.R2_unpaired} \
-          ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:True LEADING:3 TRAILING:3 MINLEN:36
+          ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:True LEADING:15 TRAILING:15 MINLEN:50 2> {log}
         """
+
+rule kraken:
+    input:
+        R1_paired   = "reads/{sample}_trimmed_paired_R1.fastq",
+        R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq"
+    output:
+        OUT = "output/kraken/{sample}.out.txt",
+        CLASS_R1 = "reads/{sample}_classified_R_1.fastq", 
+        CLASS_R2 = "reads/{sample}_classified_R_2.fastq", 
+        UNCLASS_R1 = "reads/{sample}_unclassified_R_1.fastq",
+        UNCLASS_R2 = "reads/{sample}_unclassified_R_2.fastq"
+    params:
+        out_base = "output/kraken/{sample}", 
+        read_base = "reads/{sample}"
+    log: "logs/kraken/kraken_{sample}.log"
+    threads: workflow.cores
+    shell:
+        """
+        kraken2 --threads {threads} \
+          --db {config[kraken_database]} \
+          --unclassified-out "{params.read_base}_unclassified_R#.fastq" \
+          --classified-out "{params.read_base}_classified_R#.fastq" \
+          --output "{params.out_base}.out.txt" \
+          --report "{params.out_base}.report.txt" --use-names --report-minimizer-data  \
+          --paired {input.R1_paired} {input.R2_paired} 2> {log}
+        """ 
 
 rule count_reads:
     input:
@@ -90,29 +117,37 @@ rule count_reads:
         sample = lambda wildcards: wildcards.sample
     shell:
         """
-        num_lines_raw=$(cat {input.R1} {input.R2} | wc -l)
+        sum=0
+        num_lines_raw=$(cat {input.R1} | wc -l)
         num_reads_raw=$(($num_lines_raw / 4))
-
         num_nucleotides_raw=$(cat {input.R1} {input.R2} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
 
-        num_lines_trimmed=$(cat {input.R1_paired} {input.R1_unpaired} {input.R2_paired} {input.R2_unpaired} | wc -l)
+        sum=0
+        # num_lines_trimmed=$(cat {input.R1_paired} {input.R1_unpaired} {input.R2_paired} {input.R2_unpaired} | wc -l)
+        num_lines_trimmed=$(cat {input.R1_paired} | wc -l)
         num_reads_trimmed=$(($num_lines_trimmed / 4))
+        # num_nucleotides_trimmed=$(cat {input.R1_paired} {input.R1_unpaired} {input.R2_paired} {input.R2_unpaired} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
+        num_nucleotides_trimmed=$(cat {input.R1_paired} {input.R2_paired} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
 
-        num_nucleotides_trimmed=$(cat {input.R1_paired} {input.R1_unpaired} {input.R2_paired} {input.R2_unpaired} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
+        sum=0
+        num_lines_unpaired_trimmed=$(cat {input.R1_unpaired} {input.R2_unpaired} | wc -l)
+        num_reads_unpaired_trimmed=$(($num_lines_unpaired_trimmed / 4))
+        num_nucleotides_unpaired_trimmed=$(cat {input.R1_unpaired} {input.R2_unpaired} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
 
-        echo "reads_raw\t$num_reads_raw" > {output.read_count}
+        echo "reads_pairs_raw\t$num_reads_raw" > {output.read_count}
         echo "nucleotides_raw\t$num_nucleotides_raw" >> {output.read_count}
-        echo "reads_trimmed\t$num_reads_trimmed" >> {output.read_count}
+        echo "reads_pairs_trimmed\t$num_reads_trimmed" >> {output.read_count}
         echo "nucleotides_trimmed\t$num_nucleotides_trimmed" >> {output.read_count}
+        echo "reads_unpaired_trimmed\t$num_reads_unpaired_trimmed" >> {output.read_count}
+        echo "nucleotides_unpaired_trimmed\t$num_nucleotides_unpaired_trimmed" >> {output.read_count}
         """
-
 
 rule generate_spectrum:
     input:
         R1_paired   = "reads/{sample}_trimmed_paired_R1.fastq",
-        R1_unpaired = "reads/{sample}_trimmed_unpaired_R1.fastq",
-        R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq",
-        R2_unpaired = "reads/{sample}_trimmed_unpaired_R2.fastq"
+        #R1_unpaired = "reads/{sample}_trimmed_unpaired_R1.fastq",
+        R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq"
+        #R2_unpaired = "reads/{sample}_trimmed_unpaired_R2.fastq"
     output:
         histo = "output/{sample}_k{thisk}.histo",
         jf = temporary("output/{sample}_k{thisk}.jf")
@@ -120,12 +155,13 @@ rule generate_spectrum:
         sample = lambda wildcards: wildcards.sample,
         thisk = lambda wildcards: wildcards.thisk,
     threads: workflow.cores
-    log: "logs/jellyfish.{sample}_k{thisk}.log"
+    log: "logs/jellyfish/jellyfish_{sample}_k{thisk}.log"
     shell:
         """
         jellyfish count -C -m {params.thisk} -s 1000000000 -t {threads} \
           -o {output.jf} \
-          {input.R1_paired} {input.R1_unpaired} {input.R2_paired} {input.R2_unpaired}
+          {input.R1_paired} {input.R2_paired} \
+          2> {log}
 
         jellyfish histo -t {threads} {output.jf} > {output.histo}
         """
@@ -191,10 +227,11 @@ rule run_genomescope2:
         sample = lambda wildcards: wildcards.sample,
         thisk = lambda wildcards: wildcards.thisk,
     threads: 1
+    log: "logs/genomescope2/genomescope2_{sample}_k{thisk}.log"
     shell:
         """
         genomescope2 -i {input.histo} -o {params.sample}_k{params.thisk} \
-          -k {params.thisk} -n {params.sample}_k{params.thisk}
+          -k {params.thisk} -n {params.sample}_k{params.thisk} 2> {log}
         mv {params.sample}_k{params.thisk}/* output/
         rm -r {params.sample}_k{params.thisk}/
         """
