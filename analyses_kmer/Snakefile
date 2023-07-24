@@ -13,8 +13,7 @@ rule all:
         expand("output/{sample}_k{thisk}_summary.txt", sample = config["sample"], thisk = target_kmers),
         expand("output/fastqc/{sample}_all_R1_fastqc.html", sample = config["sample"]),
         expand("output/fastqc/{sample}_all_R2_fastqc.html", sample = config["sample"]),
-        expand("output/kraken/{sample}.out.txt", sample = config["sample"]),
-        "output/genome_size_report.tsv"
+        "output/genome_report.tsv"
 
 rule concat_reads:
     input:
@@ -82,7 +81,7 @@ rule kraken:
         R1_paired   = "reads/{sample}_trimmed_paired_R1.fastq",
         R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq"
     output:
-        OUT = "output/kraken/{sample}.out.txt",
+        REPORT = "output/kraken/{sample}.report.txt",
         CLASS_R1 = "reads/{sample}_classified_R_1.fastq", 
         CLASS_R2 = "reads/{sample}_classified_R_2.fastq", 
         UNCLASS_R1 = "reads/{sample}_unclassified_R_1.fastq",
@@ -98,7 +97,7 @@ rule kraken:
           --db {config[kraken_database]} \
           --unclassified-out "{params.read_base}_unclassified_R#.fastq" \
           --classified-out "{params.read_base}_classified_R#.fastq" \
-          --output "{params.out_base}.out.txt" \
+          --output - \
           --report "{params.out_base}.report.txt" --use-names --report-minimizer-data  \
           --paired {input.R1_paired} {input.R2_paired} 2> {log}
         """ 
@@ -239,9 +238,10 @@ rule run_genomescope2:
 rule final_report:
     input:
         counts = expand("output/{sample}.count", sample=config["sample"]),
+        kraken = expand("output/kraken/{sample}.report.txt", sample=config["sample"]),
         results = expand("output/{sample}_k{thisk}_summary.txt", sample=config["sample"], thisk=target_kmers)
     output:
-        report = "output/genome_size_report.tsv"
+        report = "output/genome_report.tsv"
     run:
         import pandas as pd
 
@@ -301,6 +301,25 @@ rule final_report:
         # Merge results with counts data
         for result, counts in zip(list_of_results, list_of_counts):
             result.update(counts)
+        
+        # Read the kraken data
+        kraken_targets = ["unclassified", "Homo sapiens", "Bacteria"]
+        list_of_kraken = []
+        for this_sample in config["sample"]:
+            kraken_file = f"output/kraken/{this_sample}.report.txt"
+            with open(kraken_file, "r") as f:
+                dict_of_kraken = {}
+                for line in f:
+                    fields = line.strip().split("\t")
+                    value = fields[0].strip()
+                    key = fields[-1].strip()
+                    if key in kraken_targets:
+                        dict_of_kraken[key] = float(value)
+                list_of_kraken.append(dict_of_kraken)
+
+        # Merge results with kraken data
+        for result, kraken in zip(list_of_results, list_of_kraken):
+            result.update(kraken)
 
         # Create DataFrame and write to the report file
         df = pd.DataFrame(list_of_results)
