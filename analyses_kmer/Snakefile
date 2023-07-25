@@ -20,13 +20,12 @@ rule concat_reads:
     input:
         reads = lambda wildcards: [f"{config['base_read_dir']}{x}" for x in config["sample"][wildcards.sample]["reads"]]
     output:
-        #R1 = temporary("reads/{sample}_all_R1.fastq"),
-        #R2 = temporary("reads/{sample}_all_R2.fastq")
-        R1 = "reads/{sample}_all_R1.fastq",
-        R2 = "reads/{sample}_all_R2.fastq"
+        R1 = temp("reads/{sample}_all_R1.fastq"),
+        R2 = temp("reads/{sample}_all_R2.fastq")
     params:
     params:
         sample = lambda wildcards: wildcards.sample
+    priority: 10
     shell:
         """
         zcat {input.reads}/*R1*.fastq.gz > {output.R1}
@@ -45,6 +44,7 @@ rule fastqc:
     params:
         outdir = "output/fastqc"
     log: "logs/fastqc/fastqc_{sample}.log"
+    priority: 15
     shell:
         """
         fastqc -o {params.outdir} {input.R1} {input.R2}  2> {log}
@@ -55,14 +55,15 @@ rule trim_reads:
         R1 = "reads/{sample}_all_R1.fastq",
         R2 = "reads/{sample}_all_R2.fastq"
     output:
-        R1_paired   = "reads/{sample}_trimmed_paired_R1.fastq",
-        R1_unpaired = "reads/{sample}_trimmed_unpaired_R1.fastq",
-        R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq",
-        R2_unpaired = "reads/{sample}_trimmed_unpaired_R2.fastq"
+        R1_paired   = temp("reads/{sample}_trimmed_paired_R1.fastq"),
+        R1_unpaired = temp("reads/{sample}_trimmed_unpaired_R1.fastq"),
+        R2_paired   = temp("reads/{sample}_trimmed_paired_R2.fastq"),
+        R2_unpaired = temp("reads/{sample}_trimmed_unpaired_R2.fastq")
     params:
         sample = lambda wildcards: wildcards.sample
     threads: workflow.cores
     log: "logs/trimmomatic/trimmomatic_{sample}.log"
+    priority: 20
     shell:
         """
         echo ">PrefixPE/1\nTACACTCTTTCCCTACACGACGCTCTTCCGATCT\n>PrefixPE/2\nGTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT" > TruSeq3-PE.fa
@@ -83,15 +84,16 @@ rule kraken:
         R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq"
     output:
         REPORT = "output/kraken/{sample}.report.txt",
-        CLASS_R1 = "reads/{sample}_classified_R_1.fastq", 
-        CLASS_R2 = "reads/{sample}_classified_R_2.fastq", 
-        UNCLASS_R1 = "reads/{sample}_unclassified_R_1.fastq",
-        UNCLASS_R2 = "reads/{sample}_unclassified_R_2.fastq"
+        CLASS_R1 = temp("reads/{sample}_classified_R_1.fastq"), 
+        CLASS_R2 = temp("reads/{sample}_classified_R_2.fastq"), 
+        UNCLASS_R1 = temp("reads/{sample}_unclassified_R_1.fastq"),
+        UNCLASS_R2 = temp("reads/{sample}_unclassified_R_2.fastq")
     params:
         out_base = "output/kraken/{sample}", 
         read_base = "reads/{sample}"
     log: "logs/kraken/kraken_{sample}.log"
     threads: workflow.cores
+    priority: 30
     shell:
         """
         kraken2 --threads {threads} \
@@ -115,6 +117,7 @@ rule count_reads:
         read_count = "output/{sample}.count"
     params:
         sample = lambda wildcards: wildcards.sample
+    priority: 40
     shell:
         """
         sum=0
@@ -154,6 +157,7 @@ rule generate_spectrum:
         thisk = lambda wildcards: wildcards.thisk,
     threads: workflow.cores
     log: "logs/jellyfish/jellyfish_{sample}_k{thisk}.log"
+    priority: 50
     shell:
         """
         jellyfish count -C -m {params.thisk} -s 1000000000 -t {threads} \
@@ -226,6 +230,7 @@ rule run_genomescope2:
         thisk = lambda wildcards: wildcards.thisk,
     threads: 1
     log: "logs/genomescope2/genomescope2_{sample}_k{thisk}.log"
+    priority: 60
     shell:
         """
         genomescope2 -i {input.histo} -o {params.sample}_k{params.thisk} \
@@ -246,6 +251,7 @@ rule generate_unclassified_spectrum:
         thisk = lambda wildcards: wildcards.thisk,
     threads: workflow.cores
     log: "logs/jellyfish_unclassified/jellyfish_unclassified_{sample}_k{thisk}.log"
+    priority: 50
     shell:
         """
         jellyfish count -C -m {params.thisk} -s 1000000000 -t {threads} \
@@ -269,6 +275,7 @@ rule run_unclassified_genomescope2:
         thisk = lambda wildcards: wildcards.thisk,
     threads: 1
     log: "logs/genomescope2_unclassified/genomescope2_{sample}_k{thisk}_unclassified.log"
+    priority: 60
     shell:
         """
         genomescope2 -i {input.histo} -o {params.sample}_k{params.thisk}_unclassified \
