@@ -268,8 +268,8 @@ rule run_unclassified_genomescope2:
     input:
         histo = "output_unclassified/{sample}_k{thisk}_unclassified.histo"
     output:
-        plot = "output_unclassified/{sample}_k{thisk}_unclassified_linear_plot.png",
-        summary = "output_unclassified/{sample}_k{thisk}_unclassified_summary.txt"
+        plot = "output_unclassified/{sample}_k{thisk}_linear_plot.png",
+        summary = "output_unclassified/{sample}_k{thisk}_summary.txt"
     params:
         sample = lambda wildcards: wildcards.sample,
         thisk = lambda wildcards: wildcards.thisk,
