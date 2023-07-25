@@ -10,6 +10,7 @@ rule all:
         expand("output/{sample}_k{thisk}.histo.pdf", sample = config["sample"], thisk = target_kmers),
         expand("output/{sample}_k{thisk}.freqxcov.pdf", sample = config["sample"], thisk = target_kmers),
         expand("output/{sample}_k{thisk}_linear_plot.png", sample = config["sample"], thisk = target_kmers),
+        expand("output_unclassified/{sample}_k{thisk}_linear_plot.png", sample = config["sample"], thisk = target_kmers),
         expand("output/{sample}_k{thisk}_summary.txt", sample = config["sample"], thisk = target_kmers),
         expand("output/fastqc/{sample}_all_R1_fastqc.html", sample = config["sample"]),
         expand("output/fastqc/{sample}_all_R2_fastqc.html", sample = config["sample"]),
@@ -144,9 +145,7 @@ rule count_reads:
 rule generate_spectrum:
     input:
         R1_paired   = "reads/{sample}_trimmed_paired_R1.fastq",
-        #R1_unpaired = "reads/{sample}_trimmed_unpaired_R1.fastq",
         R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq"
-        #R2_unpaired = "reads/{sample}_trimmed_unpaired_R2.fastq"
     output:
         histo = "output/{sample}_k{thisk}.histo",
         jf = temporary("output/{sample}_k{thisk}.jf")
@@ -233,6 +232,49 @@ rule run_genomescope2:
           -k {params.thisk} -n {params.sample}_k{params.thisk} 2> {log}
         mv {params.sample}_k{params.thisk}/* output/
         rm -r {params.sample}_k{params.thisk}/
+        """
+
+rule generate_unclassified_spectrum:
+    input:
+        UNCLASS_R1 = "reads/{sample}_unclassified_R_1.fastq",
+        UNCLASS_R2 = "reads/{sample}_unclassified_R_2.fastq"
+    output:
+        histo = "output_unclassified/{sample}_k{thisk}_unclassified.histo",
+        jf = temporary("output_unclassified/{sample}_k{thisk}_unclassified.jf")
+    params:
+        sample = lambda wildcards: wildcards.sample,
+        thisk = lambda wildcards: wildcards.thisk,
+    threads: workflow.cores
+    log: "logs/jellyfish_unclassified/jellyfish_unclassified_{sample}_k{thisk}.log"
+    shell:
+        """
+        jellyfish count -C -m {params.thisk} -s 1000000000 -t {threads} \
+          -o {output.jf} \
+          {input.UNCLASS_R1} {input.UNCLASS_R2} \
+          2> {log}
+
+        jellyfish histo -t {threads} {output.jf} > {output.histo}
+        """
+rule run_unclassified_genomescope2:
+    """
+    Just runs genomescope on the output of the last file
+    """
+    input:
+        histo = "output_unclassified/{sample}_k{thisk}_unclassified.histo"
+    output:
+        plot = "output_unclassified/{sample}_k{thisk}_unclassified_linear_plot.png",
+        summary = "output_unclassified/{sample}_k{thisk}_unclassified_summary.txt"
+    params:
+        sample = lambda wildcards: wildcards.sample,
+        thisk = lambda wildcards: wildcards.thisk,
+    threads: 1
+    log: "logs/genomescope2_unclassified/genomescope2_{sample}_k{thisk}_unclassified.log"
+    shell:
+        """
+        genomescope2 -i {input.histo} -o {params.sample}_k{params.thisk}_unclassified \
+          -k {params.thisk} -n {params.sample}_k{params.thisk} 2> {log}
+        mv {params.sample}_k{params.thisk}_unclassified/* output_unclassified/
+        rm -r {params.sample}_k{params.thisk}_unclassified/
         """
 
 rule final_report:

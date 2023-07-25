@@ -10,6 +10,7 @@ validation.txt
 TruSeq3-PE.fa
 
 analyses_kmer/output/
+analyses_kmer/output_unclassified/
 analyses_kmer/output_old/
 analyses_kmer/logs/
 analyses_kmer/logs_old/

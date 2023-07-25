@@ -2,7 +2,7 @@
 
 #SBATCH --job-name=snake
 #SBATCH --output=snake.txt
-#SBATCH --time=1-00:00:00
+#SBATCH --time=7-00:00:00
 #SBATCH --partition=pi_dunn
 #SBATCH --nodes=1                    # number of cores and nodes
 #SBATCH --cpus-per-task=16           # number of cores
