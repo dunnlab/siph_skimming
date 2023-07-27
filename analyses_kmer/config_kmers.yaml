@@ -2,15 +2,108 @@ base_read_dir: /gpfs/gibbs/pi/dunn/sequences/Novaseq_siphgenomes/
 kraken_database: /gpfs/gibbs/pi/dunn/databases/kraken/standard
 
 sample:
+  Apolemia-sp3:
+    reads:
+      - Sample_CWD101_172_021/ 
+  Stephalia-dilata: 
+    reads:
+      - Sample_CWD141_136_057/ 
+  Erenna-sirena:
+    reads:      
+      - Sample_CWD146_112_081/ 
+  Resomia-ornicephala-T898-D2: 
+    reads:      
+      - Sample_NA10_182_011/ 
+  Resomia-ornicephala-T845-D3: 
+    reads:      
+      - Sample_NA11_170_023/ 
+  Rosacea-flaccida: 
+    reads:      
+      - Sample_CWD21_157_036/ 
+  Abylopsis-tetragona: 
+    reads:      
+      - Sample_CWD121_145_048/  
+  Hippopodius-hippopus: 
+    reads:      
+      - Sample_CWD117_160_033/ 
+  Agalma-elegans-Pacific: 
+    reads:      
+      - Sample_CWD116_134_059/ 
   Chelophyes-appendiculata: 
     reads:      
       - Sample_CWD122_133_060/ 
+  Gymnopraia-lapislazula:
+    reads:      
+      - Sample_CWD144_124_069/  
+  Apolemia-rubriversa: 
+    reads:      
+      - Sample_NA5_147_046/ 
+  Craseoa-lathetica: 
+    reads:      
+      - Sample_NA6_135_058/ 
+  Rhizophysa-eysenhardtii: 
+    reads:      
+      - Sample_CWD131_148_045/ 
+  Frillagalma-vityazi:
+    reads:      
+      - Sample_NA9_099_094/ 
+  Forskalia: 
+    reads:      
+      - Sample_NA3_171_022/ 
+  Praya: 
+    reads:      
+      - Sample_NA4_159_034/ 
+  Chuniphyes-multidentata: 
+    reads:    
+      - Sample_NA1_100_093/ 
+  Physonect: 
+    reads:    
+      - Sample_NA2_183_010/ 
+  Lilyopsis-fluoracantha: 
+    reads:    
+      - Sample_NA7_123_070/ 
+  Bargmannia-lata:
+    reads:   
+      - Sample_NA8_111_082/ 
+  Agalma-clausi: 
+    reads:
+      - Sample_CWD1_122_071/ 
+  Agalma-elegans-Atlantic: 
+    reads:
+      - Sample_CWD2_110_083/ 
+  Agalma-okeni: 
+    reads:
+      - Sample_CWD3_101_092/ 
   Cordagalma-ordinatum: 
     reads:
       - Sample_CWD6_184_009/ 
+  Diphyes-dispar:
+    reads:
+      - Sample_CWD7_158_035/ 
+  Stephanomia-amphytridis: 
+    reads:
+      - Sample_CWD11_146_047/ 
+  Halistemma-rubrum-Mediterranean: 
+    reads:
+      - Sample_CWD12_098_095/ 
+  Halistemma-rubrum-Atlantic: 
+    reads:
+      - Sample_CWD17_181_012/ 
+  Rhizophysa-filiformis: 
+    reads:
+      - Sample_CWD20_169_024/ 
   Nanomia-bijuga-Atlantic:
     reads:
       - Sample_CWD16_296_281/
   Nanomia-Pacific:
     reads:
       - Sample_NA19_152_041/
+  Bargmannia-elongata:
+    reads:
+      - Sample_CWD104_320_257/
+  Praya-dubia:
+    reads:
+      - Sample_CWD19_308_269/
+  Physalia-physalis-Pacific:
+    reads:
+      - Sample_NA22_176_017

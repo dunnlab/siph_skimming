@@ -1,4 +1,5 @@
 base_read_dir: /gpfs/gibbs/pi/dunn/sequences/Novaseq_siphgenomes/
+kraken_database: /gpfs/gibbs/pi/dunn/databases/kraken/standard
 
 sample:
   Apolemia-sp3:

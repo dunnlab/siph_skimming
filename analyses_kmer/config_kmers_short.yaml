@@ -1,0 +1,16 @@
+base_read_dir: /gpfs/gibbs/pi/dunn/sequences/Novaseq_siphgenomes/
+kraken_database: /gpfs/gibbs/pi/dunn/databases/kraken/standard
+
+sample:
+  Chelophyes-appendiculata: 
+    reads:      
+      - Sample_CWD122_133_060/ 
+  Cordagalma-ordinatum: 
+    reads:
+      - Sample_CWD6_184_009/ 
+  Nanomia-bijuga-Atlantic:
+    reads:
+      - Sample_CWD16_296_281/
+  Nanomia-Pacific:
+    reads:
+      - Sample_NA19_152_041/
