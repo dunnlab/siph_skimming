@@ -14,6 +14,8 @@ rule all:
         expand("output/{sample}_k{thisk}_summary.txt", sample = config["sample"], thisk = target_kmers),
         expand("output/fastqc/{sample}_all_R1_fastqc.html", sample = config["sample"]),
         expand("output/fastqc/{sample}_all_R2_fastqc.html", sample = config["sample"]),
+        expand("reads/{sample}_classified_R_1.fastq", sample = config["sample"]),
+        expand("reads/{sample}_classified_R_2.fastq", sample = config["sample"]),
         "output/genome_report.tsv"
 
 rule concat_reads:
@@ -84,8 +86,8 @@ rule kraken:
         R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq"
     output:
         REPORT = "output/kraken/{sample}.report.txt",
-        CLASS_R1 = temp("reads/{sample}_classified_R_1.fastq"), 
-        CLASS_R2 = temp("reads/{sample}_classified_R_2.fastq"), 
+        CLASS_R1 = "reads/{sample}_classified_R_1.fastq", 
+        CLASS_R2 = "reads/{sample}_classified_R_2.fastq", 
         UNCLASS_R1 = temp("reads/{sample}_unclassified_R_1.fastq"),
         UNCLASS_R2 = temp("reads/{sample}_unclassified_R_2.fastq")
     params:
