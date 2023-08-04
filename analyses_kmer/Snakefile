@@ -16,7 +16,90 @@ rule all:
         expand("output/fastqc/{sample}_all_R2_fastqc.html", sample = config["sample"]),
         expand("reads/{sample}_classified_R_1.fastq", sample = config["sample"]),
         expand("reads/{sample}_classified_R_2.fastq", sample = config["sample"]),
+        expand("output/human/{sample}_human.stats", sample = config["sample"]),
         "output/genome_report.tsv"
+
+
+rule reads_subset:
+    input:
+        reads = lambda wildcards: [f"{config['base_read_dir']}{x}" for x in config["sample"][wildcards.sample]["reads"]]
+    output:
+        R1 = "reads/{sample}_1M_R1.fastq",
+        R2 = "reads/{sample}_1M_R2.fastq"
+    params:
+        sample = lambda wildcards: wildcards.sample
+    shell:
+        """
+        set +o pipefail;
+        zcat {input.reads}/*R1*.fastq.gz | head --lines=4000000 > {output.R1}
+        zcat {input.reads}/*R2*.fastq.gz | head --lines=4000000 > {output.R2}
+        
+        # These produce output
+        # zcat {input.reads}/*R1*.fastq.gz > {output.R1}
+        # zcat {input.reads}/*R2*.fastq.gz > {output.R2}
+        """
+
+rule map_human:
+    input:
+        R1 = "reads/{sample}_1M_R1.fastq",
+        R2 = "reads/{sample}_1M_R2.fastq",
+        human_bwa = config["human_bwa"]
+    output:
+        bam = "output/human/{sample}_all.bam"
+    params:
+        outdir = "output/human/"
+    log: "logs/bwa_human/bwa_human_{sample}.log"
+    threads: workflow.cores
+    shell:
+        """
+        bwa mem -t {threads} \
+            {input.human_bwa} \
+            {input.R1} {input.R2} | \
+          samtools view -@ {threads} -b - | \
+          samtools sort -@ {threads} - -o {output.bam}
+        """
+
+rule stats_human:
+    input:
+        R1 = "reads/{sample}_1M_R1.fastq",
+        bam = "output/human/{sample}_all.bam",
+        human_repeats = config["human_repeats"]
+    output:
+        bam_filtered = "output/human/{sample}_filtered.bam",
+        bam_masked = "output/human/{sample}_masked.bam",
+        stats = "output/human/{sample}_human.stats",
+        flagstats_all = "output/human/{sample}_all.flagstats",
+        flagstats_filtered = "output/human/{sample}_filtered.flagstats",
+        flagstats_masked = "output/human/{sample}_masked.flagstats"
+    params:
+        outdir = "output/human/"
+    threads: workflow.cores
+    shell:
+        """
+        # Samtools flags - https://broadinstitute.github.io/picard/explain-flags.html
+        samtools view -@ {threads} -b -F 2304 -f 3 -q 30 -o {output.bam_filtered} {input.bam}
+        
+        bedtools intersect -a {output.bam_filtered} -b {input.human_repeats} -v > {output.bam_masked}
+        
+        # Counting the number of sequences in the input FASTQ file
+        R1_sequences=$(awk 'NR%4 == 1' {input.R1} | wc -l)
+        
+        # Getting the number of mapped read pairs in the BAM file and the masked BAM file
+        # The divide by two is to get pairs instead of reads
+        total_mapped=$(samtools view -c {output.bam_filtered} | awk '{{print $1/2}}')
+        masked_mapped=$(samtools view -c {output.bam_masked} | awk '{{print $1/2}}')
+        
+        # Generate flagstats for each bam file
+        samtools flagstat {input.bam} > {output.flagstats_all}
+        samtools flagstat {output.bam_filtered} > {output.flagstats_filtered}
+        samtools flagstat {output.bam_masked} > {output.flagstats_masked}
+
+        
+        # Writing the stats to the output file
+        echo -e "read_pairs\t$R1_sequences" > {output.stats}
+        echo -e "mapped_all\t$total_mapped" >> {output.stats}
+        echo -e "mapped_masked\t$masked_mapped" >> {output.stats}
+        """
 
 rule concat_reads:
     input:

@@ -1,5 +1,7 @@
 base_read_dir: /gpfs/gibbs/pi/dunn/sequences/Novaseq_siphgenomes/
 kraken_database: /gpfs/gibbs/pi/dunn/databases/kraken/standard
+human_bwa: /gpfs/gibbs/data/genomes/Homo_sapiens/NCBI/GRCh38/Sequence/BWAIndex/genome.fa
+human_repeats: /gpfs/gibbs/pi/dunn/databases/GRCh38_repeats.bed
 
 sample:
   Apolemia-sp3:

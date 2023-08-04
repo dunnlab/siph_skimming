@@ -8,6 +8,9 @@
 #SBATCH --cpus-per-task=16           # number of cores
 #SBATCH --mem-per-cpu=10G            # shared memory, scaling with CPU request
 
+module load BEDTools
+module load SAMtools
 module load miniconda
+module load BWA
 conda activate snakemake
 snakemake --cores $SLURM_CPUS_PER_TASK
