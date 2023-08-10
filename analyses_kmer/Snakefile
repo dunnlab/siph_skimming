@@ -172,7 +172,8 @@ rule kraken:
         CLASS_R1 = "reads/{sample}_classified_R_1.fastq", 
         CLASS_R2 = "reads/{sample}_classified_R_2.fastq", 
         UNCLASS_R1 = temp("reads/{sample}_unclassified_R_1.fastq"),
-        UNCLASS_R2 = temp("reads/{sample}_unclassified_R_2.fastq")
+        UNCLASS_R2 = temp("reads/{sample}_unclassified_R_2.fastq"),
+        KRAKEN = "output/kraken/{sample}.kraken.txt"
     params:
         out_base = "output/kraken/{sample}", 
         read_base = "reads/{sample}"
@@ -183,9 +184,10 @@ rule kraken:
         """
         kraken2 --threads {threads} \
           --db {config[kraken_database]} \
+          --confidence 0.1 \
           --unclassified-out "{params.read_base}_unclassified_R#.fastq" \
           --classified-out "{params.read_base}_classified_R#.fastq" \
-          --output - \
+          --output {output.KRAKEN} \
           --report "{params.out_base}.report.txt" --use-names --report-minimizer-data  \
           --paired {input.R1_paired} {input.R2_paired} 2> {log}
         """ 
