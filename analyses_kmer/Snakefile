@@ -12,155 +12,70 @@ rule all:
         expand("output/{sample}_k{thisk}_linear_plot.png", sample = config["sample"], thisk = target_kmers),
         expand("output_unclassified/{sample}_k{thisk}_linear_plot.png", sample = config["sample"], thisk = target_kmers),
         expand("output/{sample}_k{thisk}_summary.txt", sample = config["sample"], thisk = target_kmers),
-        expand("output/fastqc/{sample}_all_R1_fastqc.html", sample = config["sample"]),
-        expand("output/fastqc/{sample}_all_R2_fastqc.html", sample = config["sample"]),
         expand("reads/{sample}_classified_R_1.fastq", sample = config["sample"]),
         expand("reads/{sample}_classified_R_2.fastq", sample = config["sample"]),
-        expand("output/human/{sample}_human.stats", sample = config["sample"]),
         "output/genome_report.tsv"
 
-
-rule reads_subset:
-    input:
-        reads = lambda wildcards: [f"{config['base_read_dir']}{x}" for x in config["sample"][wildcards.sample]["reads"]]
-    output:
-        R1 = "reads/{sample}_1M_R1.fastq",
-        R2 = "reads/{sample}_1M_R2.fastq"
-    params:
-        sample = lambda wildcards: wildcards.sample
-    shell:
-        """
-        set +o pipefail;
-        zcat {input.reads}/*R1*.fastq.gz | head --lines=4000000 > {output.R1}
-        zcat {input.reads}/*R2*.fastq.gz | head --lines=4000000 > {output.R2}
-        
-        # These produce output
-        # zcat {input.reads}/*R1*.fastq.gz > {output.R1}
-        # zcat {input.reads}/*R2*.fastq.gz > {output.R2}
-        """
-
-rule map_human:
-    input:
-        R1 = "reads/{sample}_1M_R1.fastq",
-        R2 = "reads/{sample}_1M_R2.fastq",
-        human_bwa = config["human_bwa"]
-    output:
-        bam = "output/human/{sample}_all.bam"
-    params:
-        outdir = "output/human/"
-    log: "logs/bwa_human/bwa_human_{sample}.log"
-    threads: workflow.cores
-    shell:
-        """
-        bwa mem -t {threads} \
-            {input.human_bwa} \
-            {input.R1} {input.R2} | \
-          samtools view -@ {threads} -b - | \
-          samtools sort -@ {threads} - -o {output.bam}
-        """
-
-rule stats_human:
-    input:
-        R1 = "reads/{sample}_1M_R1.fastq",
-        bam = "output/human/{sample}_all.bam",
-        human_repeats = config["human_repeats"]
-    output:
-        bam_filtered = "output/human/{sample}_filtered.bam",
-        bam_masked = "output/human/{sample}_masked.bam",
-        stats = "output/human/{sample}_human.stats",
-        flagstats_all = "output/human/{sample}_all.flagstats",
-        flagstats_filtered = "output/human/{sample}_filtered.flagstats",
-        flagstats_masked = "output/human/{sample}_masked.flagstats"
-    params:
-        outdir = "output/human/"
-    threads: workflow.cores
-    shell:
-        """
-        # Samtools flags - https://broadinstitute.github.io/picard/explain-flags.html
-        samtools view -@ {threads} -b -F 2304 -f 3 -q 30 -o {output.bam_filtered} {input.bam}
-        
-        bedtools intersect -a {output.bam_filtered} -b {input.human_repeats} -v > {output.bam_masked}
-        
-        # Counting the number of sequences in the input FASTQ file
-        R1_sequences=$(awk 'NR%4 == 1' {input.R1} | wc -l)
-        
-        # Getting the number of mapped read pairs in the BAM file and the masked BAM file
-        # The divide by two is to get pairs instead of reads
-        total_mapped=$(samtools view -c {output.bam_filtered} | awk '{{print $1/2}}')
-        masked_mapped=$(samtools view -c {output.bam_masked} | awk '{{print $1/2}}')
-        
-        # Generate flagstats for each bam file
-        samtools flagstat {input.bam} > {output.flagstats_all}
-        samtools flagstat {output.bam_filtered} > {output.flagstats_filtered}
-        samtools flagstat {output.bam_masked} > {output.flagstats_masked}
-
-        
-        # Writing the stats to the output file
-        echo -e "read_pairs\t$R1_sequences" > {output.stats}
-        echo -e "mapped_all\t$total_mapped" >> {output.stats}
-        echo -e "mapped_masked\t$masked_mapped" >> {output.stats}
-        """
-
-rule concat_reads:
+rule process_and_count_reads:
     input:
         reads = lambda wildcards: [f"{config['base_read_dir']}{x}" for x in config["sample"][wildcards.sample]["reads"]]
     output:
         R1 = temp("reads/{sample}_all_R1.fastq"),
-        R2 = temp("reads/{sample}_all_R2.fastq")
-    params:
-    params:
-        sample = lambda wildcards: wildcards.sample
-    priority: 10
-    shell:
-        """
-        zcat {input.reads}/*R1*.fastq.gz > {output.R1}
-        zcat {input.reads}/*R2*.fastq.gz > {output.R2}
-        """
-
-rule fastqc:
-    input:
-        R1 = "reads/{sample}_all_R1.fastq",
-        R2 = "reads/{sample}_all_R2.fastq"
-    output:
-        html_R1 = "output/fastqc/{sample}_all_R1_fastqc.html",
-        zip_R1 = "output/fastqc/{sample}_all_R1_fastqc.zip",
-        html_R2 = "output/fastqc/{sample}_all_R2_fastqc.html",
-        zip_R2 = "output/fastqc/{sample}_all_R2_fastqc.zip"
-    params:
-        outdir = "output/fastqc"
-    log: "logs/fastqc/fastqc_{sample}.log"
-    priority: 15
-    shell:
-        """
-        fastqc -o {params.outdir} {input.R1} {input.R2}  2> {log}
-        """
-
-rule trim_reads:
-    input:
-        R1 = "reads/{sample}_all_R1.fastq",
-        R2 = "reads/{sample}_all_R2.fastq"
-    output:
+        R2 = temp("reads/{sample}_all_R2.fastq"),
         R1_paired   = temp("reads/{sample}_trimmed_paired_R1.fastq"),
         R1_unpaired = temp("reads/{sample}_trimmed_unpaired_R1.fastq"),
         R2_paired   = temp("reads/{sample}_trimmed_paired_R2.fastq"),
-        R2_unpaired = temp("reads/{sample}_trimmed_unpaired_R2.fastq")
+        R2_unpaired = temp("reads/{sample}_trimmed_unpaired_R2.fastq"),
+        read_count = "output/{sample}.count"
+    group:
+        "group1"
     params:
         sample = lambda wildcards: wildcards.sample
     threads: workflow.cores
     log: "logs/trimmomatic/trimmomatic_{sample}.log"
-    priority: 20
     shell:
         """
+        
+        # Multiple operations are combined into a single rule here to minimize the number of files on disk at any point in time.
+        
+        # Concatenate reads
+        zcat {input.reads}/*R1*.fastq.gz > {output.R1}
+        zcat {input.reads}/*R2*.fastq.gz > {output.R2}
+
+        # Trim reads
         echo ">PrefixPE/1\nTACACTCTTTCCCTACACGACGCTCTTCCGATCT\n>PrefixPE/2\nGTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT" > TruSeq3-PE.fa
         trimmomatic PE \
           -threads {threads} \
-          {input.R1} \
-          {input.R2} \
+          {output.R1} \
+          {output.R2} \
           {output.R1_paired} \
           {output.R1_unpaired} \
           {output.R2_paired} \
           {output.R2_unpaired} \
           ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:True LEADING:15 TRAILING:15 MINLEN:50 2> {log}
+
+        # Count reads
+        sum=0
+        num_lines_raw=$(cat {output.R1} | wc -l)
+        num_reads_raw=$(($num_lines_raw / 4))
+        num_nucleotides_raw=$(cat {output.R1} {output.R2} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
+
+        sum=0
+        num_lines_trimmed=$(cat {output.R1_paired} | wc -l)
+        num_reads_trimmed=$(($num_lines_trimmed / 4))
+        num_nucleotides_trimmed=$(cat {output.R1_paired} {output.R2_paired} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
+
+        sum=0
+        num_lines_unpaired_trimmed=$(cat {output.R1_unpaired} {output.R2_unpaired} | wc -l)
+        num_reads_unpaired_trimmed=$(($num_lines_unpaired_trimmed / 4))
+        num_nucleotides_unpaired_trimmed=$(cat {output.R1_unpaired} {output.R2_unpaired} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
+
+        echo "reads_pairs_raw\t$num_reads_raw" > {output.read_count}
+        echo "nucleotides_raw\t$num_nucleotides_raw" >> {output.read_count}
+        echo "reads_pairs_trimmed\t$num_reads_trimmed" >> {output.read_count}
+        echo "nucleotides_trimmed\t$num_nucleotides_trimmed" >> {output.read_count}
+        echo "reads_unpaired_trimmed\t$num_reads_unpaired_trimmed" >> {output.read_count}
+        echo "nucleotides_unpaired_trimmed\t$num_nucleotides_unpaired_trimmed" >> {output.read_count}
         """
 
 rule kraken:
@@ -174,12 +89,13 @@ rule kraken:
         UNCLASS_R1 = temp("reads/{sample}_unclassified_R_1.fastq"),
         UNCLASS_R2 = temp("reads/{sample}_unclassified_R_2.fastq"),
         KRAKEN = "output/kraken/{sample}.kraken.txt"
+    group:
+        "group1"
     params:
         out_base = "output/kraken/{sample}", 
         read_base = "reads/{sample}"
     log: "logs/kraken/kraken_{sample}.log"
     threads: workflow.cores
-    priority: 30
     shell:
         """
         kraken2 --threads {threads} \
@@ -192,46 +108,6 @@ rule kraken:
           --paired {input.R1_paired} {input.R2_paired} 2> {log}
         """ 
 
-rule count_reads:
-    input:
-        R1 = "reads/{sample}_all_R1.fastq",
-        R2 = "reads/{sample}_all_R2.fastq",
-        R1_paired   = "reads/{sample}_trimmed_paired_R1.fastq",
-        R1_unpaired = "reads/{sample}_trimmed_unpaired_R1.fastq",
-        R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq",
-        R2_unpaired = "reads/{sample}_trimmed_unpaired_R2.fastq"
-    output:
-        read_count = "output/{sample}.count"
-    params:
-        sample = lambda wildcards: wildcards.sample
-    priority: 40
-    shell:
-        """
-        sum=0
-        num_lines_raw=$(cat {input.R1} | wc -l)
-        num_reads_raw=$(($num_lines_raw / 4))
-        num_nucleotides_raw=$(cat {input.R1} {input.R2} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
-
-        sum=0
-        # num_lines_trimmed=$(cat {input.R1_paired} {input.R1_unpaired} {input.R2_paired} {input.R2_unpaired} | wc -l)
-        num_lines_trimmed=$(cat {input.R1_paired} | wc -l)
-        num_reads_trimmed=$(($num_lines_trimmed / 4))
-        # num_nucleotides_trimmed=$(cat {input.R1_paired} {input.R1_unpaired} {input.R2_paired} {input.R2_unpaired} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
-        num_nucleotides_trimmed=$(cat {input.R1_paired} {input.R2_paired} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
-
-        sum=0
-        num_lines_unpaired_trimmed=$(cat {input.R1_unpaired} {input.R2_unpaired} | wc -l)
-        num_reads_unpaired_trimmed=$(($num_lines_unpaired_trimmed / 4))
-        num_nucleotides_unpaired_trimmed=$(cat {input.R1_unpaired} {input.R2_unpaired} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
-
-        echo "reads_pairs_raw\t$num_reads_raw" > {output.read_count}
-        echo "nucleotides_raw\t$num_nucleotides_raw" >> {output.read_count}
-        echo "reads_pairs_trimmed\t$num_reads_trimmed" >> {output.read_count}
-        echo "nucleotides_trimmed\t$num_nucleotides_trimmed" >> {output.read_count}
-        echo "reads_unpaired_trimmed\t$num_reads_unpaired_trimmed" >> {output.read_count}
-        echo "nucleotides_unpaired_trimmed\t$num_nucleotides_unpaired_trimmed" >> {output.read_count}
-        """
-
 rule generate_spectrum:
     input:
         R1_paired   = "reads/{sample}_trimmed_paired_R1.fastq",
@@ -239,17 +115,42 @@ rule generate_spectrum:
     output:
         histo = "output/{sample}_k{thisk}.histo",
         jf = temporary("output/{sample}_k{thisk}.jf")
+    group:
+        "group1"
     params:
         sample = lambda wildcards: wildcards.sample,
         thisk = lambda wildcards: wildcards.thisk,
     threads: workflow.cores
     log: "logs/jellyfish/jellyfish_{sample}_k{thisk}.log"
-    priority: 50
     shell:
         """
         jellyfish count -C -m {params.thisk} -s 1000000000 -t {threads} \
           -o {output.jf} \
           {input.R1_paired} {input.R2_paired} \
+          2> {log}
+
+        jellyfish histo -t {threads} {output.jf} > {output.histo}
+        """
+
+rule generate_unclassified_spectrum:
+    input:
+        UNCLASS_R1 = "reads/{sample}_unclassified_R_1.fastq",
+        UNCLASS_R2 = "reads/{sample}_unclassified_R_2.fastq"
+    output:
+        histo = "output_unclassified/{sample}_k{thisk}_unclassified.histo",
+        jf = temporary("output_unclassified/{sample}_k{thisk}_unclassified.jf")
+    group:
+        "group1"
+    params:
+        sample = lambda wildcards: wildcards.sample,
+        thisk = lambda wildcards: wildcards.thisk,
+    threads: workflow.cores
+    log: "logs/jellyfish_unclassified/jellyfish_unclassified_{sample}_k{thisk}.log"
+    shell:
+        """
+        jellyfish count -C -m {params.thisk} -s 1000000000 -t {threads} \
+          -o {output.jf} \
+          {input.UNCLASS_R1} {input.UNCLASS_R2} \
           2> {log}
 
         jellyfish histo -t {threads} {output.jf} > {output.histo}
@@ -317,7 +218,6 @@ rule run_genomescope2:
         thisk = lambda wildcards: wildcards.thisk,
     threads: 1
     log: "logs/genomescope2/genomescope2_{sample}_k{thisk}.log"
-    priority: 60
     shell:
         """
         genomescope2 -i {input.histo} -o {params.sample}_k{params.thisk} \
@@ -326,28 +226,8 @@ rule run_genomescope2:
         rm -r {params.sample}_k{params.thisk}/
         """
 
-rule generate_unclassified_spectrum:
-    input:
-        UNCLASS_R1 = "reads/{sample}_unclassified_R_1.fastq",
-        UNCLASS_R2 = "reads/{sample}_unclassified_R_2.fastq"
-    output:
-        histo = "output_unclassified/{sample}_k{thisk}_unclassified.histo",
-        jf = temporary("output_unclassified/{sample}_k{thisk}_unclassified.jf")
-    params:
-        sample = lambda wildcards: wildcards.sample,
-        thisk = lambda wildcards: wildcards.thisk,
-    threads: workflow.cores
-    log: "logs/jellyfish_unclassified/jellyfish_unclassified_{sample}_k{thisk}.log"
-    priority: 50
-    shell:
-        """
-        jellyfish count -C -m {params.thisk} -s 1000000000 -t {threads} \
-          -o {output.jf} \
-          {input.UNCLASS_R1} {input.UNCLASS_R2} \
-          2> {log}
 
-        jellyfish histo -t {threads} {output.jf} > {output.histo}
-        """
+        
 rule run_unclassified_genomescope2:
     """
     Just runs genomescope on the output of the last file
@@ -362,7 +242,6 @@ rule run_unclassified_genomescope2:
         thisk = lambda wildcards: wildcards.thisk,
     threads: 1
     log: "logs/genomescope2_unclassified/genomescope2_{sample}_k{thisk}_unclassified.log"
-    priority: 60
     shell:
         """
         genomescope2 -i {input.histo} -o {params.sample}_k{params.thisk}_unclassified \
