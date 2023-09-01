@@ -23,10 +23,12 @@ rule all:
         "output/genome_size_report.tsv"
 
 rule concat_reads:
-    params:
+    input:
         reads = lambda wildcards: [f"{config['base_read_dir']}{x}" for x in config["sample"][wildcards.sample]["reads"]]
     output:    
         reads = "data/{sample}.fastq",
+    params:
+        sample = lambda wildcards: wildcards.sample
     shell:
         """
         zcat {input.reads}/*.fastq.gz > {output.reads}
