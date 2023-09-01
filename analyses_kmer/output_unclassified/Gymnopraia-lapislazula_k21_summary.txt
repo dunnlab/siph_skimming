@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output_unclassified/Gymnopraia-lapislazula_k21_unclassified.histo
+output directory = Gymnopraia-lapislazula_k21_unclassified
+p = 2
+k = 21
+name prefix = Gymnopraia-lapislazula_k21
+
+property                      min               max               
+Homozygous (aa)               92.1362%          95.6408%          
+Heterozygous (ab)             4.35919%          7.86382%          
+Genome Haploid Length         2,240,932,040 bp  2,346,785,908 bp  
+Genome Repeat Length          1,881,724,353 bp  1,970,610,494 bp  
+Genome Unique Length          359,207,687 bp    376,175,413 bp    
+Model Fit                     23.1459%          84.2409%          
+Read Error Rate               0.746404%         0.746404%         

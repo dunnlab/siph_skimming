@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output_unclassified/Halistemma-rubrum-Atlantic_k21_unclassified.histo
+output directory = Halistemma-rubrum-Atlantic_k21_unclassified
+p = 2
+k = 21
+name prefix = Halistemma-rubrum-Atlantic_k21
+
+property                      min               max               
+Homozygous (aa)               95.5694%          96.5159%          
+Heterozygous (ab)             3.48408%          4.43057%          
+Genome Haploid Length         231,610,462 bp    244,479,802 bp    
+Genome Repeat Length          201,560,600 bp    212,760,231 bp    
+Genome Unique Length          30,049,863 bp     31,719,571 bp     
+Model Fit                     24.8475%          86.5371%          
+Read Error Rate               2.63063%          2.63063%          

@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output_unclassified/Diphyes-dispar_k21_unclassified.histo
+output directory = Diphyes-dispar_k21_unclassified
+p = 2
+k = 21
+name prefix = Diphyes-dispar_k21
+
+property                      min               max               
+Homozygous (aa)               95.6298%          96.3864%          
+Heterozygous (ab)             3.61357%          4.37023%          
+Genome Haploid Length         276,919,011 bp    289,257,336 bp    
+Genome Repeat Length          232,404,526 bp    242,759,476 bp    
+Genome Unique Length          44,514,485 bp     46,497,860 bp     
+Model Fit                     30.7867%          85.7875%          
+Read Error Rate               3.14036%          3.14036%          

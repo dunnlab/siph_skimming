@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output_unclassified/Stephanomia-amphytridis_k21_unclassified.histo
+output directory = Stephanomia-amphytridis_k21_unclassified
+p = 2
+k = 21
+name prefix = Stephanomia-amphytridis_k21
+
+property                      min               max               
+Homozygous (aa)               95.3818%          96.3945%          
+Heterozygous (ab)             3.60548%          4.6182%           
+Genome Haploid Length         120,752,392 bp    127,166,700 bp    
+Genome Repeat Length          104,956,464 bp    110,531,700 bp    
+Genome Unique Length          15,795,928 bp     16,635,000 bp     
+Model Fit                     24.8654%          87.0914%          
+Read Error Rate               2.64907%          2.64907%          

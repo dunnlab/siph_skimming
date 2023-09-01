@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output_unclassified/Praya_k21_unclassified.histo
+output directory = Praya_k21_unclassified
+p = 2
+k = 21
+name prefix = Praya_k21
+
+property                      min               max               
+Homozygous (aa)               95.2645%          96.4206%          
+Heterozygous (ab)             3.57941%          4.73551%          
+Genome Haploid Length         278,160,053 bp    294,175,782 bp    
+Genome Repeat Length          241,116,332 bp    254,999,180 bp    
+Genome Unique Length          37,043,721 bp     39,176,602 bp     
+Model Fit                     24.9728%          86.5796%          
+Read Error Rate               2.35046%          2.35046%          

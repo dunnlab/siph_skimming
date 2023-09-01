@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output_unclassified/Bargmannia-elongata_k21_unclassified.histo
+output directory = Bargmannia-elongata_k21_unclassified
+p = 2
+k = 21
+name prefix = Bargmannia-elongata_k21
+
+property                      min               max               
+Homozygous (aa)               94.1685%          97.4062%          
+Heterozygous (ab)             2.59383%          5.83148%          
+Genome Haploid Length         314,959,751 bp    341,932,758 bp    
+Genome Repeat Length          281,120,148 bp    305,195,147 bp    
+Genome Unique Length          33,839,602 bp     36,737,610 bp     
+Model Fit                     22.4444%          85.0332%          
+Read Error Rate               1.78116%          1.78116%          

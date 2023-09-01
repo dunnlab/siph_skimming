@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output_unclassified/Frillagalma-vityazi_k21_unclassified.histo
+output directory = Frillagalma-vityazi_k21_unclassified
+p = 2
+k = 21
+name prefix = Frillagalma-vityazi_k21
+
+property                      min               max               
+Homozygous (aa)               95.0258%          96.4657%          
+Heterozygous (ab)             3.53431%          4.97424%          
+Genome Haploid Length         282,553,590 bp    299,816,723 bp    
+Genome Repeat Length          244,468,712 bp    259,404,980 bp    
+Genome Unique Length          38,084,877 bp     40,411,743 bp     
+Model Fit                     25.3567%          86.7885%          
+Read Error Rate               2.14388%          2.14388%          

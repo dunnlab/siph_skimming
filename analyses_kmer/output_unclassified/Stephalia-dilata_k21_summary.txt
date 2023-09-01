@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output_unclassified/Stephalia-dilata_k21_unclassified.histo
+output directory = Stephalia-dilata_k21_unclassified
+p = 2
+k = 21
+name prefix = Stephalia-dilata_k21
+
+property                      min               max               
+Homozygous (aa)               95.3084%          96.2277%          
+Heterozygous (ab)             3.77228%          4.69158%          
+Genome Haploid Length         642,731,130 bp    672,996,611 bp    
+Genome Repeat Length          577,591,363 bp    604,789,486 bp    
+Genome Unique Length          65,139,767 bp     68,207,125 bp     
+Model Fit                     18.3648%          81.8728%          
+Read Error Rate               1.44864%          1.44864%          

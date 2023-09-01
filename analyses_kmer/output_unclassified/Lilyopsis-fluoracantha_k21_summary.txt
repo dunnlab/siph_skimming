@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output_unclassified/Lilyopsis-fluoracantha_k21_unclassified.histo
+output directory = Lilyopsis-fluoracantha_k21_unclassified
+p = 2
+k = 21
+name prefix = Lilyopsis-fluoracantha_k21
+
+property                      min               max               
+Homozygous (aa)               94.7418%          97.0318%          
+Heterozygous (ab)             2.96815%          5.25816%          
+Genome Haploid Length         323,794,709 bp    346,679,224 bp    
+Genome Repeat Length          285,209,631 bp    305,367,107 bp    
+Genome Unique Length          38,585,078 bp     41,312,117 bp     
+Model Fit                     25.2826%          85.9227%          
+Read Error Rate               1.94325%          1.94325%          

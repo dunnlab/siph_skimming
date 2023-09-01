@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output_unclassified/Rhizophysa-eysenhardtii_k21_unclassified.histo
+output directory = Rhizophysa-eysenhardtii_k21_unclassified
+p = 2
+k = 21
+name prefix = Rhizophysa-eysenhardtii_k21
+
+property                      min               max               
+Homozygous (aa)               95.4029%          96.384%           
+Heterozygous (ab)             3.61601%          4.59714%          
+Genome Haploid Length         341,332,349 bp    359,518,850 bp    
+Genome Repeat Length          295,413,845 bp    311,153,766 bp    
+Genome Unique Length          45,918,503 bp     48,365,083 bp     
+Model Fit                     25.1959%          86.1116%          
+Read Error Rate               2.76436%          2.76436%          

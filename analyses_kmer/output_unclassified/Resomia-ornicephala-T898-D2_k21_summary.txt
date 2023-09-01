@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output_unclassified/Resomia-ornicephala-T898-D2_k21_unclassified.histo
+output directory = Resomia-ornicephala-T898-D2_k21_unclassified
+p = 2
+k = 21
+name prefix = Resomia-ornicephala-T898-D2_k21
+
+property                      min               max               
+Homozygous (aa)               96.285%           96.4884%          
+Heterozygous (ab)             3.51156%          3.71505%          
+Genome Haploid Length         941,151,125 bp    968,954,267 bp    
+Genome Repeat Length          563,130,073 bp    579,765,855 bp    
+Genome Unique Length          378,021,052 bp    389,188,412 bp    
+Model Fit                     50.4732%          96.6837%          
+Read Error Rate               0.44972%          0.44972%          
