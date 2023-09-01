@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Praya-dubia_k21.histo
+output directory = Praya-dubia_k21
+p = 2
+k = 21
+name prefix = Praya-dubia_k21
+
+property                      min               max               
+Homozygous (aa)               95.1533%          96.6305%          
+Heterozygous (ab)             3.36954%          4.84669%          
+Genome Haploid Length         424,403,657 bp    451,454,785 bp    
+Genome Repeat Length          376,363,795 bp    400,352,903 bp    
+Genome Unique Length          48,039,862 bp     51,101,882 bp     
+Model Fit                     22.3158%          86.36%            
+Read Error Rate               1.88495%          1.88495%          

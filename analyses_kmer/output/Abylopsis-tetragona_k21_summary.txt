@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Abylopsis-tetragona_k21.histo
+output directory = Abylopsis-tetragona_k21
+p = 2
+k = 21
+name prefix = Abylopsis-tetragona_k21
+
+property                      min               max               
+Homozygous (aa)               95.2424%          96.2121%          
+Heterozygous (ab)             3.7879%           4.75758%          
+Genome Haploid Length         162,473,749 bp    170,809,181 bp    
+Genome Repeat Length          135,465,919 bp    142,415,762 bp    
+Genome Unique Length          27,007,830 bp     28,393,420 bp     
+Model Fit                     29.9467%          87.1438%          
+Read Error Rate               3.1178%           3.1178%           

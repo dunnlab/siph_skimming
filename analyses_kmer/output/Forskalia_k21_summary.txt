@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Forskalia_k21.histo
+output directory = Forskalia_k21
+p = 2
+k = 21
+name prefix = Forskalia_k21
+
+property                      min               max               
+Homozygous (aa)               95.2705%          96.7196%          
+Heterozygous (ab)             3.28041%          4.72952%          
+Genome Haploid Length         367,310,084 bp    390,746,047 bp    
+Genome Repeat Length          323,809,696 bp    344,470,147 bp    
+Genome Unique Length          43,500,388 bp     46,275,900 bp     
+Model Fit                     24.1998%          86.2856%          
+Read Error Rate               2.09856%          2.09856%          

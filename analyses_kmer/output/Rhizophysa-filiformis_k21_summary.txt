@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Rhizophysa-filiformis_k21.histo
+output directory = Rhizophysa-filiformis_k21
+p = 2
+k = 21
+name prefix = Rhizophysa-filiformis_k21
+
+property                      min               max               
+Homozygous (aa)               95.3412%          96.3349%          
+Heterozygous (ab)             3.66508%          4.65879%          
+Genome Haploid Length         196,095,643 bp    206,199,907 bp    
+Genome Repeat Length          165,227,469 bp    173,741,181 bp    
+Genome Unique Length          30,868,174 bp     32,458,726 bp     
+Model Fit                     29.4806%          87.1294%          
+Read Error Rate               3.46372%          3.46372%          

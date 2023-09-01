@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Erenna-sirena_k21.histo
+output directory = Erenna-sirena_k21
+p = 2
+k = 21
+name prefix = Erenna-sirena_k21
+
+property                      min               max               
+Homozygous (aa)               95.2096%          96.661%           
+Heterozygous (ab)             3.33901%          4.79039%          
+Genome Haploid Length         404,476,543 bp    428,962,757 bp    
+Genome Repeat Length          353,011,133 bp    374,381,733 bp    
+Genome Unique Length          51,465,410 bp     54,581,025 bp     
+Model Fit                     25.7443%          86.2747%          
+Read Error Rate               2.20491%          2.20491%          

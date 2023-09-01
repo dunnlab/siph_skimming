@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Bargmannia-lata_k21.histo
+output directory = Bargmannia-lata_k21
+p = 2
+k = 21
+name prefix = Bargmannia-lata_k21
+
+property                      min               max               
+Homozygous (aa)               95.3349%          96.3573%          
+Heterozygous (ab)             3.64274%          4.66512%          
+Genome Haploid Length         220,695,967 bp    232,482,042 bp    
+Genome Repeat Length          189,004,196 bp    199,097,800 bp    
+Genome Unique Length          31,691,770 bp     33,384,242 bp     
+Model Fit                     26.9601%          87.1039%          
+Read Error Rate               2.35125%          2.35125%          

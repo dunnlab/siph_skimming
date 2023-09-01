@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Hippopodius-hippopus_k21.histo
+output directory = Hippopodius-hippopus_k21
+p = 2
+k = 21
+name prefix = Hippopodius-hippopus_k21
+
+property                      min               max               
+Homozygous (aa)               95.2493%          96.2155%          
+Heterozygous (ab)             3.78454%          4.75073%          
+Genome Haploid Length         337,513,950 bp    356,274,054 bp    
+Genome Repeat Length          278,697,596 bp    294,188,500 bp    
+Genome Unique Length          58,816,354 bp     62,085,555 bp     
+Model Fit                     30.8482%          89.4382%          
+Read Error Rate               2.51207%          2.51207%          

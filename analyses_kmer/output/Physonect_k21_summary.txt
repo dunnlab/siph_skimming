@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Physonect_k21.histo
+output directory = Physonect_k21
+p = 2
+k = 21
+name prefix = Physonect_k21
+
+property                      min               max               
+Homozygous (aa)               94.9255%          96.7855%          
+Heterozygous (ab)             3.21446%          5.07451%          
+Genome Haploid Length         306,335,811 bp    326,942,926 bp    
+Genome Repeat Length          269,479,795 bp    287,607,617 bp    
+Genome Unique Length          36,856,016 bp     39,335,309 bp     
+Model Fit                     24.4407%          86.111%           
+Read Error Rate               2.3364%           2.3364%           

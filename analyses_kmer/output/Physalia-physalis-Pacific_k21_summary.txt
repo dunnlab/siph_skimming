@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Physalia-physalis-Pacific_k21.histo
+output directory = Physalia-physalis-Pacific_k21
+p = 2
+k = 21
+name prefix = Physalia-physalis-Pacific_k21
+
+property                      min               max               
+Homozygous (aa)               96.9449%          97.029%           
+Heterozygous (ab)             2.97105%          3.05515%          
+Genome Haploid Length         1,639,333,833 bp  1,655,617,167 bp  
+Genome Repeat Length          1,063,127,034 bp  1,073,686,966 bp  
+Genome Unique Length          576,206,798 bp    581,930,201 bp    
+Model Fit                     44.4788%          95.704%           
+Read Error Rate               0.429663%         0.429663%         

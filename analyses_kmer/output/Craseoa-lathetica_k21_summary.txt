@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Craseoa-lathetica_k21.histo
+output directory = Craseoa-lathetica_k21
+p = 2
+k = 21
+name prefix = Craseoa-lathetica_k21
+
+property                      min               max               
+Homozygous (aa)               95.1718%          96.4352%          
+Heterozygous (ab)             3.5648%           4.82819%          
+Genome Haploid Length         236,663,775 bp    250,333,689 bp    
+Genome Repeat Length          203,872,640 bp    215,648,508 bp    
+Genome Unique Length          32,791,135 bp     34,685,181 bp     
+Model Fit                     26.3521%          87.5804%          
+Read Error Rate               2.18317%          2.18317%          

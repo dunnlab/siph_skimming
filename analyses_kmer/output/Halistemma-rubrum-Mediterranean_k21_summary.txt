@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Halistemma-rubrum-Mediterranean_k21.histo
+output directory = Halistemma-rubrum-Mediterranean_k21
+p = 2
+k = 21
+name prefix = Halistemma-rubrum-Mediterranean_k21
+
+property                      min               max               
+Homozygous (aa)               95.1309%          96.5799%          
+Heterozygous (ab)             3.42008%          4.8691%           
+Genome Haploid Length         155,650,482 bp    165,542,128 bp    
+Genome Repeat Length          134,612,457 bp    143,167,129 bp    
+Genome Unique Length          21,038,025 bp     22,375,000 bp     
+Model Fit                     26.158%           86.2091%          
+Read Error Rate               2.83827%          2.83827%          
