@@ -1,0 +1,348 @@
+"""
+This snakefile makes k-mer spectra using a bunch of reads in a file
+"""
+configfile: "config_kmers.yaml"
+
+target_kmers = [21]
+
+rule all:
+    input:
+        expand("output/fastqc/{sample}_sub_R1_fastqc.html", sample = config["sample"]),
+        expand("output/fastqc/{sample}_sub_R2_fastqc.html", sample = config["sample"]),
+        expand("reads/{sample}_classified_R_1.fastq", sample = config["sample"]),
+        expand("reads/{sample}_classified_R_2.fastq", sample = config["sample"]),
+        expand("output/human/{sample}.mapped_paired", sample = config["sample"]),
+        expand("output/silva/{sample}_filtered_contigs.fa", sample = config["sample"]),
+        "output/genome_report.tsv"
+
+
+rule reads_subset:
+    input:
+        reads = lambda wildcards: [f"{config['base_read_dir']}{x}" for x in config["sample"][wildcards.sample]["reads"]]
+    output:
+        R1 = "reads/{sample}_sub_R1.fastq",
+        R2 = "reads/{sample}_sub_R2.fastq"
+    params:
+        sample = lambda wildcards: wildcards.sample
+    shell:
+        """
+        set +o pipefail;
+        zcat {input.reads}/*R1*.fastq.gz | head --lines=4000000 > {output.R1}
+        zcat {input.reads}/*R2*.fastq.gz | head --lines=4000000 > {output.R2}
+        """
+
+rule map_human:
+    input:
+        R1 = "reads/{sample}_sub_R1.fastq",
+        R2 = "reads/{sample}_sub_R2.fastq",
+        human_bwa = config["human_bwa"]
+    output:
+        mapped_count = "output/human/{sample}.mapped_paired"
+    log: "logs/bwa_human/bwa_human_{sample}.log"
+    threads: workflow.cores
+    shell:
+        """
+        # See https://gist.github.com/caseywdunn/e401f94809984bb7e505450b24b7a9be for motivation
+        # for this filtering
+        bwa mem -t {threads} \
+            {input.human_bwa} \
+            {input.R1} {input.R2} | \
+          samtools view -q 30 -F 0x900 -f 0x0002 -h - | \
+          awk 'substr($0,1,1)=="@" || ($9>= 200 && $9<=1000) || ($9<=-200 && $9>=-1000)' | \
+          samtools view -c - > {output.mapped_count}
+        """
+
+rule map_silva:
+    input:
+        reads = lambda wildcards: [f"{config['base_read_dir']}{x}" for x in config["sample"][wildcards.sample]["reads"]],
+        silva_bwa = config["silva_bwa"]
+    output:
+        reads = temp("reads/{sample}_all.fastq"),
+        bam = "output/silva/{sample}_silva.bam"
+    params:
+        max_lines = 8000000
+    log: "logs/bwa_silva/bwa_silva_{sample}.log"
+    threads: workflow.cores
+    shell:
+        """
+        set +o pipefail
+        zcat {input.reads}/*.fastq.gz | head --lines={params.max_lines} > {output.reads}
+        
+        bwa mem -t {threads} \
+            {input.silva_bwa} \
+            {output.reads} | \
+          samtools view -@ {threads} -b -F 260 - | \
+          samtools sort -@ {threads} - -o {output.bam}
+        """
+
+rule index_silva:
+    input:
+        bam = "output/silva/{sample}_silva.bam"
+    output:
+        index = "output/silva/{sample}_silva.bam.bai"
+    shell:
+        """
+        samtools index {input.bam}
+        """
+
+rule filter_mapped_reads:
+    input:
+        bam = "output/silva/{sample}_silva.bam",
+        index = "output/silva/{sample}_silva.bam.bai"
+    output:
+        bam = "output/silva/{sample}_silva_filtered.bam"
+    params:
+        min_length = 100
+    run:
+        # many alignments are quite short and likely spurious. Filter down to only
+        # longer alignments
+        
+        import pysam
+        import sys
+        import re
+        
+        def alignment_length_from_cigar(cigar):
+            """Compute alignment length with respect to the reference from a CIGAR string."""
+            tokens = re.findall(r'(\d+)([MIDNSHP=X])', cigar)
+            ref_length = sum(int(length) for length, op in tokens if op in "MND=X")
+            return ref_length
+        
+        def filter_bam_by_length(min_length, input_bam_path, output_bam_path):
+            # Open the input BAM for reading and the output BAM for writing.
+            # The 'wb' mode in the output BAM implies that we are copying the header from the input BAM.
+            with pysam.AlignmentFile(input_bam_path, 'rb') as inbam, \
+                 pysam.AlignmentFile(output_bam_path, 'wb', header=inbam.header) as outbam:
+        
+                # Iterate over each alignment in the input BAM.
+                for read in inbam:
+                    # Skip if no alignment for the read
+                    if read.cigarstring is None:
+                        continue
+        
+                    length = alignment_length_from_cigar(read.cigarstring)
+                    if length >= min_length:
+                        outbam.write(read)
+        
+        filter_bam_by_length(params.min_length, input.bam, output.bam)
+    
+
+rule velvet_silva:
+    input:
+        bam = "output/silva/{sample}_silva_filtered.bam"
+    output:
+        contigs = "output/silva/{sample}_contigs.fa"
+    params:
+        hash_length = 63
+    threads: workflow.cores
+    shell:
+        """
+        velveth outdir {params.hash_length} -short -bam {input.bam}
+        velvetg outdir -cov_cutoff auto
+        mv outdir/contigs.fa {output.contigs}
+        rm -r outdir
+        """
+
+rule filter_contigs:
+    input:
+        contigs = "output/silva/{sample}_contigs.fa"
+    output:
+        filtered_contigs = "output/silva/{sample}_filtered_contigs.fa"
+    params:
+        min_length = 300
+    run:
+        from Bio import SeqIO
+
+        def filter_by_length(records, min_length):
+            for record in records:
+                if len(record.seq) >= min_length:
+                    yield record
+
+        input_file = input.contigs
+        output_file = output.filtered_contigs
+
+        records = SeqIO.parse(input_file, 'fasta')
+        filtered_records = filter_by_length(records, params.min_length)
+
+        SeqIO.write(filtered_records, output_file, 'fasta')
+
+rule blast_silva:
+    input:
+        contigs = "output/silva/{sample}_filtered_contigs.fa"
+    output:
+        blast = "output/silva/{sample}_blast.tbl"
+    params:
+        nt = config["nt"]
+    shell:
+        """
+        blastn \
+          -db {params.nt} \
+          -query {input.contigs} \
+          -evalue 1e-6 \
+          -out {output.blast} \
+          -num_threads {threads} \
+          -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore sscinames staxids"
+        """
+
+
+rule fastqc:
+    input:
+        R1 = "reads/{sample}_sub_R1.fastq",
+        R2 = "reads/{sample}_sub_R2.fastq"
+    output:
+        html_R1 = "output/fastqc/{sample}_sub_R1_fastqc.html",
+        zip_R1 = "output/fastqc/{sample}_sub_R1_fastqc.zip",
+        html_R2 = "output/fastqc/{sample}_sub_R2_fastqc.html",
+        zip_R2 = "output/fastqc/{sample}_sub_R2_fastqc.zip"
+    params:
+        outdir = "output/fastqc"
+    log: "logs/fastqc/fastqc_{sample}.log"
+    priority: 15
+    shell:
+        """
+        fastqc -o {params.outdir} {input.R1} {input.R2}  2> {log}
+        """
+
+rule trim_reads:
+    input:
+        R1 = "reads/{sample}_sub_R1.fastq",
+        R2 = "reads/{sample}_sub_R2.fastq"
+    output:
+        R1_paired   = "reads/{sample}_trimmed_paired_R1.fastq",
+        R1_unpaired = "reads/{sample}_trimmed_unpaired_R1.fastq",
+        R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq",
+        R2_unpaired = "reads/{sample}_trimmed_unpaired_R2.fastq"
+    params:
+        sample = lambda wildcards: wildcards.sample
+    threads: workflow.cores
+    log: "logs/trimmomatic/trimmomatic_{sample}.log"
+    priority: 20
+    shell:
+        """
+        echo -e ">PrefixPE/1\nTACACTCTTTCCCTACACGACGCTCTTCCGATCT\n>PrefixPE/2\nGTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT" > TruSeq3-PE.fa
+        trimmomatic PE \
+          -threads {threads} \
+          {input.R1} \
+          {input.R2} \
+          {output.R1_paired} \
+          {output.R1_unpaired} \
+          {output.R2_paired} \
+          {output.R2_unpaired} \
+          ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:True LEADING:15 TRAILING:15 MINLEN:50 2> {log}
+        """
+
+rule kraken:
+    input:
+        R1_paired   = "reads/{sample}_trimmed_paired_R1.fastq",
+        R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq"
+    output:
+        REPORT = "output/kraken/{sample}.report.txt",
+        CLASS_R1 = "reads/{sample}_classified_R_1.fastq", 
+        CLASS_R2 = "reads/{sample}_classified_R_2.fastq", 
+        UNCLASS_R1 = "reads/{sample}_unclassified_R_1.fastq",
+        UNCLASS_R2 = "reads/{sample}_unclassified_R_2.fastq",
+        KRAKEN = "output/kraken/{sample}.kraken.txt"
+    params:
+        out_base = "output/kraken/{sample}", 
+        read_base = "reads/{sample}"
+    log: "logs/kraken/kraken_{sample}.log"
+    threads: workflow.cores
+    priority: 30
+    shell:
+        """
+        # See discussion of confidence score at https://github.com/DerrickWood/kraken2/issues/167
+        kraken2 --threads {threads} \
+          --db {config[kraken_database]} \
+          --confidence 0.1 \
+          --unclassified-out "{params.read_base}_unclassified_R#.fastq" \
+          --classified-out "{params.read_base}_classified_R#.fastq" \
+          --output {output.KRAKEN} \
+          --report "{params.out_base}.report.txt" --use-names --report-minimizer-data  \
+          --paired {input.R1_paired} {input.R2_paired} 2> {log}
+        """ 
+
+rule count_reads:
+    input:
+        R1 = "reads/{sample}_sub_R1.fastq",
+        R2 = "reads/{sample}_sub_R2.fastq",
+        R1_paired   = "reads/{sample}_trimmed_paired_R1.fastq",
+        R1_unpaired = "reads/{sample}_trimmed_unpaired_R1.fastq",
+        R2_paired   = "reads/{sample}_trimmed_paired_R2.fastq",
+        R2_unpaired = "reads/{sample}_trimmed_unpaired_R2.fastq"
+    output:
+        read_count = "output/{sample}.count"
+    params:
+        sample = lambda wildcards: wildcards.sample
+    priority: 40
+    shell:
+        """
+        sum=0
+        num_lines_raw=$(cat {input.R1} | wc -l)
+        num_reads_raw=$(($num_lines_raw / 4))
+        num_nucleotides_raw=$(cat {input.R1} {input.R2} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
+
+        sum=0
+        # num_lines_trimmed=$(cat {input.R1_paired} {input.R1_unpaired} {input.R2_paired} {input.R2_unpaired} | wc -l)
+        num_lines_trimmed=$(cat {input.R1_paired} | wc -l)
+        num_reads_trimmed=$(($num_lines_trimmed / 4))
+        # num_nucleotides_trimmed=$(cat {input.R1_paired} {input.R1_unpaired} {input.R2_paired} {input.R2_unpaired} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
+        num_nucleotides_trimmed=$(cat {input.R1_paired} {input.R2_paired} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
+
+        sum=0
+        num_lines_unpaired_trimmed=$(cat {input.R1_unpaired} {input.R2_unpaired} | wc -l)
+        num_reads_unpaired_trimmed=$(($num_lines_unpaired_trimmed / 4))
+        num_nucleotides_unpaired_trimmed=$(cat {input.R1_unpaired} {input.R2_unpaired} | awk '{{if(NR%4==2) sum+=length($0)}} END {{print sum}}' )
+
+        echo "reads_pairs_raw\t$num_reads_raw" > {output.read_count}
+        echo "nucleotides_raw\t$num_nucleotides_raw" >> {output.read_count}
+        echo "reads_pairs_trimmed\t$num_reads_trimmed" >> {output.read_count}
+        echo "nucleotides_trimmed\t$num_nucleotides_trimmed" >> {output.read_count}
+        echo "reads_unpaired_trimmed\t$num_reads_unpaired_trimmed" >> {output.read_count}
+        echo "nucleotides_unpaired_trimmed\t$num_nucleotides_unpaired_trimmed" >> {output.read_count}
+        """
+
+rule final_report:
+    input:
+        counts = expand("output/{sample}.count", sample=config["sample"]),
+        kraken = expand("output/kraken/{sample}.report.txt", sample=config["sample"]),
+        human_mapped = expand("output/human/{sample}.mapped_paired", sample=config["sample"])
+    output:
+        report = "output/genome_report.tsv"
+    run:
+        import pandas as pd
+
+        # Initialize list_of_results
+        list_of_results = [{"sample": sample} for sample in config["sample"]]
+
+        # Read the counts data
+        for result in list_of_results:
+            this_sample = result["sample"]
+            count_file = f"output/{this_sample}.count"
+            with open(count_file, "r") as f:
+                for line in f:
+                    key, value = line.strip().split("\t")
+                    result[key] = int(value)
+
+        # Read the kraken data
+        kraken_targets = ["unclassified", "Homo sapiens", "Bacteria"]
+        for result in list_of_results:
+            this_sample = result["sample"]
+            kraken_file = f"output/kraken/{this_sample}.report.txt"
+            with open(kraken_file, "r") as f:
+                for line in f:
+                    fields = line.strip().split("\t")
+                    value = fields[0].strip()
+                    key = fields[-1].strip()
+                    if key in kraken_targets:
+                        result[key] = float(value)
+
+        # Read the human mapped data
+        for result in list_of_results:
+            this_sample = result["sample"]
+            human_mapped_file = f"output/human/{this_sample}.mapped_paired"
+            with open(human_mapped_file, "r") as f:
+                result["human_mapped_count"] = int(f.read().strip())
+
+        # Create DataFrame and write to the report file
+        df = pd.DataFrame(list_of_results)
+        df = df[["sample", "reads_pairs_raw", "nucleotides_raw", "reads_pairs_trimmed", "nucleotides_trimmed", "reads_unpaired_trimmed", "nucleotides_unpaired_trimmed", "unclassified", "Homo sapiens", "Bacteria", "human_mapped_count"]]  # Added "human_mapped_count" to the columns list
+        df.to_csv(output.report, sep="\t", index=False)
