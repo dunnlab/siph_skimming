@@ -362,23 +362,18 @@ rule final_report:
     output:
         report = "output/genome_size_report.tsv"
     run:
+    
+        import pandas as pd
+    
         list_of_results = []
         for this_sample in config["sample"]:
             for this_kmer in target_kmers:
-                
-                count = -1
-                count_file = f"output/{this_sample}.count"
-                with open(count_file, "r") as f:
-                    for line in f:
-                        line = line.strip()
-                        count = int(line)
                 
                 targetfile = "output/{}_k{}_jellyfish_summary.txt".format(this_sample, this_kmer)
                 with open(targetfile, "r") as f:
                 #with open(input[0], "r") as f:
                     dict_of_vals = {}
                     dict_of_vals["sample"] = this_sample
-                    dict_of_vals["read_count"] = count
                     dict_of_vals["ploidy"] = 2
                     dict_of_vals["k"] = this_kmer
                     start_count = False
@@ -413,6 +408,21 @@ rule final_report:
                                     dict_of_vals["max_read_error_rate"] = float(splitd[4].strip("%"))
                                 counter += 1
                     list_of_results.append(dict_of_vals)
-        import pandas as pd
+        
+        # Read the counts data
+        list_of_counts = []
+        for this_sample in config["sample"]:
+            count_file = f"output/{this_sample}.count"
+            with open(count_file, "r") as f:
+                dict_of_counts = {}
+                for line in f:
+                    key, value = line.strip().split("\t")
+                    dict_of_counts[key] = int(value)
+                list_of_counts.append(dict_of_counts)
+
+        # Merge results with counts data
+        for result, counts in zip(list_of_results, list_of_counts):
+            result.update(counts)
+        
         df = pd.DataFrame(list_of_results)
         df.to_csv(output.report, sep="\t")

@@ -1,4 +1,4 @@
-base_read_dir: /gpfs/gibbs/pi/dunn/sequences/Novaseq_siphgenomes/
+base_read_dir: /gpfs/ycga/work/dunn/cwd7/sequences/Novaseq_siphgenomes/
 sample:
   Chelophyes-appendiculata: 
     reads:      
