@@ -13,25 +13,47 @@ def find_peaks(input_dir):
     for histo_file in histo_files:
         df_histo = pd.read_csv(histo_file, sep="\s+", header=None, engine='python')
         
+        # Only retain the first n rows
+        n = 100
+        df_histo = df_histo.head(n)
+
+        # Prepare DataFrames to store new columns and peak summaries
+        new_columns = pd.DataFrame(index=np.arange(len(df_histo)))  # it should have the same number of rows as df_histo
+        peaks_data = []
+
         # Assuming the first column is 'count' and the next 100 columns are percentiles
         for percentile in range(1, 101):  # Columns 1 to 100
             y = np.array(df_histo[percentile])
-            peaks, properties = scipy.signal.find_peaks(y, height=0, distance=2, threshold=10)
-            
+            peaks, _ = scipy.signal.find_peaks(y, height=100000, distance=2, threshold=20)
+
             # Create a numpy array as long as y filled with zeros, then set the peak positions to 1
             peaks_array = np.zeros(len(y))
             peaks_array[peaks] = 1
-            
-            # Add the peaks_array as a new column to the dataframe
-            column_name = f'peaks_{percentile}'
-            df_histo[column_name] = peaks_array
 
-            # If you only want to keep records of peaks, you might want to filter the DataFrame here
+            # Store new column data
+            new_columns[f'peaks_{percentile}'] = peaks_array
             
+            # Add peak information for concatenation later
+            for peak in peaks:
+                peak_info = {
+                    'percentile': percentile,
+                    'count': df_histo.iloc[peak, 0],
+                    'num_kmers': df_histo.iloc[peak, percentile]
+                }
+                peaks_data.append(pd.DataFrame([peak_info]))
+
+        # Concatenate all new columns into the original DataFrame
+        df_histo = pd.concat([df_histo, new_columns], axis=1)
+
         # Write the dataframe to a new file
         df_histo.to_csv(histo_file + '.peaks', sep="\t", header=None, index=False)
-        
-        # If you want to perform further analysis or printing for each file, do it here
+
+        # Concatenate all the individual DataFrame slices (for each peak) into a single DataFrame
+        if peaks_data:
+            peaks_summary = pd.concat(peaks_data, ignore_index=True)
+            # Write the peaks summary to a new file
+            peaks_summary.to_csv(histo_file + '.peaks.summary', sep="\t", index=False)
+            
 
 def main():
     parser = argparse.ArgumentParser(description="Look for peaks in kmer distributions")
