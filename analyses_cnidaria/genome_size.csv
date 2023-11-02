@@ -93,6 +93,9 @@ Hexacorallia,GCA_024752375.1,Entacmaea quadricolor,428330991,Scaffold,Assembly,P
 Hexacorallia,GCA_918843875.1,Diadumene lineata,312988696,Chromosome,Assembly,Published
 Octocorallia,GCF_004324835.1,Dendronephthya gigantea,286131786,Contig,Assembly,Published
 Hexacorallia,GCA_027575005.1,Sphenopus marsupialis,748645361,Scaffold,Assembly,Published
+Hexacorallia,GCA_949775045.1,Metridium senile,394000000,Chromosome,Assembly,Published
+Hexacorallia,GCA_958299795.1,Porites lutea,1110000000,Chromosome,Assembly,Published
+Hexacorallia,GCA_949710005.1,Ricordea florida,630000000,Chromosome,Assembly,Published
 Cubozoa,GCA_003991215.1,Morbakka virulenta,951575644,Scaffold,Assembly,Published
 Cubozoa,GCA_024741275.1,Chironex yamaguchii,467325690,Scaffold,Assembly,Published
 Cubozoa,GCA_918559645.1,Ceratonova shasta,69794587,Scaffold,Assembly,Published
@@ -109,6 +112,7 @@ Hydroidolina,GCA_027922465.1,Turritopsis dohrnii,474898964,Contig,Assembly,Publi
 Hydroidolina,GCF_022113875.1,Hydra vulgaris,819386744,Chromosome,Assembly,Published
 Hydroidolina,GCA_014706445.1,Hydra viridissima,284246930,Scaffold,Assembly,Published
 Hydroidolina,GCA_024195425.1,Hydra oligactis,1267755931,Scaffold,Assembly,Published
+Hydroidolina,GCA_029227915.2,Hydractinia symbiolongicarpus,483000000,Chromosome,Assembly,Published 
 Myxozoa,GCA_001455285.1,Sphaeromyxa zaharoni,173585031,Scaffold,Assembly,Published
 Myxozoa,GCA_010108815.1,Myxobolus squamalis,43671844,Contig,Assembly,Published
 Myxozoa,GCA_022478855.1,Myxobolus honghuensis,254310768,Scaffold,Assembly,Published
