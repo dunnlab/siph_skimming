@@ -1,0 +1,174 @@
+Rank,Assembly Accession,Organism Name, Assembly.Sequence.Length.or.genome.size.estimate..bp.,Assembly type,Data type,Group,chart_order,color
+Cubozoa,GCA_010016025.1,Alatinidae sp. Z8VKAUB7J3,1400697547,Scaffold,Assembly,Published,6,#a6cee2
+Cubozoa,GCA_008930755.2,Alatina alata,1308494669,Scaffold,Assembly,Published,6,#a6cee2
+Cubozoa,GCA_010016065.1,"Carybdea marsupialis auct. non (Linnaeus, 1758)",1286918252,Scaffold,Assembly,Published,6,#a6cee2
+Cubozoa,GCA_003991215.1,Morbakka virulenta,951575644,Scaffold,Assembly,Published,6,#a6cee2
+Cubozoa,GCA_024741275.1,Chironex yamaguchii,467325690,Scaffold,Assembly,Published,6,#a6cee2
+Cubozoa,GCA_918559645.1,Ceratonova shasta,69794587,Scaffold,Assembly,Published,6,#a6cee2
+Hexacorallia,GCA_958299795.1,Porites lutea,1110000000,Chromosome,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_019787425.1,Platygyra sinensis,1096359891,Contig,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_027575235.1,Palythoa mutuki,990472796,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_016490735.1,Pachyseris speciosa,984430632,Contig,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_026546935.1,Palythoa grandiflora,926984946,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025448255.1,Umimayanthus chanpuru,918735318,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_022457155.1,Cladopsammia gracilis,878658226,Contig,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_027575125.1,Umimayanthus parasiticus,859641056,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_026122405.1,Zoanthus sansibaricus,810762527,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_027575215.1,Hydrozoanthus sils,768795048,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025403545.1,Epizoanthus stellaris,768013631,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_027575005.1,Sphenopus marsupialis,748645361,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_026546465.1,Palythoa caribaeorum,723120211,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025403565.1,Palythoa heliodiscus,708400991,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025434785.1,Epizoanthus fatuus,690968272,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_027575285.1,Zoanthus pulchellus,677021558,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025448215.1,Palythoa grandis,676215966,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025403525.1,Umimayanthus kanabou,663987347,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634245.1,Montipora cactus,652738455,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_022496165.2,Catalaphyllia jardinei,651363123,Chromosome,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634505.1,Montipora efflorescens,643322625,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025448195.1,Parazoanthus atlanticus,639589115,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_949710005.1,Ricordea florida,630000000,Chromosome,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_024195265.1,Dendrophyllia cribrosa,627238274,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_006542545.1,Montipora capitata,614509607,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025403585.1,Parazoanthus swiftii,593601463,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_022179025.1,Porites australiensis,576510620,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_026546655.1,Epizoanthus illoricatus,566019393,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_024336925.1,Zoanthus solanderi,561540504,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025403605.1,Parazoanthus darwini,549208561,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_027574985.1,Umimayanthus nakama,539628319,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_023091755.1,Montipora sp. Colony 1 RG-2022,514221667,Contig,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025331085.1,Zoanthus sociatus,511954568,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025434825.1,Bergia sp. 'catenularis',505133066,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_024741335.1,Antipathozoanthus obscurus,501183593,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025331005.1,Zoanthus gigantus,497812403,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025434805.1,Antipathozoanthus remengesaui,492361077,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_026167885.1,Bergia puertoricense,485766386,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCF_002042975.1,Orbicella faveolata,485532801,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025447995.1,Isaurus tuberculatus,481906636,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCF_013753865.1,Acropora millepora,475381253,Chromosome,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_900290455.1,Porites rus,470011093,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025388745.1,Hydrozoanthus gracilis,461816543,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCF_000222465.1,Acropora digitifera,447478678,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_020536085.1,Acropora hyacinthus,446425040,Chromosome,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634605.1,Acropora florida,442824714,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634225.1,Acropora yongei,438047505,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_026413505.1,Epizoanthus ramosus,432671475,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634005.1,Acropora awi,428844380,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_024752375.1,Entacmaea quadricolor,428330991,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634045.1,Acropora cytherea,426326548,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634545.1,Acropora muricata,420731913,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634585.1,Acropora intermedia,416875905,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_948470475.1,Galaxea fascicularis,416866986,Chromosome,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634205.1,Acropora nasuta,416422065,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_011057435.1,Actinia equina,409058306,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014633955.1,Acropora tenuis,403138309,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634105.1,Acropora echinata,401478809,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634125.1,Acropora gemmifera,400993167,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_900234385.1,Anemonia viridis,400604393,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCF_002571385.1,Stylophora pistillata,400103141,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_009858155.2,Phymanthus crucifer,398541118,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_024757865.1,Epizoanthus scotinus,396351196,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014633975.1,Acropora acuminata,394735330,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_949775045.1,Metridium senile,394000000,Chromosome,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634525.1,Acropora selago,392938768,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634165.1,Acropora microphthalma,383861656,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014529365.1,Pocillopora verrucosa,380505547,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025505405.1,Epizoanthus rinbou,374392259,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_026413305.1,Hydrozoanthus tunicans,373613569,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_014634185.1,Astreopora myriophthalma,373482476,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_026260235.1,Hydrozoanthus antumbrosus,372657702,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_947652115.1,Blastomussa wellsi,367991705,Chromosome,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_026546615.1,Paleozoanthus reticulatus,367864585,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_918843875.1,Diadumene lineata,312988696,Chromosome,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025960835.1,Acropora palmata,304252072,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_027563615.1,Churabana kuroshioae,303676354,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_015163945.2,Stichodactyla helianthus,297322833,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_011800005.2,Stichodactyla mertensii,294907392,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_023349425.1,Anthopleura sola,288950296,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_011763375.2,Heteractis magnifica,278966790,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_015164035.2,Heteractis crispa,275015094,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCF_932526225.1,Nematostella vectensis,269418438,Chromosome,Assembly,Published,1,#2179b4
+Hexacorallia,GCF_009602425.1,Actinia tenebrosa,238179736,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCF_003704095.1,Pocillopora damicornis,234333463,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_024322265.1,Exaiptasia diaphana,229212552,Scaffold,Assembly,Published,1,#2179b4
+Hexacorallia,GCA_025388665.1,Epizoanthus planus,215922282,Scaffold,Assembly,Published,1,#2179b4
+Myxozoa,GCA_022478855.1,Myxobolus honghuensis,254310768,Scaffold,Assembly,Published,3,#31a248
+Myxozoa,GCA_001455285.1,Sphaeromyxa zaharoni,173585031,Scaffold,Assembly,Published,3,#31a248
+Myxozoa,GCA_000827895.1,Thelohanellus kitauei,150348159,Scaffold,Assembly,Published,3,#31a248
+Myxozoa,GCA_001455295.2,Enteromyxum leei,67975573,Scaffold,Assembly,Published,3,#31a248
+Myxozoa,GCA_009887335.1,Henneguya salminicola,61443780,Scaffold,Assembly,Published,3,#31a248
+Myxozoa,GCA_010108815.1,Myxobolus squamalis,43671844,Contig,Assembly,Published,3,#31a248
+Myxozoa,GCA_001407235.2,Kudoa iwatai,31177209,Scaffold,Assembly,Published,3,#31a248
+Octocorallia,GCA_025434845.1,Phenganax subtilis,880046452,Scaffold,Assembly,Published,2,#f6999a
+Octocorallia,GCA_025400075.1,Phenganax stokvisi,726025848,Scaffold,Assembly,Published,2,#f6999a
+Octocorallia,GCA_902702795.2,Paramuricea clavata,606969498,Scaffold,Assembly,Published,2,#f6999a
+Octocorallia,GCA_025400095.1,Phenganax marumi,583317065,Scaffold,Assembly,Published,2,#f6999a
+Octocorallia,GCA_016169945.1,Trachythela sp.,578189354,Contig,Assembly,Published,2,#f6999a
+Octocorallia,GCA_026546875.1,Pteroeides caledonicum,346410713,Scaffold,Assembly,Published,2,#f6999a
+Octocorallia,GCF_004324835.1,Dendronephthya gigantea,286131786,Contig,Assembly,Published,2,#f6999a
+Octocorallia,GCA_025770025.1,Virgularia gustaviana,243681559,Scaffold,Assembly,Published,2,#f6999a
+Octocorallia,GCA_021976095.1,Xenia sp.,222699550,Chromosome,Assembly,Published,2,#f6999a
+Octocorallia,GCA_900177555.1,Renilla reniformis,131554742,Scaffold,Assembly,Published,2,#f6999a
+Other Hydroidolina,GCA_024195425.1,Hydra oligactis,1267755931,Scaffold,Assembly,Published,8,#695752
+Other Hydroidolina,GCA_027564595.1,Bythotiara depressa,1037087141,Scaffold,Assembly,Published,8,#695752
+Other Hydroidolina,GCF_022113875.1,Hydra vulgaris,819386744,Chromosome,Assembly,Published,8,#695752
+Other Hydroidolina,GCA_025330745.1,Cladonema radiatum,618598448,Scaffold,Assembly,Published,8,#695752
+Other Hydroidolina,GCA_029227915.2,Hydractinia symbiolongicarpus,483000000,Chromosome,Assembly,Published ,8,#695752
+Other Hydroidolina,GCA_027922465.1,Turritopsis dohrnii,474898964,Contig,Assembly,Published,8,#695752
+Other Hydroidolina,GCA_902728285.1,Clytia hemisphaerica,420978673,Scaffold,Assembly,Published,8,#695752
+Other Hydroidolina,GCA_014706445.1,Hydra viridissima,284246930,Scaffold,Assembly,Published,8,#695752
+Other Hydroidolina,GCA_025167575.1,Turritopsis rubra,216274671,Scaffold,Assembly,Published,8,#695752
+Scyphozoa,GCA_011763395.2,Chrysaora chesapeakei,437629324,Scaffold,Assembly,Published,5,#e21f26
+Scyphozoa,GCA_004194395.1,Aurelia aurita complex sp. Pacific,426022005,Scaffold,Assembly,Published,5,#e21f26
+Scyphozoa,GCA_018155075.1,Cassiopea andromeda,406637004,Scaffold,Assembly,Published,5,#e21f26
+Scyphozoa,GCA_015164055.2,Chrysaora achlyos,401785703,Scaffold,Assembly,Published,5,#e21f26
+Scyphozoa,GCA_004194415.1,Aurelia aurita,376932402,Scaffold,Assembly,Published,5,#e21f26
+Scyphozoa,GCA_900291935.2,Cassiopea xamachana,366839413,Scaffold,Assembly,Published,5,#e21f26
+Scyphozoa,GCA_011634815.2,Aurelia coerulea,343024434,Scaffold,Assembly,Published,5,#e21f26
+Scyphozoa,GCA_014526335.1,Chrysaora quinquecirrha,337419359,Scaffold,Assembly,Published,5,#e21f26
+Scyphozoa,GCA_009936425.2,Chrysaora fuscescens,258930084,Scaffold,Assembly,Published,5,#e21f26
+Scyphozoa,GCA_013076305.1,Rhopilema esculentum,256689583,Scaffold,Assembly,Published,5,#e21f26
+Scyphozoa,GCA_003864495.1,Nemopilema nomurai,213621014,Scaffold,Assembly,Published,5,#e21f26
+Scyphozoa,GCA_013076295.1,Sanderia malayensis,184371355,Scaffold,Assembly,Published,5,#e21f26
+Siphonophora,skimming data this paper,Praya dubia,3700000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Erenna sirena,3070000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Bargmannia elongata,2890000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Lilyopsis fluoracantha,2680000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Frillagalma vityazi,2570000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Forskalia sp,2470000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Hippopodius hippopus,2440000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Gymnopraia lapislazula,2330000000,Size based on kmer spectrum,Size based on kmer spectrum,New data,9,#aad480
+Siphonophora,skimming data this paper,Agalma elegans Pacific,2320000000,Size based on kmer spectrum,Size based on kmer spectrum,New data,9,#aad480
+Siphonophora,skimming data this paper,Rhizophysa eysenhardtii,2290000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Apolemia rubriversa,2230000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Praya,2230000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Physonect sp,2200000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Stephalia dilata,2090000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Chuniphyes multidentata,2080000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Diphyes dispar,1930000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Halistemma rubrum Atlantic,1670000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Physalia Guam,1650000000,Size based on kmer spectrum,Size based on kmer spectrum,New data,9,#aad480
+Siphonophora,skimming data this paper,Craseoa lathetica,1630000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Stephanomia amphytridis,1600000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Rhizophysa filiformis,1580000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Nanomia California,1450000000,Size based on kmer spectrum,Size based on kmer spectrum,New data,9,#aad480
+Siphonophora,skimming data this paper,Bargmannia lata,1420000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Apolemia sp3,1340000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Chelophyes appendiculata,1200000000,Size based on kmer spectrum,Size based on kmer spectrum,New data,9,#aad480
+Siphonophora,skimming data this paper,Abylopsis tetragona,1040000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Halistemma rubrum Mediterranean,1030000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Agalma clausi,1020000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Resomia ornicephala T898D2,1010000000, Size based on kmer spectrum ,Size based on kmer spectrum,New data,9,#aad480
+Siphonophora,skimming data this paper,Rosacea flaccida,990000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Agalma elegans Atlantic,960000000,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Nanomia bijuga North Carolina,700000000,Size based on kmer spectrum,Size based on kmer spectrum,New data,9,#aad480
+Siphonophora,skimming data this paper,Cordagalma ordinatum,690000000,Size based on kmer spectrum,Size based on kmer spectrum,New data,9,#aad480
+Siphonophora,skimming data this paper,Agalma okeni,,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Siphonophora,skimming data this paper,Resomia ornicephala T845D3,,Minimum size based on read coverage,Minimum size based on read coverage,New data,9,#aad480
+Staurozoa,GCA_916610825.1,Haliclystus octoradiatus,261880027,Chromosome,Assembly,Published,4,#fdbf6e
+Staurozoa,GCA_025505365.1,Haliclystus inabai,212279008,Scaffold,Assembly,Published,4,#fdbf6e
+Staurozoa,GCA_900245855.1,Calvadosia cruxmelitensis,209392379,Scaffold,Assembly,Published,4,#fdbf6e
+Trachylina,GCA_027575255.1,Scolionema suvaense,1259201252,Scaffold,Assembly,Published,7,#cab3d6
+Trachylina,GCA_003687565.2,Craspedacusta sowerbii,620643343,Scaffold,Assembly,Published,7,#cab3d6
+Trachylina,GCA_032356645.1,Aegina citrea,768783262,Scaffold,Assembly,Published,7,#cab3d6
+Trachylina,GCA_031471615.1,Aglantha digitale,223846148,Scaffold,Assembly,Published,7,#cab3d6
