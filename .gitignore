@@ -18,3 +18,8 @@ analyses_kmer/reads/
 analyses_kmer/fastqc/
 analyses_kmer/snake.txt
 
+analyses_sharkmer/output.old/
+analyses_sharkmer/benchmarks
+analyses_sharkmer/data
+analyses_sharkmer/logs
+analyses_sharkmer/snake.txt

@@ -20,7 +20,9 @@ rule all:
         expand("output/{sample}_k{thisk}_sharkmovie/{sample}_k{thisk}.sharkmer_genomescope_fit.png", sample = config["sample"], thisk = target_kmers),
         expand("output/{sample}_k{thisk}.sharkmer_view.html", sample = config["sample"], thisk = target_kmers),
         expand("output/{sample}_k{thisk}.sharkmer_view_genome_size.html", sample = config["sample"], thisk = target_kmers),
-        "output/genome_size_report.tsv"
+        "output/genome_size_report.tsv",
+        "output/histogram_comparison.png",
+
 
 
 rule process_and_count_reads:
@@ -96,13 +98,14 @@ rule generate_sharkmer_spectrum:
     params:
         sample = lambda wildcards: wildcards.sample,
         thisk = lambda wildcards: wildcards.thisk,
-        base_name = "output/{sample}_k{thisk}.sharkmer",
+        base_name = "{sample}_k{thisk}.sharkmer",
+        max_reads = 1000000000
     threads: workflow.cores
     benchmark: "benchmarks/sharkmer.{sample}_k{thisk}.benchmark.txt"
     log: "logs/sharkmer.{sample}_k{thisk}.log"
     shell:
         """
-        sharkmer -k {params.thisk} -n 100 -t {threads} -o {params.base_name} {input.reads}
+        sharkmer -k {params.thisk} -n 100 -t {threads} -m {params.max_reads} -o "output/" -s {params.base_name} {input.reads} > {log} 2>&1
         """
 
 rule generate_jellyfish_spectrum:
@@ -114,12 +117,13 @@ rule generate_jellyfish_spectrum:
     params:
         sample = lambda wildcards: wildcards.sample,
         thisk = lambda wildcards: wildcards.thisk,
+        maxlines = 4000000000
     threads: workflow.cores
     benchmark: "benchmarks/jellyfish.{sample}_k{thisk}.benchmark.txt"
     log: "logs/jellyfish.{sample}_k{thisk}.log"
     shell:
         """
-        jellyfish count -C -m {params.thisk} -s 1000000000 -t {threads} {input.reads} -o {output.jf}
+        head -n {params.maxlines} {input.reads} | jellyfish count -C -m {params.thisk} -s 1000000000 -t {threads} /dev/fd/0 -o {output.jf}
         jellyfish histo -t {threads} {output.jf} > {output.histo}
         """
 
@@ -128,12 +132,14 @@ rule generate_kmc_spectrum:
         reads = "data/{sample}.fastq"
     output:
         histo = "output/{sample}k{thisk}.kmc.histo",
+        reads_head = temporary("output/{sample}_k{thisk}.fastq")
     params:
         sample = lambda wildcards: wildcards.sample,
         thisk = lambda wildcards: wildcards.thisk,
         intermediate = "{sample}_k{thisk}_kmc_intermediate",
         temp = "{sample}_k{thisk}_kmc_temp",
         memorygb = 640,
+        maxlines = 4000000000,
     threads: workflow.cores
     benchmark: "benchmarks/kmc.{sample}_k{thisk}.benchmark.txt"
     log: "logs/kmc.{sample}_k{thisk}.log"
@@ -141,11 +147,80 @@ rule generate_kmc_spectrum:
         """
         # modified from http://qb.cshl.edu/genomescope/genomescope2.0/
         mkdir {params.temp}
-        kmc -k{params.thisk} -t{threads} -m{params.memorygb} -ci1 -cs10000 {input.reads} {params.intermediate} {params.temp}
+        head -n {params.maxlines} {input.reads} > {output.reads_head}
+        kmc -k{params.thisk} -t{threads} -m{params.memorygb} -ci1 -cs10000 {output.reads_head} {params.intermediate} {params.temp}
         kmc_tools transform {params.intermediate} histogram {output.histo} -cx10000
         rm {params.intermediate}*
         rm -r {params.temp}
         """
+
+rule compare_histograms:
+    input:
+        sharkmer_histo = expand("output/{sample}_k{thisk}.sharkmer.final.histo", sample=config["sample"], thisk=target_kmers),
+        jellyfish_histo = expand("output/{sample}_k{thisk}.jellyfish.histo", sample=config["sample"], thisk=target_kmers),
+        kmc_histo = expand("output/{sample}k{thisk}.kmc.histo", sample=config["sample"], thisk=target_kmers),
+    output:
+        histo_fig = "output/histogram_comparison.png",
+        histo_table = "output/histogram_comparison.tsv",
+    run:
+        import pandas as pd
+        import matplotlib.pyplot as plt
+        import numpy as np
+
+        # A dataframe to hold all the results
+        all_data = []
+
+        for this_sample in config["sample"]:
+            for this_kmer in target_kmers:
+                # Load the data
+                df_sharkmer = pd.read_csv(f"output/{this_sample}_k{this_kmer}.sharkmer.final.histo", sep='\t', header=None, names=['count', 'sharkmer'])
+                df_jellyfish = pd.read_csv(f"output/{this_sample}_k{this_kmer}.jellyfish.histo", sep='\s', header=None, names=['count', 'jellyfish'])
+                df_kmc = pd.read_csv(f"output/{this_sample}k{this_kmer}.kmc.histo", sep='\t', header=None, names=['count', 'kmc'])
+
+                # Convert all columns to integers
+                df_sharkmer = df_sharkmer.astype(int)
+                df_jellyfish = df_jellyfish.astype(int)
+                df_kmc = df_kmc.astype(int)
+
+                # Drop the last row of kmc since it puts surplus values in element n rather than n+1
+                df_kmc = df_kmc.iloc[:-1]
+
+                # Merge dataframes on 'count'
+                df_this_sample = pd.merge(pd.merge(df_sharkmer, df_jellyfish, on='count'), df_kmc, on='count')
+
+                # Add columns for sample and kmer
+                df_this_sample['sample'] = this_sample
+                df_this_sample['kmer'] = this_kmer
+
+                all_data.append(df_this_sample)
+
+        # Combine into a single dataframe
+        df = pd.concat(all_data)
+
+        # Write the table to output.histo_table
+        df.to_csv(output.histo_table, sep='\t', index=False)
+
+        # Plot
+        fig, axs = plt.subplots(len(config["sample"]), 2, figsize=(10, 5 * len(config["sample"])))
+
+        for i, this_sample in enumerate(config["sample"]):
+            for j, this_kmer in enumerate(target_kmers):
+                df_sample_kmer = df[(df['sample'] == this_sample) & (df['kmer'] == this_kmer)]
+                axs[i, 0].scatter(np.log10(df_sample_kmer['sharkmer']), np.log10(df_sample_kmer['jellyfish']), alpha=0.5)
+                axs[i, 1].scatter(np.log10(df_sample_kmer['sharkmer']), np.log10(df_sample_kmer['kmc']), alpha=0.5)
+
+                axs[i, 0].set_title(f'{this_sample} - Sharkmer vs Jellyfish')
+                axs[i, 1].set_title(f'{this_sample} - Sharkmer vs KMC')
+
+                axs[i, 0].set_xlabel('Log10(Sharkmer)')
+                axs[i, 1].set_xlabel('Log10(Sharkmer)')
+                axs[i, 0].set_ylabel('Log10(Jellyfish)')
+                axs[i, 1].set_ylabel('Log10(KMC)')
+
+        plt.tight_layout()
+        plt.savefig(output.histo_fig)
+        plt.savefig(output.histo_fig.replace('.png', '.pdf'), format='pdf')
+
 
 
 rule generate_freqxcov_histo:
