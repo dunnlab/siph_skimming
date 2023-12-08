@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Agalma-elegans-Pacifick21.kmc.histo
+output directory = Agalma-elegans-Pacific_k21_kmc
+p = 2
+k = 21
+name prefix = Agalma-elegans-Pacific_k21_kmc
+
+property                      min               max               
+Homozygous (aa)               97.1365%          97.2457%          
+Heterozygous (ab)             2.75433%          2.86351%          
+Genome Haploid Length         2,425,352,361 bp  2,465,744,122 bp  
+Genome Repeat Length          1,450,588,914 bp  1,474,746,987 bp  
+Genome Unique Length          974,763,448 bp    990,997,135 bp    
+Model Fit                     51.2426%          97.2294%          
+Read Error Rate               0.259206%         0.259206%         

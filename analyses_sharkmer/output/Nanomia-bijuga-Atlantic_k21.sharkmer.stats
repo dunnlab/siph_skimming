@@ -1,0 +1,9 @@
+arguments	Args { k: 21, histo_max: 10000, n: 100, max_reads: 1000000000, threads: 16, sample: "Nanomia-bijuga-Atlantic_k21.sharkmer", outdir: "output/", input: Some(["data/Nanomia-bijuga-Atlantic.fastq"]), pcr: [], rad: [], verbosity: 0 }
+kmer_length	21
+n_reads_read	625663334
+n_bases_read	92498995049
+n_subreads_ingested	0
+n_bases_ingested	92497375171
+n_kmers	79969637559
+n_multi_kmers	77690592038
+n_singleton_kmers	2279045521

@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Nanomia-bijuga-Atlantic_k21.sharkmer.final.histo
+output directory = Nanomia-bijuga-Atlantic_k21_sharkmer
+p = 2
+k = 21
+name prefix = Nanomia-bijuga-Atlantic_k21_sharkmer
+
+property                      min               max               
+Homozygous (aa)               95.928%           95.9868%          
+Heterozygous (ab)             4.0132%           4.07202%          
+Genome Haploid Length         710,501,820 bp    712,720,761 bp    
+Genome Repeat Length          316,527,936 bp    317,516,472 bp    
+Genome Unique Length          393,973,884 bp    395,204,288 bp    
+Model Fit                     66.4535%          95.8843%          
+Read Error Rate               0.240616%         0.240616%         

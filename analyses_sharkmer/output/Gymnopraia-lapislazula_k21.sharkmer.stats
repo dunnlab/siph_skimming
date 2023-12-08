@@ -1,0 +1,9 @@
+arguments	Args { k: 21, histo_max: 10000, n: 100, max_reads: 1000000000, threads: 16, sample: "Gymnopraia-lapislazula_k21.sharkmer", outdir: "output/", input: Some(["data/Gymnopraia-lapislazula.fastq"]), pcr: [], rad: [], verbosity: 0 }
+kmer_length	21
+n_reads_read	1000000000
+n_bases_read	145821441410
+n_subreads_ingested	0
+n_bases_ingested	145820080516
+n_kmers	125812318295
+n_multi_kmers	121818832608
+n_singleton_kmers	3993485687

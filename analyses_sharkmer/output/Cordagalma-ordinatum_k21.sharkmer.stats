@@ -1,0 +1,9 @@
+arguments	Args { k: 21, histo_max: 10000, n: 100, max_reads: 1000000000, threads: 16, sample: "Cordagalma-ordinatum_k21.sharkmer", outdir: "output/", input: Some(["data/Cordagalma-ordinatum.fastq"]), pcr: [], rad: [], verbosity: 0 }
+kmer_length	21
+n_reads_read	301588354
+n_bases_read	43829975721
+n_subreads_ingested	0
+n_bases_ingested	43829358257
+n_kmers	37794728644
+n_multi_kmers	36249823135
+n_singleton_kmers	1544905509

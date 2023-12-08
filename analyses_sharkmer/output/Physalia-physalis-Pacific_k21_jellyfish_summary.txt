@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Physalia-physalis-Pacific_k21.jellyfish.histo
+output directory = Physalia-physalis-Pacific_k21_jellyfish
+p = 2
+k = 21
+name prefix = Physalia-physalis-Pacific_k21_jellyfish
+
+property                      min               max               
+Homozygous (aa)               96.9207%          97.0178%          
+Heterozygous (ab)             2.98223%          3.07934%          
+Genome Haploid Length         1,714,267,979 bp  1,737,153,289 bp  
+Genome Repeat Length          1,139,898,491 bp  1,155,116,024 bp  
+Genome Unique Length          574,369,489 bp    582,037,265 bp    
+Model Fit                     42.674%           96.2614%          
+Read Error Rate               0.363213%         0.363213%         

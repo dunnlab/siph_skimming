@@ -1,0 +1,9 @@
+arguments	Args { k: 21, histo_max: 10000, n: 100, max_reads: 1000000000, threads: 16, sample: "Physalia-physalis-Pacific_k21.sharkmer", outdir: "output/", input: Some(["data/Physalia-physalis-Pacific.fastq"]), pcr: [], rad: [], verbosity: 0 }
+kmer_length	21
+n_reads_read	1000000000
+n_bases_read	139466059631
+n_subreads_ingested	0
+n_bases_ingested	139464237934
+n_kmers	119449797993
+n_multi_kmers	115363123175
+n_singleton_kmers	4086674818

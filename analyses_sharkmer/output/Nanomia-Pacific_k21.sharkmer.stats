@@ -1,0 +1,9 @@
+arguments	Args { k: 21, histo_max: 10000, n: 100, max_reads: 1000000000, threads: 16, sample: "Nanomia-Pacific_k21.sharkmer", outdir: "output/", input: Some(["data/Nanomia-Pacific.fastq"]), pcr: [], rad: [], verbosity: 0 }
+kmer_length	21
+n_reads_read	580052844
+n_bases_read	86474099796
+n_subreads_ingested	0
+n_bases_ingested	86473060804
+n_kmers	74863485822
+n_multi_kmers	71255409335
+n_singleton_kmers	3608076487

@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Chelophyes-appendiculatak21.kmc.histo
+output directory = Chelophyes-appendiculata_k21_kmc
+p = 2
+k = 21
+name prefix = Chelophyes-appendiculata_k21_kmc
+
+property                      min               max               
+Homozygous (aa)               94.7557%          94.9217%          
+Heterozygous (ab)             5.07833%          5.24429%          
+Genome Haploid Length         1,192,899,937 bp  1,200,920,583 bp  
+Genome Repeat Length          678,863,218 bp    683,427,659 bp    
+Genome Unique Length          514,036,719 bp    517,492,924 bp    
+Model Fit                     53.1543%          94.9817%          
+Read Error Rate               0.31296%          0.31296%          

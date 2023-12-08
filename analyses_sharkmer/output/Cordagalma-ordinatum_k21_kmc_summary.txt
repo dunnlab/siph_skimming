@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Cordagalma-ordinatumk21.kmc.histo
+output directory = Cordagalma-ordinatum_k21_kmc
+p = 2
+k = 21
+name prefix = Cordagalma-ordinatum_k21_kmc
+
+property                      min               max               
+Homozygous (aa)               94.6212%          94.7569%          
+Heterozygous (ab)             5.24306%          5.37875%          
+Genome Haploid Length         683,415,716 bp    688,599,360 bp    
+Genome Repeat Length          346,922,891 bp    349,554,268 bp    
+Genome Unique Length          336,492,825 bp    339,045,092 bp    
+Model Fit                     56.7633%          95.8767%          
+Read Error Rate               0.329097%         0.329097%         

@@ -23,3 +23,13 @@ analyses_sharkmer/benchmarks
 analyses_sharkmer/data
 analyses_sharkmer/logs
 analyses_sharkmer/snake.txt
+
+analyses_sharkmer/output/*sharkmovie/*.histo
+analyses_sharkmer/output/*sharkmovie/*plot.png
+analyses_sharkmer/output/*sharkmovie/*.txt
+analyses_sharkmer/output/*sharkmovie/*log_plot.mp4
+analyses_sharkmer/output/*transformed*.png
+analyses_sharkmer/output/*log*.png
+analyses_sharkmer/output/*progress*
+analyses_sharkmer/output/*freqxcov*
+analyses_sharkmer/output/*jellyfish.histo.pdf

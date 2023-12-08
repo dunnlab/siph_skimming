@@ -1,0 +1,9 @@
+arguments	Args { k: 21, histo_max: 10000, n: 100, max_reads: 1000000000, threads: 16, sample: "Resomia-ornicephala-T898-D2_k21.sharkmer", outdir: "output/", input: Some(["data/Resomia-ornicephala-T898-D2.fastq"]), pcr: [], rad: [], verbosity: 0 }
+kmer_length	21
+n_reads_read	1000000000
+n_bases_read	138347824608
+n_subreads_ingested	0
+n_bases_ingested	138346498723
+n_kmers	118338665548
+n_multi_kmers	114821750515
+n_singleton_kmers	3516915033

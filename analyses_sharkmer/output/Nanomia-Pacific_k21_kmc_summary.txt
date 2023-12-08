@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Nanomia-Pacifick21.kmc.histo
+output directory = Nanomia-Pacific_k21_kmc
+p = 2
+k = 21
+name prefix = Nanomia-Pacific_k21_kmc
+
+property                      min               max               
+Homozygous (aa)               99.239%           99.4211%          
+Heterozygous (ab)             0.578924%         0.761045%         
+Genome Haploid Length         1,443,853,353 bp  1,453,669,767 bp  
+Genome Repeat Length          913,977,140 bp    920,191,052 bp    
+Genome Unique Length          529,876,213 bp    533,478,714 bp    
+Model Fit                     42.606%           96.8583%          
+Read Error Rate               0.453112%         0.453112%         

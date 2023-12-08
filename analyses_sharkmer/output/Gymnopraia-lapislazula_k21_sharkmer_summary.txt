@@ -1,0 +1,15 @@
+GenomeScope version 2.0
+input file = output/Gymnopraia-lapislazula_k21.sharkmer.final.histo
+output directory = Gymnopraia-lapislazula_k21_sharkmer
+p = 2
+k = 21
+name prefix = Gymnopraia-lapislazula_k21_sharkmer
+
+property                      min               max               
+Homozygous (aa)               93.9938%          95.4151%          
+Heterozygous (ab)             4.58495%          6.00621%          
+Genome Haploid Length         1,736,327,603 bp  1,806,836,303 bp  
+Genome Repeat Length          1,515,900,182 bp  1,577,457,776 bp  
+Genome Unique Length          220,427,422 bp    229,378,527 bp    
+Model Fit                     19.7519%          81.6167%          
+Read Error Rate               0.932043%         0.932043%         
