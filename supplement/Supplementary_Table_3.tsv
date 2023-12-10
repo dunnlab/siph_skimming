@@ -1,8 +1,8 @@
-sample	length_GB_jellfyfish	length_GB_kmc	length_GB_sharkmer	yield_percent_sharkmer	sequenced_trimmed_GB	coverage_all_trimmed	percentile_first_peak	percentil_model_fit	coverage_first_peak	coverage_model_fit
-Agalma-elegans-Pacific	2.333	2.333	2.468	98.01	308	132	22	67	29.04	88.44
-Chelophyes-appendiculata	1.201	1.201	1.217	98.01	105	87.4	14	50	12.236	43.7
-Cordagalma-ordinatum	0.689	0.689	0.689	98.01	43.8	63.6	15	46	9.54	29.256
-Nanomia-bijuga-Atlantic	0.713	0.713	0.719	98.01	92.5	129.7	8	27	10.376	35.019
-Nanomia-Pacific	1.454	1.454	1.465	98.01	86.5	59.5	15	49	8.925	29.155
-Physalia-physalis-Pacific	1.656	1.656	1.818	98.01	185	111.7	24	72	26.808	80.424
-Resomia-ornicephala-T898-D2	1.028	1.028	0.877	98.01	157	152.7	31	NA	47.337	NA
+sample	genome size jellfyfish GB	genome size kmc GB	genome size sharkmer GB	nucleotides analyzed GB	coverage analyzed	percentile first peak	percentile model fit	coverage first peak	coverage model fit
+Agalma elegans Pacific	2.466	2.466	2.466	151	61.23	20	61	12.25	37.35
+Chelophyes appendiculata	1.201	1.201	1.201	105	87.43	12	37	10.49	32.35
+Cordagalma ordinatum	0.689	0.689	0.689	43.8	63.57	17	44	10.81	27.97
+Nanomia bijuga North Carolina	0.713	0.713	0.713	92.5	129.73	7	23	9.08	29.84
+Nanomia California	1.454	1.454	1.454	86.5	59.49	14	45	8.33	26.77
+Physalia Guam	1.737	1.737	1.737	151	86.93	18	53	15.65	46.07
+Resomia ornicephala T898-D2	2.16	2.16	2.16	151	69.91	22	NA	15.38	NA
